@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="header-content">
+    <header>
+        <div class="logo-container">
+          <div class="logo">
+            <img src="https://saketcollege.edu.in/wp-content/uploads/2024/01/Saket_Gyanpeeth_New-removebg-preview-150x150-1.png" alt="College Logo" />
+          </div>
+          <div class="college-name">
+            <p>Saket Gyanpeeth's</p>
+            <h1>Saket College of Art's Science And Commerce</h1>
+            <p>Permanently Affiliated To University Of Mumbai</p>
+            <p><b>NAAC Accredited 'B' Grade</b><p>
+          </div>
+
+          <div class="facu">
+            
+            <a href="#">IQAC/NAAC</a>
+            <a href="#">Staffs</a>
+            <a href="#">Placement</a>
+            <a href="#">Visit</a>
+            <a href="#">Careers</a>
+          </div>
+        </div>
+      </header>
+    
+      <nav class="nav">
+        <div class="mobile-nav-header">
+          <a href="#home" class="mobile-home"><i class="fa fa-home" style="font-size:1rem;"></i></a>
+          <button class="hamburger" onclick="toggleMenu(this)">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+        <ul class="nav-list">
+          <!-- Desktop home icon (hidden on mobile) -->
+          <li class="desktop-home"><a href="#home"><i class="fa fa-home" style="font-size:1rem;"></i></a></li>
+          <li class="dropdown">
+            <a href="#academics">About us  ⇩</i> </a>
+            <ul class="dropdown-menu">
+              <li><a href="https://saketcollege.edu.in/course-outcomes/">Message</a></li>
+              <li><a href="https://saketcollege.edu.in/pg/">Commitee</a></li>
+              <li><a href="#">Organogram </a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#admissions">Academics  ⇩</a>
+            <ul class="dropdown-menu">
+              <li><a href="#undergraduate">Program & Cources</a></li>
+              <li><a href="#postgraduate">Course Outcomes</a></li>
+              <li><a href="#phd">Academic Calendar</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#examinations">Student Corner  ⇩</a>
+            <ul class="dropdown-menu">
+              <li><a href="https://saketcollege.edu.in/exam-timetable/">Notices</a></li>
+              <li><a href="https://saketcollege.edu.in/results/">Activities</a></li>
+              <li><a href="#">Syllabus</a></li>
+              <li><a href="#">Program Outcome</a></li>
+              <li><a href="#">Student Support</a></li>
+              <li><a href="#">Code Of COnduct</a></li>
+              <li><ul><a href="#"></a>Alumini</ul>
+                        <li><a href="#">Alumini Association</a></li>
+                        <li><a href="#">Alumini Interaction</a></li>
+                        <li><a href="#">Our Emitent Alumini</a></li>
+                        <li><a href="#">Testimonals</a></li></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#student">Library  ⇩</a>
+            <ul class="dropdown-menu">
+              <li><a href="https://saketcollege.edu.in/events-2/">About Library</a></li>
+              <li><a href="https://saketcollege.edu.in/dlle/">Library Commitee</a></li>
+              <li><a href="#">Activities</a></li>
+              <li><a href="#">Code Of Conduct</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="https://saketcollege.edu.in/about-library-2/">Extention Activities  ⇩</a>
+        <ul class="dropdown-menu">
+            <li><a href="#">NSS</a></li>
+            <li><a href="#">DLLE</a></li>   
+            
+            <li><a href="#">Best Practices</a></li>
+        </ul>
+        </li>
+          <li class="dropdown">
+            <a href="#research">Examination  ⇩</a>
+            <ul class="dropdown-menu" >
+              <li><a href="#publications">Exam commitee</a></li>
+              <li><a href="#projects">Exam Policy</a></li>
+                <li><a href="#patents">Exam Time-Table</a></li>
+                <li><a href="#patents">Exam Results</a></li>
+                <li><a href="#patents">Notices & Circulars</a></li>
+            </ul>
+          </li>
+            <li class="dropdown">
+                <a href="#research">feedback  ⇩</a>
+                <ul class="dropdown-menu">
+                <li><a href="#publications">Parents</a></li>
+                <li><a href="#projects">Employers</a></li>
+                <li><a href="#patents">Alumini</a></li>
+                <li><a href="#patents">Syllabus</a></li>
+                <li><a href="#patents">Teachers</a></li>
+                <li><a href="#patents">Students</a></li>
+                <li><a href="#patents">Grivance Feedback Form</a></li>
+                <li><a href="#patents">Acction Taken Report</a></li>
+            </ul></li>
+            <li class="dropdown">
+                <a href="#research">More  ⇩</a>
+                <ul class="dropdown-menu">
+                <li><a href="#publications">Press Reports & Newslettes</a></li>
+                <li><a href="#projects">RTI</a></li>
+                <li><a href="#patents">-----</a></li>
+                <li><a href="#patents">----</a></li>
+                <li><a href="#patents">----</a></li>           
+                    
+        </ul></li>
+        </ul>
+      </nav>
+    
+      <script>
+        function toggleMenu(button) {
+          button.classList.toggle('active');
+          const navList = document.querySelector('.nav-list');
+          navList.classList.toggle('open');
+        }
+    
+        // Mobile dropdown handling
+        document.querySelectorAll('.dropdown > a').forEach(link => {
+          link.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+              e.preventDefault();
+              const dropdown = this.parentElement;
+              dropdown.classList.toggle('active');
+              // Close other dropdowns
+              document.querySelectorAll('.dropdown').forEach(other => {
+                if (other !== dropdown) other.classList.remove('active');
+              });
+            }
+          });
+        });
+    
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+          if (window.innerWidth <= 768) {
+            if (!e.target.closest('.nav')) {
+              document.querySelector('.nav-list').classList.remove('open');
+              document.querySelector('.hamburger').classList.remove('active');
+              document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+            }
+          }
+        });
+      </script>
+    
+</div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <video autoplay muted loop class="hero-video">
+            <source src="WhatsApp Video 2025-02-21 at 12.20.35 PM.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content">
+            <h1 id="caption-title" style="color: rgb(167, 130, 27);">Welcome to Saket College</h1>
+            <p id="caption-text" style="color: rgb(65, 40, 0);">Empowering minds and shaping futures through excellence in education since 1975</p>
+            <a href="https://saketcollege.edu.in/contact/"><button>Apply Now</button></a>
+        </div>
+        
+    </section>
+    <div class="caption-card">
+        <h3 id="caption-titlej">UPCOMING EVENTS</h3>
+       <marquee id="caption-text" direction="left" scrollamount="13">Experience world-class education and vibrant campus life.</p></marquee>
+    </div>
+
+    <script>
+        const captions = [
+            { title: "Join Us Today", text: "Experience world-class education and vibrant campus life." },
+            { title: "Your Future Starts Here", text: "Explore endless learning opportunities at Saket College." },
+            { title: "Learn, Grow, Succeed", text: "Join a community that fosters innovation and success." },
+            { title: "Be a Part of Excellence", text: "Shape your career with our top-notch faculty and resources." }
+        ];
+
+        let currentIndex = 0;
+
+        function changeCaption() {
+            const titleElement = document.getElementById("caption-title");
+            const textElement = document.getElementById("caption-text");
+
+            currentIndex = (currentIndex + 1) % captions.length; // Loop through captions
+
+            titleElement.style.opacity = "0";
+            textElement.style.opacity = "0";
+
+            setTimeout(() => {
+                titleElement.textContent = captions[currentIndex].title;
+                textElement.textContent = captions[currentIndex].text;
+                
+                titleElement.style.opacity = "1";
+                textElement.style.opacity = "1";
+            }, 500); // Delay for smooth transition
+        }
+
+        setInterval(changeCaption, 4000); // Change text every 4 seconds
+    </script>
+    
+ <!-- noticee board  -->
+  <div class="noticesvisionmission">
+  <div class="notices">
+ <div class="notice-board">
+    <div class="notice-title">Notices</div>
+    <div class="date-time" id="dateTime"></div>
+    <div class="notices-wrapper" onmouseover="pauseScroll()" onmouseout="resumeScroll()">
+        <div class="notices-content" id="noticeContainer">
+            <div class="notice important">📢 Notice 1: Exam forms last date - 25th Feb</div>
+            <div class="notice">⚽ Notice 2: Sports event on 1st March</div>
+            <div class="notice">🎉 Notice 3: College fest registration open</div>
+            <div class="notice">🤖 Notice 4: Seminar on AI this Friday</div>
+        </div>
+    </div>
+</div></div>
+
+<script>
+    function updateDateTime() {
+        const now = new Date();
+        document.getElementById("dateTime").textContent = now.toLocaleString();
+    }
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
+
+    let noticeContainer = document.querySelector('.notices-content');
+    let animation;
+
+    function pauseScroll() {
+        animation = noticeContainer.style.animation;
+        noticeContainer.style.animation = 'none';
+    }
+    function resumeScroll() {
+        noticeContainer.style.animation = animation;
+    }
+</script>
+<div class="vision">
+    <h1>Our Vision & Mission</h1>
+    
+    <section class="containervision">
+        <div class="content" id="vision">
+            <h2>Our Vision</h2>
+            <p>To develop young citizens into competent, intellectual &amp; committed human beings with a moral and social responsibility capable of surviving in a competitive world.</p>
+        </div>
+        <div class="content" id="mission">
+            <h2>Our Mission</h2>
+            <p><ul><li>To equip students with advanced knowledge and the latest skills in their chosen </li>
+                discipline. 
+              <li>  To provide education opportunities to financially weaker section of the society through fees flexibility. </li>
+               <li> To provide value-based education this will mould them into good and responsible citizens. </li>
+             <li>   To tap the students’ potentials and offer a platform for their overall development. </li>
+              <li>  To provide integrated learning experiences that will equip students with qualities that will enable to achieve their potential.</li>
+              <li>  To make education job-oriented. </li></ul></p>
+        </div>
+    </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const contents = document.querySelectorAll(".content");
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                    }
+                });
+            }, { threshold: 0.3 });
+            contents.forEach(content => observer.observe(content));
+        });
+    </script>
+    
+        </div></div>
+  
+    <!-- Quick Links Section -->
+    <section class="about-section">
+        <div class="about-grid">
+            <div class="about-text">
+                <h2>Excellence in Education</h2>
+                <p>Founded in 1975, Modern College has been at the forefront of educational innovation for over four decades. Our commitment to academic excellence, research, and holistic development has made us one of the leading institutions in the country.</p>
+                <p>We believe in nurturing not just academic excellence, but also developing well-rounded individuals who can contribute meaningfully to society. Our unique approach combines rigorous academic training with practical experience and personal development.</p>
+                <p>With state-of-the-art facilities, dedicated faculty, and a vibrant campus life, we provide an environment that fosters creativity, critical thinking, and innovation.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://saketcollege.edu.in/wp-content/uploads/2023/12/WhatsApp-Image-2022-01-20-at-1.07.43-PM.jpeg" alt="Campus Life" style="width: 100%; border-radius: 10px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">5000+</div>
+                <div class="stat-label">Students</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Faculty Members</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Courses</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Placement Rate</div>
+            </div>
+        </div>
+    </section>
+
+<!-- -----------new design--------- -->
+
+  <!-- Features Section -->
+   
+    
+  <section class="features">
+    <div class="features-grid">
+        <div class="feature-card left">
+            <div class="feature-icon">🎓</div>
+            <h3>World-Class Education</h3>
+            <p>Learn from industry experts and renowned academicians</p>
+        </div>
+        <div class="feature-card right">
+            <div class="feature-icon">🔬</div>
+            <h3>Research Excellence</h3>
+            <p>State-of-the-art research facilities and innovation centers</p>
+        </div>
+        <div class="feature-card left">
+            <div class="feature-icon">🌍</div>
+            <h3>Global Exposure</h3>
+            <p>International collaborations and exchange programs</p>
+        </div>
+        <div class="feature-card right">
+            <div class="feature-icon">💼</div>
+            <h3>Career Support</h3>
+            <p>Dedicated placement cell and industry connections</p>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<script >
+document.addEventListener("DOMContentLoaded", function () {
+    const cards = document.querySelectorAll(".feature-card");
+
+    function checkVisibility() {
+        cards.forEach((card) => {
+            const rect = card.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100 && rect.bottom > 100) {
+                card.classList.add("visible");
+                card.classList.remove("reset");
+            } else {
+                card.classList.remove("visible");
+                card.classList.add("reset");
+            }
+        });
+    }
+
+    window.addEventListener("scroll", checkVisibility);
+    checkVisibility(); // Initial check
+});
+
+</script>
+
+
+
+<!-- Achievement Section -->
+<section class="achievements">
+    <div class="achievement-grid">
+        <div class="achievement-card">
+            <div class="achievement-icon">🏆</div>
+            <h3>NAAC B+ Grade</h3>
+            <p>Highest accreditation for academic excellence</p>
+        </div>
+        <div class="achievement-card">
+            <div class="achievement-icon">🌟</div>
+            <h3>Research Excellence</h3>
+            <p>100+ research papers published annually</p>
+        </div>
+        <div class="achievement-card">
+            <div class="achievement-icon">🎓</div>
+            <h3>Alumni Success</h3>
+            <p>Over 50,000 successful alumni worldwide</p>
+        </div>
+        <div class="achievement-card">
+            <div class="achievement-icon">🤝</div>
+            <h3>Industry Partners</h3>
+            <p>200+ corporate collaborations</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- Campus Life Section -->
+<section class="campus-life">
+    <h2>Campus Life</h2>
+    <div class="campus-grid">
+        <div class="campus-card">
+            <img src="https://saketcollege.edu.in/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-28-at-13.38.29-3.jpeg" alt="Cultural Events">
+            <div class="campus-overlay">
+                <h3>Cultural Events</h3>
+                <p>Vibrant cultural festivals and celebrations</p>
+            </div>
+        </div>
+        <div class="campus-card">
+            <img src="https://saketcollege.edu.in/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-28-at-13.38.00-2.jpeg" alt="Sports Activities">
+            <div class="campus-overlay">
+                <h3>Sports Activities</h3>
+                <p>State-level tournaments and fitness facilities</p>
+            </div>
+        </div>
+        <div class="campus-card">
+            <img src="https://saketcollege.edu.in/wp-content/uploads/2024/04/WhatsApp-Image-2024-03-30-at-18.50.34.jpeg" alt="Student Clubs">
+            <div class="campus-overlay">
+                <h3>Student Clubs</h3>
+                <p>Over 30 active student clubs and societies</p>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Academics</a></li>
+                <li><a href="#">Admissions</a></li>
+                <li><a href="#">Research</a></li>
+                <li><a href="#">Campus Life</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Programs</h3>
+            <ul>
+                <li><a href="#">Undergraduate</a></li>
+                <li><a href="#">Postgraduate</a></li>
+                <li><a href="#">Doctoral Studies</a></li>
+                <li><a href="#">Online Courses</a></li>
+                <li><a href="#">Executive Education</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <div class="contact-info">
+                <i class="fas fa-map-marker-alt"></i>
+                <p>123 Education Street, Knowledge City</p>
+            </div>
+            <div class="contact-info">
+                <i class="fas fa-phone"></i>
+                <p>+1 234 567 8900</p>
+            </div>
+            <div class="contact-info">
+                <i class="fas fa-envelope"></i>
+                <p>info@saketcollege.edu</p>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h3>Newsletter</h3>
+            <p>Subscribe to our newsletter for updates and news.</p>
+            <form style="margin-top: 1rem;">
+                <input type="email" placeholder="Enter your email" 
+                       style="padding: 0.5rem; width: 100%; margin-bottom: 0.5rem; border: none; border-radius: 4px;">
+                <button type="submit" class="cta-button" style="width: 100%;">Subscribe</button>
+            </form>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Saket College. All rights reserved.</p>
+    </div>
+</footer>
+<script src="C:\Users\NITIN\OneDrive\Documents\web development\college website\app.js"></script>
+</body></html>
+</html>
