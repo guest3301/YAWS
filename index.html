@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Saket College of Arts, Science & Commerce</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -40,41 +41,45 @@
     </div>
     <ul class="nav-list">
       <!-- Desktop home icon (hidden on mobile) -->
-      <li class="desktop-home"><a href="#home"><i class="fa fa-home" style="font-size:1rem;"></i></a></li>
+      <li class="desktop-home"><a href="#home"><i class="material-icons">home</i></a></li>
       <li class="dropdown">
-        <a href="#academics">About us </i> </a>
+        <a href="#academics">About us <i class="material-icons nav-dropdown-icon">expand_more</i></a>
         <ul class="dropdown-menu">
           <li><a href="https://saketcollege.edu.in/course-outcomes/">Message</a></li>
           <li><a href="https://saketcollege.edu.in/pg/">Commitee</a></li>
-          <li><a href="#">Organogram </a></li>
+          <li><a href="#">Organogram</a></li>
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#admissions">Academics </a>
+        <a href="#admissions">Academics <i class="material-icons nav-dropdown-icon">expand_more</i></a>
         <ul class="dropdown-menu">
-          <li><a href="#undergraduate">Program & Cources</a></li>
+          <li><a href="#undergraduate">Program & Courses</a></li>
           <li><a href="#postgraduate">Course Outcomes</a></li>
           <li><a href="#phd">Academic Calendar</a></li>
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#examinations">Student Corner </a>
+        <a href="#examinations">Student Corner <i class="material-icons nav-dropdown-icon">expand_more</i></a>
         <ul class="dropdown-menu">
           <li><a href="https://saketcollege.edu.in/exam-timetable/">Notices</a></li>
           <li><a href="https://saketcollege.edu.in/results/">Activities</a></li>
           <li><a href="#">Syllabus</a></li>
           <li><a href="#">Program Outcome</a></li>
           <li><a href="#">Student Support</a></li>
-          <li><a href="#">Code Of COnduct</a></li>
-          <li><ul><a href="#"></a>Alumini</ul>
-                    <li><a href="#">Alumini Association</a></li>
-                    <li><a href="#">Alumini Interaction</a></li>
-                    <li><a href="#">Our Emitent Alumini</a></li>
-                    <li><a href="#">Testimonals</a></li></li>
+          <li><a href="#">Code Of Conduct</a></li>
+          <li class="nested-dropdown">
+            <a href="#">Alumni <i class="material-icons">chevron_right</i></a>
+            <ul class="nested-dropdown-menu">
+              <li><a href="#">Alumni Association</a></li>
+              <li><a href="#">Alumni Interaction</a></li>
+              <li><a href="#">Our Eminent Alumni</a></li>
+              <li><a href="#">Testimonials</a></li>
+            </ul>
+          </li>
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#student">Library </a>
+        <a href="#student">Library <i class="material-icons nav-dropdown-icon">expand_more</i></a>
         <ul class="dropdown-menu">
           <li><a href="https://saketcollege.edu.in/events-2/">About Library</a></li>
           <li><a href="https://saketcollege.edu.in/dlle/">Library Commitee</a></li>
@@ -83,49 +88,49 @@
         </ul>
       </li>
       <li class="dropdown">
-        <a href="https://saketcollege.edu.in/about-library-2/">Extention Activities </a>
-    <ul class="dropdown-menu">
-        <li><a href="#">NSS</a></li>
-        <li><a href="#">DLLE</a></li>   
-        
-        <li><a href="#">Best Practices</a></li>
-    </ul>
-    </li>
-      <li class="dropdown">
-        <a href="#research">Examination </a>
-        <ul class="dropdown-menu" >
-          <li><a href="#publications">Exam commitee</a></li>
-          <li><a href="#projects">Exam Policy</a></li>
-            <li><a href="#patents">Exam Time-Table</a></li>
-            <li><a href="#patents">Exam Results</a></li>
-            <li><a href="#patents">Notices & Circulars</a></li>
+        <a href="https://saketcollege.edu.in/about-library-2/">Extension Activities <i class="material-icons nav-dropdown-icon">expand_more</i></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">NSS</a></li>
+          <li><a href="#">DLLE</a></li>
+          <li><a href="#">Best Practices</a></li>
         </ul>
       </li>
-        <li class="dropdown">
-            <a href="#research">feedback </a>
-            <ul class="dropdown-menu">
-            <li><a href="#publications">Parents</a></li>
-            <li><a href="#projects">Employers</a></li>
-            <li><a href="#patents">Alumini</a></li>
-            <li><a href="#patents">Syllabus</a></li>
-            <li><a href="#patents">Teachers</a></li>
-            <li><a href="#patents">Students</a></li>
-            <li><a href="#patents">Grivance Feedback Form</a></li>
-            <li><a href="#patents">Acction Taken Report</a></li>
-        </ul></li>
-        <li class="dropdown">
-            <a href="#research">More </a>
-            <ul class="dropdown-menu">
-            <li><a href="#publications">Press Reports & Newslettes</a></li>
-            <li><a href="#projects">RTI</a></li>
-            <li><a href="#patents">-----</a></li>
-            <li><a href="#patents">----</a></li>
-            <li><a href="#patents">----</a></li>           
-                
-    </ul></li>
+      <li class="dropdown">
+        <a href="#research">Examination <i class="material-icons nav-dropdown-icon">expand_more</i></a>
+        <ul class="dropdown-menu">
+          <li><a href="#publications">Exam committee</a></li>
+          <li><a href="#projects">Exam Policy</a></li>
+          <li><a href="#patents">Exam Time-Table</a></li>
+          <li><a href="#patents">Exam Results</a></li>
+          <li><a href="#patents">Notices & Circulars</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#research">Feedback <i class="material-icons nav-dropdown-icon">expand_more</i></a>
+        <ul class="dropdown-menu">
+          <li><a href="#publications">Parents</a></li>
+          <li><a href="#projects">Employers</a></li>
+          <li><a href="#patents">Alumni</a></li>
+          <li><a href="#patents">Syllabus</a></li>
+          <li><a href="#patents">Teachers</a></li>
+          <li><a href="#patents">Students</a></li>
+          <li><a href="#patents">Grievance Feedback Form</a></li>
+          <li><a href="#patents">Action Taken Report</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#research">More <i class="material-icons nav-dropdown-icon">expand_more</i></a>
+        <ul class="dropdown-menu">
+          <li><a href="#publications">Press Reports & Newsletters</a></li>
+          <li><a href="#projects">RTI</a></li>
+          <li><a href="#patents">-----</a></li>
+          <li><a href="#patents">----</a></li>
+          <li><a href="#patents">----</a></li>
+        </ul>
+      </li>
     </ul>
   </nav>
-</div>
+
 <!-- Hero Section -->
 <section class="hero">
     <video autoplay muted loop class="hero-video" style="overflow: hidden;">
@@ -273,7 +278,7 @@ function resumeScroll() {
             <div class="stat-label">Faculty Members</div>
         </div>
         <div class="stat-card">
-            <div class="stat-number">50+</div>
+            <div class="stat-number">50+</</div>
             <div class="stat-label">Courses</div>
         </div>
         <div class="stat-card">
@@ -397,56 +402,61 @@ checkVisibility(); // Initial check
 </div>
 </section>
 
-  <footer class="footer">
+<footer class="footer">
     <div class="footer-content">
         <div class="footer-section">
             <h3>Quick Links</h3>
-            <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Academics</a></li>
-                <li><a href="#">Admissions</a></li>
-                <li><a href="#">Research</a></li>
-                <li><a href="#">Campus Life</a></li>
+            <ul class="m3-list">
+                <li><a href="#"><span class="material-icons">arrow_right</span>About Us</a></li>
+                <li><a href="#"><span class="material-icons">arrow_right</span>Academics</a></li>
+                <li><a href="#"><span class="material-icons">arrow_right</span>Admissions</a></li>
+                <li><a href="#"><span class="material-icons">arrow_right</span>Research</a></li>
+                <li><a href="#"><span class="material-icons">arrow_right</span>Campus Life</a></li>
             </ul>
         </div>
         <div class="footer-section">
             <h3>Programs</h3>
-            <ul>
-                <li><a href="#">Undergraduate</a></li>
-                <li><a href="#">Postgraduate</a></li>
-                <li><a href="#">Doctoral Studies</a></li>
-                <li><a href="#">Online Courses</a></li>
-                <li><a href="#">Executive Education</a></li>
+            <ul class="m3-list">
+                <li><a href="#"><span class="material-icons">arrow_right</span>Undergraduate</a></li>
+                <li><a href="#"><span class="material-icons">arrow_right</span>Postgraduate</a></li>
+                <li><a href="#"><span class="material-icons">arrow_right</span>Doctoral Studies</a></li>
+                <li><a href="#"><span class="material-icons">arrow_right</span>Online Courses</a></li>
+                <li><a href="#"><span class="material-icons">arrow_right</span>Executive Education</a></li>
             </ul>
         </div>
         <div class="footer-section">
             <h3>Contact Us</h3>
             <div class="contact-info">
-                <i class="fas fa-map-marker-alt"></i>
+                <span class="material-icons">location_on</span>
                 <p>123 Education Street, Knowledge City</p>
             </div>
             <div class="contact-info">
-                <i class="fas fa-phone"></i>
+                <span class="material-icons">phone</span>
                 <p>+1 234 567 8900</p>
             </div>
             <div class="contact-info">
-                <i class="fas fa-envelope"></i>
+                <span class="material-icons">email</span>
                 <p>info@saketcollege.edu</p>
             </div>
             <div class="social-links">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="m3-icon-button"><span class="material-icons">facebook</span></a>
+                <a href="#" class="m3-icon-button"><span class="material-icons">public</span></a>
+                <a href="#" class="m3-icon-button"><span class="material-icons">business_center</span></a>
+                <a href="#" class="m3-icon-button"><span class="material-icons">photo_camera</span></a>
             </div>
         </div>
         <div class="footer-section">
             <h3>Newsletter</h3>
             <p>Subscribe to our newsletter for updates and news.</p>
-            <form style="margin-top: 1rem;">
-                <input type="email" placeholder="Enter your email" 
-                       style="padding: 0.5rem; width: 100%; margin-bottom: 0.5rem; border: none; border-radius: 4px;">
-                <button type="submit" class="cta-button" style="width: 100%;">Subscribe</button>
+            <form class="m3-form">
+                <div class="m3-text-field">
+                    <input type="email" id="newsletter-email" placeholder=" ">
+                    <label for="newsletter-email">Email Address</label>
+                </div>
+                <button type="submit" class="m3-button">
+                    <span class="material-icons">mail</span>
+                    Subscribe
+                </button>
             </form>
         </div>
     </div>
