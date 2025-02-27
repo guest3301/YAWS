@@ -188,8 +188,10 @@
     <div class="notice-title">Notices</div>
     <div class="date-time" id="dateTime"></div>
     <div class="notices-wrapper" onmouseover="pauseScroll()" onmouseout="resumeScroll()">
-      <div class="notices-content" id="noticeContainer"></div>
-      <button id="loadMoreButton" style="display:none;">Load More</button>
+      <div class="notices-content" id="noticeContainer">
+        <div class="loading" id="noticeLoading" style="display: none;">Loading...</div>
+      </div>
+      <button id="loadMoreButton" class="load-more-btn" style="display:none;">Load More</button>
     </div>
   </div>
 </div>
@@ -199,34 +201,71 @@ let currentPage = 1;
 const perPage = 5;
 let loading = false;
 
+function formatDate(dateString) {
+  return new Date(dateString).toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+  });
+}
+
 async function fetchNotices(page) {
   try {
     loading = true;
+    document.getElementById('noticeLoading').style.display = 'block';
+    
     const response = await fetch(`http://localhost:5000/api/notices?page=${page}&per_page=${perPage}`);
     const data = await response.json();
     const noticeContainer = document.getElementById('noticeContainer');
+    
     data.notices.forEach(notice => {
       const noticeElement = document.createElement('div');
       noticeElement.className = 'notice';
-      noticeElement.textContent = notice.title;
+      noticeElement.innerHTML = `
+        <span class="notice-date">${formatDate(notice.date_uploaded)}</span>
+        <a href="${notice.url}" target="_blank" class="notice-link">
+          ${notice.title}
+          <span class="material-icons notice-icon">arrow_forward</span>
+        </a>
+      `;
       noticeContainer.appendChild(noticeElement);
     });
-    loading = false;
+
     document.getElementById('loadMoreButton').style.display = data.has_next ? 'block' : 'none';
   } catch (error) {
     console.error('Error fetching notices:', error);
+  } finally {
     loading = false;
+    document.getElementById('noticeLoading').style.display = 'none';
   }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   fetchNotices(currentPage);
-  document.getElementById('loadMoreButton').addEventListener('click', () => {
+  
+  document.getElementById('loadMoreButton')?.addEventListener('click', () => {
     if (!loading) {
       currentPage++;
       fetchNotices(currentPage);
     }
   });
+
+  // Update date-time display
+  const updateDateTime = () => {
+    const now = new Date();
+    const dateTimeElement = document.getElementById('dateTime');
+    if (dateTimeElement) {
+      dateTimeElement.textContent = now.toLocaleDateString('en-GB', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    }
+  };
+  
+  updateDateTime();
+  setInterval(updateDateTime, 60000); // Update every minute
 });
 </script>
 
@@ -289,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="stat-label">Students</div>
         </div>
         <div class="stat-card">
-            <div class="stat-number">200+</div>
+            <div class="stat-number">200+</</div>
             <div class="stat-label">Faculty Members</div>
         </div>
         <div class="stat-card">

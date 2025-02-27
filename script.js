@@ -124,6 +124,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Start notice board auto-scroll
+    startScrolling();
 });
 
 const captions = [
@@ -176,15 +179,25 @@ let noticeContainer = document.querySelector('.notices-content');
 let animation;
 
 function pauseScroll() {
-    if (noticeContainer) {
-        animation = noticeContainer.style.animation;
-        noticeContainer.style.animation = 'none';
-    }
+    isScrollPaused = true;
+    clearInterval(scrollInterval);
 }
 
 function resumeScroll() {
-    if (noticeContainer) {
-        noticeContainer.style.animation = animation;
+    isScrollPaused = false;
+    startScrolling();
+}
+
+function startScrolling() {
+    if (!isScrollPaused) {
+        scrollInterval = setInterval(() => {
+            const wrapper = document.querySelector('.notices-wrapper');
+            if (wrapper.scrollTop + wrapper.clientHeight >= wrapper.scrollHeight) {
+                wrapper.scrollTop = 0;
+            } else {
+                wrapper.scrollTop += 1;
+            }
+        }, 50);
     }
 }
 
