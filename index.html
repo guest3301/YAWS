@@ -24,7 +24,7 @@
       <div class="facu">
         <a href="#">NAAC</a>
         <a href="#">Staffs</a>
-        <a href="#">Alumini</a>
+        <a href="#">Alumni</a>
         <a href="#">Placement</a>
         <a href="#">Visit</a>
       </div>
@@ -150,36 +150,6 @@
    <marquee id="caption-text" direction="left" scrollamount="13">Experience world-class education and vibrant campus life.</p></marquee>
 </div>
 
-<script>
-    const captions = [
-        { title: "Join Us Today", text: "Experience world-class education and vibrant campus life." },
-        { title: "Your Future Starts Here", text: "Explore endless learning opportunities at Saket College." },
-        { title: "Learn, Grow, Succeed", text: "Join a community that fosters innovation and success." },
-        { title: "Be a Part of Excellence", text: "Shape your career with our top-notch faculty and resources." }
-    ];
-
-    let currentIndex = 0;
-
-    function changeCaption() {
-        const titleElement = document.getElementById("caption-title");
-        const textElement = document.getElementById("caption-text");
-
-        currentIndex = (currentIndex + 1) % captions.length; // Loop through captions
-
-        titleElement.style.opacity = "0";
-        textElement.style.opacity = "0";
-
-        setTimeout(() => {
-            titleElement.textContent = captions[currentIndex].title;
-            textElement.textContent = captions[currentIndex].text;
-            
-            titleElement.style.opacity = "1";
-            textElement.style.opacity = "1";
-        }, 500); // Delay for smooth transition
-    }
-
-    setInterval(changeCaption, 4000); // Change text every 4 seconds
-</script>
 
 <!-- noticee board  -->
 <div class="noticesvisionmission">
