@@ -264,37 +264,38 @@ header {
   border-radius: 0 0 var(--m3-shape-medium) var(--m3-shape-medium);
   box-shadow: var(--m3-shadow-2);
   position: relative;
-  z-index: 100;
+  /* z-index: 100; */
 }
-
 .nav-list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .nav-list li {
   position: relative;
+  margin: 0 20px;
 }
 
-.nav-list > li {
+/* .nav-list > li {
   flex: 1;
   text-align: center;
-}
+} */
 
 .nav-list a {
   color: inherit;
   text-decoration: none;
-  padding: 16px 20px;
-  display: flex;
+  padding: 10px;
+  display: block;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   transition: background-color 0.3s ease;
   border-radius: var(--m3-shape-small);
-  gap: 4px;
-  font-weight: 500;
+  /* gap: 4px; */
+  /* font-weight: 500; */
 }
 
 .nav-dropdown-icon {
