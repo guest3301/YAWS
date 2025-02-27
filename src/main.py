@@ -34,7 +34,7 @@ with app.app_context():
 def get_notices():
     page = request.args.get('page', 1, type=int)
     per_page = request.args.get('per_page', 5, type=int)
-    pagination = Notice.query.order_by(Notice.date_uploaded.desc()).paginate(page, per_page, error_out=False)
+    pagination = Notice.query.order_by(Notice.date_uploaded.desc()).paginate(page=page, per_page=per_page, error_out=False)
     notices = pagination.items
     return jsonify({
         'notices': [{
