@@ -1,12 +1,9 @@
-// Material 3 Navigation and Responsive Menu
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu toggle function
     window.toggleMenu = function(hamburger) {
         hamburger.classList.toggle('active');
         document.querySelector('.nav-list').classList.toggle('open');
     };
     
-    // Mobile menu toggle via hamburger button
     const hamburger = document.querySelector('.hamburger');
     const navList = document.querySelector('.nav-list');
     
@@ -17,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Handle dropdown menus on mobile
     const dropdowns = document.querySelectorAll('.dropdown');
     dropdowns.forEach(dropdown => {
         if (window.innerWidth <= 768) {
@@ -27,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     e.preventDefault();
                     dropdown.classList.toggle('active');
                     
-                    // Close other dropdowns
                     dropdowns.forEach(other => {
                         if (other !== dropdown && other.classList.contains('active')) {
                             other.classList.remove('active');
@@ -38,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Handle nested dropdowns on mobile
     const nestedDropdowns = document.querySelectorAll('.nested-dropdown');
     nestedDropdowns.forEach(nested => {
         if (window.innerWidth <= 768) {
@@ -53,7 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Material 3 ripple effect for buttons
     const buttons = document.querySelectorAll('button, .m3-button, .m3-icon-button');
     buttons.forEach(button => {
         button.addEventListener('click', function(e) {
@@ -77,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Enhanced scroll animation for content elements
     const animateOnScroll = () => {
         const elements = document.querySelectorAll('.content, .feature-card, .achievement-card, .stat-card, .campus-card');
         
@@ -93,9 +85,8 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Initial check on page load
+    animateOnScroll();
     
-    // Implement Material 3 style form validation
     const formInputs = document.querySelectorAll('.m3-text-field input');
     formInputs.forEach(input => {
         const validateInput = () => {
@@ -113,7 +104,6 @@ document.addEventListener('DOMContentLoaded', function() {
         input.addEventListener('input', validateInput);
     });
     
-    // Newsletter form submission with feedback
     const newsletterForm = document.querySelector('.m3-form');
     if (newsletterForm) {
         newsletterForm.addEventListener('submit', function(e) {
@@ -121,7 +111,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const emailField = this.querySelector('input[type="email"]');
             
             if (emailField && emailField.validity.valid) {
-                // Show success message
                 const successMsg = document.createElement('div');
                 successMsg.textContent = 'Thank you for subscribing!';
                 successMsg.classList.add('m3-success-message');
@@ -137,7 +126,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Existing caption changing functionality
 const captions = [
     { title: "Join Us Today", text: "Experience world-class education and vibrant campus life." },
     { title: "Your Future Starts Here", text: "Explore endless learning opportunities at Saket College." },
@@ -152,7 +140,7 @@ function changeCaption() {
     const textElement = document.getElementById("caption-text");
     
     if (titleElement && textElement) {
-        currentIndex = (currentIndex + 1) % captions.length; // Loop through captions
+        currentIndex = (currentIndex + 1) % captions.length;
         
         titleElement.style.opacity = "0";
         textElement.style.opacity = "0";
@@ -163,15 +151,14 @@ function changeCaption() {
             
             titleElement.style.opacity = "1";
             textElement.style.opacity = "1";
-        }, 500); // Delay for smooth transition
+        }, 500);
     }
 }
 
 if (document.getElementById("caption-title") && document.getElementById("caption-text")) {
-    setInterval(changeCaption, 4000); // Change text every 4 seconds
+    setInterval(changeCaption, 4000);
 }
 
-// Notice board date/time and scrolling functionality
 function updateDateTime() {
     const dateTimeElement = document.getElementById("dateTime");
     if (dateTimeElement) {
@@ -201,7 +188,6 @@ function resumeScroll() {
     }
 }
 
-// Feature card animation
 function checkVisibility() {
     const cards = document.querySelectorAll(".feature-card");
     
@@ -218,4 +204,4 @@ function checkVisibility() {
 }
 
 window.addEventListener("scroll", checkVisibility);
-window.addEventListener("load", checkVisibility); // Initial check on page load
+window.addEventListener("load", checkVisibility);
