@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Notice Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        h1 {
+            color: #333;
+        }
+        .logout-btn {
+            background: #dc3545;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .notice-form {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .submit-btn {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .submit-btn:hover {
+            background: #218838;
+        }
+        .error {
+            color: #dc3545;
+            margin-top: 10px;
+        }
+        .success {
+            color: #28a745;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Notice Management</h1>
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
+        
+        <form id="noticeForm" class="notice-form" method="post" enctype="multipart/form-data" action="/api/notices">
+            <div class="form-group">
+                <label for="title">Notice Title:</label>
+                <input type="text" id="title" name="title" required placeholder="Enter notice title">
+            </div>
+            
+            <div class="form-group">
+                <label for="url">URL (Optional if uploading file):</label>
+                <input type="text" id="url" name="url" placeholder="Enter URL">
+            </div>
+            
+            <div class="form-group">
+                <label for="file">Upload PDF:</label>
+                <input type="file" id="file" name="file" accept="application/pdf">
+            </div>
+            
+            <button type="submit" class="submit-btn">Add Notice</button>
+        </form>
+        
+        <div id="message"></div>
+    </div>
+
+    <script>
+        document.getElementById('noticeForm').addEventListener('submit', function(e) {
+            const fileInput = document.getElementById('file');
+            const urlInput = document.getElementById('url');
+            
+            if (!fileInput.files.length && !urlInput.value) {
+                e.preventDefault();
+                document.getElementById('message').className = 'error';
+                document.getElementById('message').textContent = 'Please either upload a file or provide a URL';
+            }
+        });
+    </script>
+</body>
+</html>
