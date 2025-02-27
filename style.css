@@ -322,8 +322,9 @@ header {
   justify-items: end;
 }
 .notice-board {
-  width: 400px;
-  height: 352px;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
   background: rgba(58, 38, 2, 0.85);
   border-radius: 12px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
