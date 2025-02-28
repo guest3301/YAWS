@@ -57,7 +57,7 @@
         <canvas id="stickmanCanvas"></canvas>
     </div>
     
-    <button id="mouseActivator">Toggle Mouse Interaction</button>
+    <button id="mouseActivator">Toggle Mouse Control</button>
 
     <div class="content">
         <h1>Stickman Demo Page</h1>
@@ -90,7 +90,7 @@
     (function() {
         // Core variables
         let isActive = false;
-        let mouseControlEnabled = false;
+        let mouseControlEnabled = true; // Default to true for hover control
         const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
         let konamiIndex = 0;
         
@@ -105,17 +105,23 @@
         
         window.addEventListener('resize', function() {
             resizeCanvas();
-            if (isActive) collectPlatforms();
+            if (isActive) {
+                collectPlatforms();
+                // Place stickman somewhere sensible after resize
+                if (!stickman.onGround) {
+                    placeStickmanOnPlatform();
+                }
+            }
         });
         
         resizeCanvas();
         canvas.style.display = 'none';
         
-        // Physics constants
+        // Physics constants - tuned for better movement
         const GRAVITY = 0.3;
         const FRICTION = 0.85;
-        const GROUND_FRICTION = 0.8;
-        const JUMP_FORCE = 8;
+        const GROUND_FRICTION = 0.9;
+        const JUMP_FORCE = 10;
         const WALK_SPEED = 1.5;
         const RUN_SPEED = 3;
         
@@ -123,6 +129,7 @@
         let mouseX = 0, mouseY = 0;
         let mouseDown = false;
         let draggedStickman = false;
+        let hoverTarget = null;
         
         // Orientation variables
         let orientationEnabled = false;
@@ -173,13 +180,14 @@
             });
         }
         
-        // Stickman class - minified version
+        // Stickman class - improved movement and animation
         class Stickman {
             constructor() {
                 this.size = 15;
                 this.x = 100;
                 this.y = 100;
                 this.prevY = 100;
+                this.prevX = 100;
                 this.vx = 0;
                 this.vy = 0;
                 this.onGround = false;
@@ -192,12 +200,76 @@
                 this.thinkTime = 0;
                 this.decisionTimeout = Math.random() * 100 + 50;
                 this.currentPlatform = null;
+                this.targetX = null; // Target position for movement
+                this.movingToTarget = false;
+                this.jumpCooldown = 0;
+                this.animationSpeed = 1; // Animation speed multiplier
+                this.stuckTime = 0; // Track time spent in the same place
             }
             
             update() {
                 if (draggedStickman) return;
                 
+                this.prevX = this.x;
                 this.prevY = this.y;
+                
+                // Track if we're stuck
+                if (Math.abs(this.x - this.prevX) < 0.5 && this.onGround) {
+                    this.stuckTime++;
+                    
+                    // If stuck for too long, force a jump or direction change
+                    if (this.stuckTime > 60) {
+                        if (Math.random() > 0.5 && this.onGround) {
+                            this.jump();
+                        } else {
+                            this.facingRight = !this.facingRight;
+                            this.vx = (this.facingRight ? 1 : -1) * WALK_SPEED * 2;
+                        }
+                        this.stuckTime = 0;
+                    }
+                } else {
+                    this.stuckTime = 0;
+                }
+                
+                // Mouse hover target handling
+                if (hoverTarget && mouseControlEnabled) {
+                    this.targetX = hoverTarget.x;
+                    this.movingToTarget = true;
+                } else if (this.movingToTarget && Math.abs(this.x - this.targetX) < 15) {
+                    // Stop when we reach the target
+                    this.targetX = null;
+                    this.movingToTarget = false;
+                    this.vx *= 0.3; // Slow down
+                }
+                
+                // Move toward target if we have one
+                if (this.movingToTarget && this.onGround) {
+                    const distToTarget = this.targetX - this.x;
+                    if (Math.abs(distToTarget) > 5) {
+                        const direction = distToTarget > 0 ? 1 : -1;
+                        this.facingRight = direction > 0;
+                        
+                        // Adjust speed based on distance
+                        if (Math.abs(distToTarget) > 100) {
+                            this.vx = direction * RUN_SPEED;
+                            this.state = 'running';
+                        } else {
+                            this.vx = direction * WALK_SPEED;
+                            this.state = 'walking';
+                        }
+                        
+                        // Jump if there's a nearby platform to reach the target
+                        if (this.jumpCooldown <= 0 && Math.abs(distToTarget) < 150 && Math.random() < 0.02) {
+                            this.jump();
+                            this.jumpCooldown = 50;
+                        }
+                    }
+                }
+                
+                // Decrease jump cooldown
+                if (this.jumpCooldown > 0) {
+                    this.jumpCooldown--;
+                }
                 
                 // Apply physics forces
                 this.vy += GRAVITY;
@@ -240,14 +312,21 @@
                 // Stop if velocity is very small
                 if (Math.abs(this.vx) < 0.1) this.vx = 0;
                 
-                // Animation cycles
-                if (Math.abs(this.vx) > 0.5) {
-                    this.walkCycle += Math.abs(this.vx) / 10;
+                // Animation cycles - improved for smoother transitions
+                if (this.state === 'walking' || this.state === 'running') {
+                    const speed = this.state === 'running' ? 1.5 : 1;
+                    this.walkCycle += Math.abs(this.vx) / 8 * speed;
                     this.legAngle = Math.sin(this.walkCycle) * 0.5;
-                    this.armAngle = Math.sin(this.walkCycle + Math.PI) * 0.3;
+                    this.armAngle = Math.sin(this.walkCycle + Math.PI) * 0.4;
+                } else if (this.state === 'jumping') {
+                    // Different animation for jumping
+                    this.legAngle = 0.3;
+                    this.armAngle = -0.3;
                 } else {
+                    // Idle animation - slight movement
+                    this.walkCycle += 0.02;
                     this.legAngle = 0;
-                    this.armAngle = Math.sin(this.walkCycle * 0.2) * 0.1; // Slight breathing motion
+                    this.armAngle = Math.sin(this.walkCycle) * 0.05;
                 }
                 
                 // State determination
@@ -262,24 +341,28 @@
                 }
                 
                 // AI decision making
-                this.thinkTime++;
-                if (this.state === 'idle') {
-                    this.idleTime++;
-                } else {
-                    this.idleTime = 0;
-                }
-                
-                if (this.thinkTime > this.decisionTimeout) {
-                    this.makeDecision();
-                    this.thinkTime = 0;
-                    this.decisionTimeout = Math.random() * 100 + 30;
+                if (!this.movingToTarget) {
+                    this.thinkTime++;
+                    if (this.state === 'idle') {
+                        this.idleTime++;
+                    } else {
+                        this.idleTime = 0;
+                    }
+                    
+                    if (this.thinkTime > this.decisionTimeout) {
+                        this.makeDecision();
+                        this.thinkTime = 0;
+                        this.decisionTimeout = Math.random() * 100 + 30;
+                    }
                 }
             }
             
             checkPlatformCollisions() {
+                let foundPlatform = false;
+                
                 for (let platform of platforms) {
                     // Simple collision detection for horizontal platforms
-                    if (this.x >= platform.x1 && this.x <= platform.x2) {
+                    if (this.x >= platform.x1 - this.size/2 && this.x <= platform.x2 + this.size/2) {
                         // Check if we're falling onto the platform
                         const footY = this.y + this.size;
                         const prevFootY = this.prevY + this.size;
@@ -289,6 +372,7 @@
                             this.vy = 0;
                             this.onGround = true;
                             this.currentPlatform = platform;
+                            foundPlatform = true;
                             
                             // Highlight the platform element if it exists
                             if (platform.element && Math.random() < 0.01) {
@@ -303,6 +387,8 @@
                         }
                     }
                 }
+                
+                return foundPlatform;
             }
             
             makeDecision() {
@@ -340,6 +426,7 @@
                 if (this.onGround) {
                     this.vy = -JUMP_FORCE;
                     this.onGround = false;
+                    this.jumpCooldown = 30;
                 }
             }
             
@@ -356,19 +443,7 @@
                 ctx.lineWidth = 2;
                 ctx.stroke();
                 
-                // Eyes - extra detail
-                const eyeX = this.size * 0.15;
-                const eyeY = -this.size * 0.95;
-                const eyeSize = this.size * 0.08;
-                
-                ctx.beginPath();
-                ctx.arc(eyeX, eyeY, eyeSize, 0, Math.PI * 2);
-                ctx.fillStyle = '#000';
-                ctx.fill();
-                
-                ctx.beginPath();
-                ctx.arc(-eyeX, eyeY, eyeSize, 0, Math.PI * 2);
-                ctx.fill();
+                // No eyes as requested
                 
                 // Body
                 ctx.beginPath();
@@ -419,6 +494,16 @@
             stickman.update();
             stickman.draw();
             
+            // Debug info for AI - uncomment if needed
+            
+            if (stickman.targetX !== null) {
+                ctx.beginPath();
+                ctx.arc(stickman.targetX, stickman.y, 5, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255,0,0,0.5)';
+                ctx.fill();
+            }
+            
+            
             requestAnimationFrame(gameLoop);
         }
         
@@ -450,6 +535,8 @@
                 isActive = true;
                 canvas.style.display = 'block';
                 document.getElementById('mouseActivator').style.display = 'block';
+                document.getElementById('mouseActivator').textContent = mouseControlEnabled ? 'Disable Mouse Control' : 'Enable Mouse Control';
+                collectPlatforms();
                 placeStickmanOnPlatform();
                 console.log("%cStickman activated!", "color: green; font-weight: bold");
             } else {
@@ -469,27 +556,40 @@
             this.textContent = mouseControlEnabled ? 'Disable Mouse Control' : 'Enable Mouse Control';
         });
         
-        // Mouse event handlers
-        canvas.addEventListener('mousedown', function(e) {
-            if (!mouseControlEnabled || !isActive) return;
+        // Mouse hover handler for platforms and other elements
+        document.addEventListener('mousemove', function(e) {
+            if (!isActive) return;
             
             mouseX = e.clientX;
             mouseY = e.clientY;
-            mouseDown = true;
             
-            // Check if clicked on stickman
-            const dist = Math.sqrt(Math.pow(mouseX - stickman.x, 2) + Math.pow(mouseY - stickman.y, 2));
-            if (dist < stickman.size * 2) {
-                draggedStickman = true;
+            if (mouseControlEnabled) {
+                // Set hover target for stickman to move towards
+                const distThreshold = 250; // Distance threshold for mouse influence
+                const dist = Math.sqrt(Math.pow(mouseX - stickman.x, 2) + Math.pow(mouseY - stickman.y, 2));
+                
+                if (dist < distThreshold) {
+                    hoverTarget = { x: mouseX, y: mouseY };
+                } else {
+                    hoverTarget = null;
+                }
             }
         });
         
-        document.addEventListener('mousemove', function(e) {
-            if (mouseDown && draggedStickman && mouseControlEnabled && isActive) {
-                stickman.x = e.clientX;
-                stickman.y = e.clientY;
-                stickman.vx = 0;
-                stickman.vy = 0;
+        // Mouse down handler - kept for compatibility
+        canvas.addEventListener('mousedown', function(e) {
+            if (!isActive) return;
+            
+            mouseDown = true;
+            
+            // Check if clicked on stickman - force movement to click point
+            const dist = Math.sqrt(Math.pow(mouseX - stickman.x, 2) + Math.pow(mouseY - stickman.y, 2));
+            if (dist < stickman.size * 3) {
+                draggedStickman = true;
+            } else if (mouseControlEnabled) {
+                // Force stickman to move to click point
+                stickman.targetX = mouseX;
+                stickman.movingToTarget = true;
             }
         });
         
@@ -497,8 +597,6 @@
             mouseDown = false;
             if (draggedStickman) {
                 draggedStickman = false;
-                stickman.vx = 0;
-                stickman.vy = 0;
             }
         });
         
@@ -506,15 +604,17 @@
         window.addEventListener('deviceorientation', function(e) {
             if (!isActive) return;
             
-            orientationEnabled = true;
-            
-            // Normalize orientation data between -1 and 1
-            orientationX = e.gamma ? e.gamma / 45 : 0;
-            orientationY = e.beta ? (e.beta - 45) / 45 : 0;
-            
-            // Clamp values
-            orientationX = Math.max(-1, Math.min(1, orientationX));
-            orientationY = Math.max(-1, Math.min(1, orientationY));
+            if (e.gamma !== null && e.beta !== null) {
+                orientationEnabled = true;
+                
+                // Normalize orientation data between -1 and 1
+                orientationX = e.gamma / 45;
+                orientationY = (e.beta - 45) / 45;
+                
+                // Clamp values
+                orientationX = Math.max(-1, Math.min(1, orientationX));
+                orientationY = Math.max(-1, Math.min(1, orientationY));
+            }
         });
         
         // Activation methods
@@ -545,7 +645,22 @@
         // Public API
         window.StickmanAPI = {
             activate: activateStickman,
-            isActive: function() { return isActive; }
+            isActive: function() { return isActive; },
+            // New API to control the stickman's behavior through AI integration
+            moveTo: function(x, y) {
+                if (!isActive) return false;
+                stickman.targetX = x;
+                stickman.movingToTarget = true;
+                return true;
+            },
+            jump: function() {
+                if (!isActive) return false;
+                stickman.jump();
+                return true;
+            },
+            getPosition: function() {
+                return {x: stickman.x, y: stickman.y, state: stickman.state};
+            }
         };
         
         console.log("%cThere's a hidden easter egg in this page! Hint: Konami code or type 'stickman' in console", "color: #999; font-style: italic;");
