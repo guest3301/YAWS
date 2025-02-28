@@ -4,13 +4,14 @@ from app.utils.helpers import allowed_file, generate_unique_filename
 from werkzeug.security import safe_join
 import os
 from werkzeug.utils import secure_filename
+from datetime import datetime
 
 api_bp = Blueprint('api', __name__)
 
 @api_bp.route('/notices', methods=['GET'])
 def get_notices():
     """
-    Get paginated notices
+    Get paginated notices with optional date and month filters
     ---
     parameters:
       - name: page
@@ -23,14 +24,40 @@ def get_notices():
         type: integer
         default: 5
         description: Items per page
+      - name: date
+        in: query
+        type: string
+        description: Filter by specific date (YYYY-MM-DD)
+      - name: month
+        in: query
+        type: integer
+        description: Filter by month (1-12)
     responses:
       200:
         description: A list of notices
     """
     page = request.args.get('page', 1, type=int)
     per_page = request.args.get('per_page', 5, type=int)
+    date_filter = request.args.get('date')
+    month_filter = request.args.get('month', type=int)
     
-    pagination = Notice.query.order_by(Notice.date_uploaded.desc()).paginate(
+    query = Notice.query
+
+    if date_filter:
+        try:
+            filter_date = datetime.strptime(date_filter, '%Y-%m-%d')
+            query = query.filter(
+                db.func.date(Notice.date_uploaded) == filter_date.date()
+            )
+        except ValueError:
+            return jsonify({'error': 'Invalid date format. Use YYYY-MM-DD'}), 400
+
+    if month_filter and 1 <= month_filter <= 12:
+        query = query.filter(db.func.extract('month', Notice.date_uploaded) == month_filter)
+    
+    query = query.order_by(Notice.date_uploaded.desc())
+    
+    pagination = query.paginate(
         page=page, per_page=per_page, error_out=False
     )
     notices = pagination.items

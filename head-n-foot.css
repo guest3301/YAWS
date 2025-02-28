@@ -1,0 +1,538 @@
+/* ============================================
+   Root Variables & Global Styles - Material 3
+============================================ */
+:root {
+    /* Primary color scheme - keeping the brand's brown/gold palette */
+    --m3-primary: #392404;
+    --m3-primary-container: #614b29;
+    --m3-on-primary: #ffffff;
+    --m3-on-primary-container: #f9ebd7;
+    
+    /* Secondary colors */
+    --m3-secondary: #b6ac46;
+    --m3-secondary-container: #eae7c2;
+    --m3-on-secondary: #ffffff;
+    --m3-on-secondary-container: #24210e;
+    
+    /* Tertiary colors */
+    --m3-tertiary: #937953;
+    --m3-tertiary-container: #f3e0c7;
+    --m3-on-tertiary: #ffffff;
+    --m3-on-tertiary-container: #291f15;
+    
+    /* Surface colors */
+    --m3-surface: #faf5eb;
+    --m3-surface-variant: #f1e7d6;
+    --m3-surface-dim: #e8e0d0;
+    --m3-surface-bright: #fff8ed;
+    --m3-surface-container-lowest: #ffffff;
+    --m3-surface-container-low: #f7f2e8;
+    --m3-surface-container: #f2ede2;
+    --m3-surface-container-high: #ede7dc;
+    --m3-surface-container-highest: #e7e1d6;
+    
+    /* Text colors */
+    --m3-on-surface: #211400;
+    --m3-on-surface-variant: #4a3a24;
+    
+    /* Other colors */
+    --m3-outline: #8c7c5a;
+    --m3-outline-variant: #d0c5b1;
+    --m3-error: #ba1a1a;
+    --m3-on-error: #ffffff;
+    
+    /* Elevation (shadows) */
+    --m3-shadow-1: 0px 1px 3px rgba(0,0,0,0.12), 0px 1px 2px rgba(0,0,0,0.14);
+    --m3-shadow-2: 0px 3px 6px rgba(0,0,0,0.15), 0px 2px 4px rgba(0,0,0,0.12);
+    --m3-shadow-3: 0px 10px 20px rgba(0,0,0,0.15), 0px 3px 6px rgba(0,0,0,0.10);
+    --m3-shadow-4: 0px 15px 25px rgba(0,0,0,0.15), 0px 5px 10px rgba(0,0,0,0.05);
+    --m3-shadow-5: 0px 20px 40px rgba(0,0,0,0.2);
+    
+    /* Material 3 shape standards */
+    --m3-shape-small: 8px;
+    --m3-shape-medium: 16px;
+    --m3-shape-large: 24px;
+    --m3-shape-extra-large: 32px;
+    
+    /* Legacy variables for compatibility */
+    --primary-color: var(--m3-primary);
+    --secondary-color: var(--m3-secondary);
+    --accent-color: var(--m3-tertiary);
+    --light-bg: var(--m3-surface);
+    --text-dark: var(--m3-on-surface);
+    --text-light: #c6c6c6;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--m3-on-surface);
+    background-color: var(--m3-surface);
+    line-height: 1.5;
+  }
+  
+  /* Material 3 Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    margin-top: 0;
+    line-height: 1.2;
+  }
+  
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+  h4 { font-size: 1.25rem; }
+  h5 { font-size: 1.125rem; }
+  h6 { font-size: 1rem; }
+  
+  /* Material 3 Button Styles */
+  .m3-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: var(--m3-shape-small);
+    padding: 10px 24px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 40px;
+    background-color: var(--m3-primary);
+    color: var(--m3-on-primary);
+    box-shadow: var(--m3-shadow-1);
+    letter-spacing: 0.5px;
+    outline: none;
+  }
+  
+  .m3-button:hover {
+    box-shadow: var(--m3-shadow-2);
+    background-color: #4a310c;
+  }
+  
+  .m3-button:active {
+    box-shadow: var(--m3-shadow-1);
+    transform: translateY(1px);
+  }
+  
+  .m3-button.outlined {
+    background-color: transparent;
+    border: 1px solid var(--m3-outline);
+    color: var(--m3-primary);
+  }
+  
+  .m3-button.outlined:hover {
+    background-color: rgba(57, 36, 4, 0.08);
+  }
+  
+  .m3-button .material-icons {
+    font-size: 18px;
+  }
+  
+  /* Material 3 Text Fields */
+  .m3-text-field {
+    position: relative;
+    margin: 16px 0;
+    width: 100%;
+  }
+  
+  .m3-text-field input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 1rem;
+    border: 2px solid var(--m3-outline-variant);
+    border-radius: var(--m3-shape-small);
+    background: var(--m3-surface-container);
+    transition: all 0.2s;
+    outline: none;
+    color: var(--m3-on-surface);
+  }
+  
+  .m3-text-field label {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    background-color: var(--m3-surface-container);
+    padding: 0 4px;
+    font-size: 1rem;
+    color: var(--m3-outline);
+    transition: all 0.2s;
+    pointer-events: none;
+  }
+  
+  .m3-text-field input:focus,
+  .m3-text-field input:not(:placeholder-shown) {
+    border-color: var(--m3-primary);
+    padding-top: 20px;
+    padding-bottom: 4px;
+  }
+  
+  .m3-text-field input:focus + label,
+  .m3-text-field input:not(:placeholder-shown) + label {
+    top: 0;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--m3-primary);
+  }
+  
+/* ============================================
+   Header, Logo & College Name
+============================================ */
+header {
+    background-color: var(--m3-surface-container);
+    color: var(--m3-on-surface);
+    padding: 15px 20px;
+    border-radius: var(--m3-shape-medium) var(--m3-shape-medium) 0 0;
+    box-shadow: var(--m3-shadow-1);
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .logo img {
+    height: 130px;
+    max-width: 100%;
+    border-radius: var(--m3-shape-small);
+  }
+  
+  .college-name {
+    text-align: left;
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .college-name h1 {
+    font-size: 2rem;
+    margin: 0;
+    line-height: 1.2;
+    font-weight: 500;
+    color: var(--m3-primary);
+  }
+  
+  .college-name p {
+    font-size: 0.9rem;
+    margin: 5px 0 0;
+    color: var(--m3-on-surface-variant);
+  }
+  
+  /* ============================================
+     Faculty Links (.facu)
+  ============================================ */
+  .facu {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: auto;
+    padding-bottom: 50px;
+  }
+  
+  .facu a {
+    color: var(--m3-primary);
+    text-decoration: none;
+    position: relative;
+    padding: 5px 8px;
+    border-radius: var(--m3-shape-small);
+    transition: background-color 0.3s;
+    font-weight: 500;
+  }
+  
+  .facu a:hover {
+    background-color: var(--m3-surface-variant);
+  }
+  
+  .facu a:not(:last-child)::after {
+    content: "";
+    margin-left: 15px;
+  }
+  
+  /* ============================================
+     Navigation - Material 3
+  ============================================ */
+  .nav {
+    background-color: var(--m3-primary);
+    color: var(--m3-on-primary);
+    /* border-radius: 0 0 var(--m3-shape-medium) var(--m3-shape-medium); */
+    box-shadow: var(--m3-shadow-2);
+    position: relative;
+    padding: 6px 20px;
+    /* z-index: 100; */
+  }
+  
+  .nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+  }
+  
+  .nav-list li {
+    position: relative;
+    margin: 0 20px;
+   
+  }
+  
+  /* .nav-list > li {
+    flex: 1;
+    text-align: center;
+  } */
+  
+  .nav-list a {
+    color: inherit;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    /* align-items: center;
+    justify-content: center; */
+    transition: background-color 0.3s ease;
+    border-radius: var(--m3-shape-small);
+    /* gap: 4px;
+    font-weight: 500; */
+  }
+  
+  .nav-dropdown-icon {
+    font-size: 16px;
+  }
+  
+  .nav-list a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: var(--m3-tertiary); 
+    top: 100%;
+    left: 0;
+    width: 200px;
+    box-shadow: var(--m3-shadow-3);
+    border-radius: var(--m3-shape-small);
+    z-index: 1000;
+    overflow: hidden;
+    animation: dropdownAnimation 0.3s ease forwards;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  @keyframes dropdownAnimation {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  
+  .dropdown-menu li {
+    border-bottom: 1px solid var(--m3-outline-variant);
+    margin: 0;
+    padding: 0;
+  }
+  
+  .dropdown-menu a {
+    padding: 12px 16px;
+    color: var(--m3-on-surface);
+    justify-content: flex-start;
+  }
+  
+  .dropdown-menu a:hover {
+    background-color: var(--m3-surface-variant);
+   
+  }
+  
+  /* Nested dropdown */
+  .nested-dropdown {
+    position: relative;
+  }
+  
+  .nested-dropdown > a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nested-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 220px;
+    background-color: var(--m3-surface-container-high);
+    box-shadow: var(--m3-shadow-3);
+    border-radius: var(--m3-shape-small);
+    z-index: 1000;
+    animation: nestedDropdownAnimation 0.3s ease forwards;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  @keyframes nestedDropdownAnimation {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .nested-dropdown:hover .nested-dropdown-menu {
+    display: block;
+  }
+  
+  /* ============================================
+     Mobile Navigation
+  ============================================ */
+  .mobile-nav-header {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--m3-primary);
+  }
+  
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: 12px;
+    border-radius: var(--m3-shape-small);
+    cursor: pointer;
+  }
+  
+  .hamburger span {
+    width: 25px;
+    height: 2px;
+    background: var(--m3-on-primary);
+    transition: all 0.3s ease;
+  }
+  
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+  
+  .mobile-nav-header .mobile-home {
+    color: var(--m3-on-primary);
+    text-decoration: none;
+    padding: 12px;
+    border-radius: var(--m3-shape-small);
+  }
+  
+  .mobile-nav-header .mobile-home:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* ============================================
+     Media Queries
+  ============================================ */
+  @media (max-width: 457px) {
+    /* .logo {
+      padding-left: 118px;
+    }
+  } */}
+  
+  @media (max-width: 968px) {
+    .facu {
+      display: none;
+    }
+    
+    .college-name h1 {
+      font-size: 1.4rem;
+    }
+    
+    .college-name p {
+      font-size: 0.75rem;
+    }
+    
+    .nav-list {
+      flex-direction: column;
+      display: none;
+      padding: 10px 0;
+    }
+    
+    .nav-list.open {
+      display: flex;
+    }
+    
+    .nav-list > li {
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .desktop-home {
+      display: none;
+    }
+    
+    
+    .dropdown-menu {
+      position: static;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.15);
+      display: none;
+      box-shadow: none;
+      border-radius: 0;
+      animation: none;
+    }
+    .dropdown-menu a{
+      color: var(--m3-on-tertiary);
+    }
+    
+    .dropdown.active .dropdown-menu {
+      display: block;
+    }
+    
+    .nested-dropdown-menu {
+      position: static;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.15);
+      padding-left: 20px;
+      animation: none;
+    }
+    
+    .nested-dropdown:hover .nested-dropdown-menu {
+      display: none;
+    }
+    
+    .nested-dropdown.active .nested-dropdown-menu {
+      display: block;
+    }
+    
+    .mobile-nav-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: var(--m3-primary);
+    }
+  }
