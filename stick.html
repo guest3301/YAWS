@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomous Stickman</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            height: 100vh;
+        }
+        canvas {
+            display: block;
+            position: absolute;
+            z-index: 1000;
+            pointer-events: none;
+        }
+        #stickman {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            pointer-events: none;
+        }
+        .platform {
+            position: relative;
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+        }
+        hr {
+            border: none;
+            height: 5px;
+            background-color: #333;
+            margin: 30px 0;
+        }
+        #mouseActivator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px;
+            background: #333;
+            color: white;
+            border-radius: 5px;
+            z-index: 1001;
+            cursor: pointer;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="stickman">
+        <canvas id="stickmanCanvas"></canvas>
+    </div>
+    
+    <button id="mouseActivator">Toggle Mouse Interaction</button>
+
+    <div class="content">
+        <h1>Stickman Demo Page</h1>
+        <hr>
+        <div class="platform">
+            <h2>Platform 1</h2>
+            <p>This is a platform that the stickman can walk on</p>
+        </div>
+        
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        
+        <div class="platform">
+            <h3>Another Platform</h3>
+            <ul>
+                <li>Item 1</li>
+                <li>Item 2</li>
+            </ul>
+        </div>
+        
+        <hr>
+        
+        <div class="platform">
+            <h2>Final Platform</h2>
+            <p>The stickman can walk here too!</p>
+        </div>
+    </div>
+
+    <script>
+    // StickMan Easter Egg - Minified Version
+    (function() {
+        // Core variables
+        let isActive = false;
+        let mouseControlEnabled = false;
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+        
+        // Canvas setup
+        const canvas = document.getElementById('stickmanCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        window.addEventListener('resize', function() {
+            resizeCanvas();
+            if (isActive) collectPlatforms();
+        });
+        
+        resizeCanvas();
+        canvas.style.display = 'none';
+        
+        // Physics constants
+        const GRAVITY = 0.3;
+        const FRICTION = 0.85;
+        const GROUND_FRICTION = 0.8;
+        const JUMP_FORCE = 8;
+        const WALK_SPEED = 1.5;
+        const RUN_SPEED = 3;
+        
+        // Mouse interaction
+        let mouseX = 0, mouseY = 0;
+        let mouseDown = false;
+        let draggedStickman = false;
+        
+        // Orientation variables
+        let orientationEnabled = false;
+        let orientationX = 0;
+        let orientationY = 0;
+        
+        // Platform collection
+        let platforms = [];
+        
+        function collectPlatforms() {
+            platforms = [];
+            
+            // Get all HR tags
+            const hrs = document.querySelectorAll('hr');
+            hrs.forEach(hr => {
+                const rect = hr.getBoundingClientRect();
+                platforms.push({
+                    x1: rect.left,
+                    y1: rect.top,
+                    x2: rect.right,
+                    y2: rect.top,
+                    element: hr,
+                    isFlat: true
+                });
+            });
+            
+            // Get all platform divs
+            const platformDivs = document.querySelectorAll('.platform');
+            platformDivs.forEach(div => {
+                const rect = div.getBoundingClientRect();
+                platforms.push({
+                    x1: rect.left,
+                    y1: rect.top + rect.height,
+                    x2: rect.right,
+                    y2: rect.top + rect.height,
+                    element: div,
+                    isFlat: true
+                });
+            });
+            
+            // Add screen bottom as platform
+            platforms.push({
+                x1: 0,
+                y1: window.innerHeight - 10,
+                x2: window.innerWidth,
+                y2: window.innerHeight - 10,
+                isFlat: true
+            });
+        }
+        
+        // Stickman class - minified version
+        class Stickman {
+            constructor() {
+                this.size = 15;
+                this.x = 100;
+                this.y = 100;
+                this.prevY = 100;
+                this.vx = 0;
+                this.vy = 0;
+                this.onGround = false;
+                this.facingRight = true;
+                this.legAngle = 0;
+                this.armAngle = 0;
+                this.walkCycle = 0;
+                this.state = 'idle';
+                this.idleTime = 0;
+                this.thinkTime = 0;
+                this.decisionTimeout = Math.random() * 100 + 50;
+                this.currentPlatform = null;
+            }
+            
+            update() {
+                if (draggedStickman) return;
+                
+                this.prevY = this.y;
+                
+                // Apply physics forces
+                this.vy += GRAVITY;
+                
+                // Apply orientation forces if available
+                if (orientationEnabled) {
+                    this.vx += orientationX * 0.05;
+                    this.vy += orientationY * 0.05;
+                }
+                
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                // Check collision with edges
+                if (this.x < this.size) {
+                    this.x = this.size;
+                    this.vx = Math.abs(this.vx) * 0.5;
+                    this.facingRight = true;
+                }
+                
+                if (this.x > canvas.width - this.size) {
+                    this.x = canvas.width - this.size;
+                    this.vx = -Math.abs(this.vx) * 0.5;
+                    this.facingRight = false;
+                }
+                
+                // Reset ground status
+                this.onGround = false;
+                
+                // Check collisions with all platforms
+                this.checkPlatformCollisions();
+                
+                // Apply friction
+                if (this.onGround) {
+                    this.vx *= GROUND_FRICTION;
+                } else {
+                    this.vx *= FRICTION;
+                }
+                
+                // Stop if velocity is very small
+                if (Math.abs(this.vx) < 0.1) this.vx = 0;
+                
+                // Animation cycles
+                if (Math.abs(this.vx) > 0.5) {
+                    this.walkCycle += Math.abs(this.vx) / 10;
+                    this.legAngle = Math.sin(this.walkCycle) * 0.5;
+                    this.armAngle = Math.sin(this.walkCycle + Math.PI) * 0.3;
+                } else {
+                    this.legAngle = 0;
+                    this.armAngle = Math.sin(this.walkCycle * 0.2) * 0.1; // Slight breathing motion
+                }
+                
+                // State determination
+                if (!this.onGround) {
+                    this.state = 'jumping';
+                } else if (Math.abs(this.vx) > 2.5) {
+                    this.state = 'running';
+                } else if (Math.abs(this.vx) > 0.5) {
+                    this.state = 'walking';
+                } else {
+                    this.state = 'idle';
+                }
+                
+                // AI decision making
+                this.thinkTime++;
+                if (this.state === 'idle') {
+                    this.idleTime++;
+                } else {
+                    this.idleTime = 0;
+                }
+                
+                if (this.thinkTime > this.decisionTimeout) {
+                    this.makeDecision();
+                    this.thinkTime = 0;
+                    this.decisionTimeout = Math.random() * 100 + 30;
+                }
+            }
+            
+            checkPlatformCollisions() {
+                for (let platform of platforms) {
+                    // Simple collision detection for horizontal platforms
+                    if (this.x >= platform.x1 && this.x <= platform.x2) {
+                        // Check if we're falling onto the platform
+                        const footY = this.y + this.size;
+                        const prevFootY = this.prevY + this.size;
+                        
+                        if (footY >= platform.y1 && prevFootY <= platform.y1) {
+                            this.y = platform.y1 - this.size;
+                            this.vy = 0;
+                            this.onGround = true;
+                            this.currentPlatform = platform;
+                            
+                            // Highlight the platform element if it exists
+                            if (platform.element && Math.random() < 0.01) {
+                                platform.element.style.transition = 'background-color 0.3s';
+                                platform.element.style.backgroundColor = '#ffffcc';
+                                setTimeout(() => {
+                                    platform.element.style.backgroundColor = '';
+                                }, 300);
+                            }
+                            
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            makeDecision() {
+                const rand = Math.random();
+                
+                if (this.idleTime > 50 || rand < 0.7) {
+                    if (Math.random() > 0.5) {
+                        this.facingRight = !this.facingRight;
+                    }
+                    
+                    const moveType = Math.random();
+                    if (moveType < 0.2 && this.onGround) {
+                        this.jump();
+                    } else if (moveType < 0.6) {
+                        this.run();
+                    } else {
+                        this.walk();
+                    }
+                } else {
+                    this.vx *= 0.5;
+                }
+            }
+            
+            walk() {
+                const direction = this.facingRight ? 1 : -1;
+                this.vx = direction * WALK_SPEED;
+            }
+            
+            run() {
+                const direction = this.facingRight ? 1 : -1;
+                this.vx = direction * RUN_SPEED;
+            }
+            
+            jump() {
+                if (this.onGround) {
+                    this.vy = -JUMP_FORCE;
+                    this.onGround = false;
+                }
+            }
+            
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                
+                if (!this.facingRight) ctx.scale(-1, 1);
+                
+                // Head
+                ctx.beginPath();
+                ctx.arc(0, -this.size * 0.9, this.size * 0.4, 0, Math.PI * 2);
+                ctx.strokeStyle = '#000';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                // Eyes - extra detail
+                const eyeX = this.size * 0.15;
+                const eyeY = -this.size * 0.95;
+                const eyeSize = this.size * 0.08;
+                
+                ctx.beginPath();
+                ctx.arc(eyeX, eyeY, eyeSize, 0, Math.PI * 2);
+                ctx.fillStyle = '#000';
+                ctx.fill();
+                
+                ctx.beginPath();
+                ctx.arc(-eyeX, eyeY, eyeSize, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Body
+                ctx.beginPath();
+                ctx.moveTo(0, -this.size * 0.5);
+                ctx.lineTo(0, this.size * 0.3);
+                ctx.stroke();
+                
+                // Arms with animation
+                ctx.beginPath();
+                ctx.moveTo(0, -this.size * 0.3);
+                ctx.lineTo(this.size * 0.6 * Math.cos(this.armAngle - Math.PI/4), 
+                          -this.size * 0.3 + this.size * 0.6 * Math.sin(this.armAngle - Math.PI/4));
+                
+                ctx.moveTo(0, -this.size * 0.3);
+                ctx.lineTo(this.size * 0.6 * Math.cos(this.armAngle + Math.PI/4), 
+                          -this.size * 0.3 + this.size * 0.6 * Math.sin(this.armAngle + Math.PI/4));
+                ctx.stroke();
+                
+                // Legs with animation
+                ctx.beginPath();
+                ctx.moveTo(0, this.size * 0.3);
+                ctx.lineTo(this.size * 0.6 * Math.cos(this.legAngle - Math.PI/4), 
+                          this.size * 0.3 + this.size * 0.6 * Math.sin(this.legAngle - Math.PI/4));
+                
+                ctx.moveTo(0, this.size * 0.3);
+                ctx.lineTo(this.size * 0.6 * Math.cos(this.legAngle + Math.PI/4), 
+                          this.size * 0.3 + this.size * 0.6 * Math.sin(this.legAngle + Math.PI/4));
+                ctx.stroke();
+                
+                ctx.restore();
+            }
+        }
+        
+        // Create stickman
+        const stickman = new Stickman();
+        
+        // Game loop
+        function gameLoop() {
+            if (!isActive) {
+                requestAnimationFrame(gameLoop);
+                return;
+            }
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Update and draw stickman
+            stickman.update();
+            stickman.draw();
+            
+            requestAnimationFrame(gameLoop);
+        }
+        
+        // Place stickman on nearest platform
+        function placeStickmanOnPlatform() {
+            collectPlatforms();
+            
+            if (platforms.length > 0) {
+                // Choose a random platform
+                const platformIndex = Math.floor(Math.random() * platforms.length);
+                const platform = platforms[platformIndex];
+                
+                // Place stickman above the chosen platform
+                stickman.x = platform.x1 + Math.random() * (platform.x2 - platform.x1);
+                stickman.y = platform.y1 - stickman.size;
+                stickman.vx = 0;
+                stickman.vy = 0;
+                stickman.onGround = true;
+            } else {
+                // Fallback: place at bottom
+                stickman.x = Math.random() * canvas.width;
+                stickman.y = canvas.height - 100;
+            }
+        }
+        
+        // Activate stickman function
+        function activateStickman() {
+            if (!isActive) {
+                isActive = true;
+                canvas.style.display = 'block';
+                document.getElementById('mouseActivator').style.display = 'block';
+                placeStickmanOnPlatform();
+                console.log("%cStickman activated!", "color: green; font-weight: bold");
+            } else {
+                isActive = false;
+                canvas.style.display = 'none';
+                document.getElementById('mouseActivator').style.display = 'none';
+                console.log("%cStickman deactivated!", "color: red; font-weight: bold");
+            }
+        }
+        
+        // Start the game loop
+        gameLoop();
+        
+        // Mouse control setup
+        document.getElementById('mouseActivator').addEventListener('click', function() {
+            mouseControlEnabled = !mouseControlEnabled;
+            this.textContent = mouseControlEnabled ? 'Disable Mouse Control' : 'Enable Mouse Control';
+        });
+        
+        // Mouse event handlers
+        canvas.addEventListener('mousedown', function(e) {
+            if (!mouseControlEnabled || !isActive) return;
+            
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            mouseDown = true;
+            
+            // Check if clicked on stickman
+            const dist = Math.sqrt(Math.pow(mouseX - stickman.x, 2) + Math.pow(mouseY - stickman.y, 2));
+            if (dist < stickman.size * 2) {
+                draggedStickman = true;
+            }
+        });
+        
+        document.addEventListener('mousemove', function(e) {
+            if (mouseDown && draggedStickman && mouseControlEnabled && isActive) {
+                stickman.x = e.clientX;
+                stickman.y = e.clientY;
+                stickman.vx = 0;
+                stickman.vy = 0;
+            }
+        });
+        
+        document.addEventListener('mouseup', function() {
+            mouseDown = false;
+            if (draggedStickman) {
+                draggedStickman = false;
+                stickman.vx = 0;
+                stickman.vy = 0;
+            }
+        });
+        
+        // Device orientation event
+        window.addEventListener('deviceorientation', function(e) {
+            if (!isActive) return;
+            
+            orientationEnabled = true;
+            
+            // Normalize orientation data between -1 and 1
+            orientationX = e.gamma ? e.gamma / 45 : 0;
+            orientationY = e.beta ? (e.beta - 45) / 45 : 0;
+            
+            // Clamp values
+            orientationX = Math.max(-1, Math.min(1, orientationX));
+            orientationY = Math.max(-1, Math.min(1, orientationY));
+        });
+        
+        // Activation methods
+        
+        // Konami code
+        document.addEventListener('keydown', function(e) {
+            if (e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    activateStickman();
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+        
+        // Console command
+        const originalConsoleLog = console.log;
+        console.log = function() {
+            const args = Array.from(arguments);
+            if (args.length > 0 && typeof args[0] === 'string' && args[0].toLowerCase() === 'stickman') {
+                activateStickman();
+            }
+            return originalConsoleLog.apply(console, arguments);
+        };
+        
+        // Public API
+        window.StickmanAPI = {
+            activate: activateStickman,
+            isActive: function() { return isActive; }
+        };
+        
+        console.log("%cThere's a hidden easter egg in this page! Hint: Konami code or type 'stickman' in console", "color: #999; font-style: italic;");
+    })();
+    </script>
+</body>
+</html>
