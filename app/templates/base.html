@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Saket College of Arts, Science & Commerce{% endblock %}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <script src="{{ url_for('static', filename='js/base.js') }}"></script>
+  {% block head %}{% endblock %}
+  <style>
+    {% block styles %}{% endblock %}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <div class="logo">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="College Logo" />
+      </div>
+      <div class="college-name">
+        <p>Saket Gyanpeeth's</p>
+        <h1>Saket College of Arts Science And Commerce</h1>
+        <p>Permanently Affiliated To University Of Mumbai</p>
+      </div>
+      <div class="facu">
+        <a href="#">NAAC</a>
+        <a href="#">Staffs</a>
+        <a href="#">Alumni</a>
+        <a href="#">Placement</a>
+        <a href="#">Visit</a>
+      </div>
+    </div>
+  </header>
+
+  <nav class="nav">
+    <div class="mobile-nav-header">
+      <a href="/" class="mobile-home"><i class="fa fa-home" style="font-size:1rem;"></i></a>
+      <button class="hamburger" onclick="toggleMenu(this)">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <ul class="nav-list">
+      <li class="desktop-home"><a href="/"><i class="material-icons">home</i></a></li>
+      <li class="dropdown">
+        <a href="#academics">About us <i class="material-icons nav-dropdown-icon">expand_more</i></a>
+        <ul class="dropdown-menu">
+          <li><a href="https://saketcollege.edu.in/course-outcomes/">Message</a></li>
+          <li><a href="https://saketcollege.edu.in/pg/">Commitee</a></li>
+          <li><a href="#">Organogram</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#admissions">Academics <i class="material-icons nav-dropdown-icon">expand_more</i></a>
+        <ul class="dropdown-menu">
+          <li><a href="#undergraduate">Program & Courses</a></li>
+          <li><a href="#postgraduate">Course Outcomes</a></li>
+          <li><a href="#phd">Academic Calendar</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#examinations">Student Corner <i class="material-icons nav-dropdown-icon">expand_more</i></a>
+        <ul class="dropdown-menu">
+          <li><a href="{{ url_for('frontend.student', subpath='notice') }}">Notices</a></li>
+          <li><a href="https://saketcollege.edu.in/results/">Activities</a></li>
+          <li><a href="{{ url_for('frontend.student', subpath='syllabus') }}">Syllabus</a></li>
+          <li><a href="{{ url_for('frontend.student', subpath='program-outcome') }}">Program Outcome</a></li>
+          <li><a href="{{ url_for('frontend.student', subpath='student-support') }}">Student Support</a></li>
+          <li><a href="{{ url_for('frontend.student', subpath='code-of-conduct') }}">Code Of Conduct</a></li>
+          <li class="nested-dropdown">
+            <a href="#">Alumni <i class="material-icons">chevron_right</i></a>
+            <ul class="nested-dropdown-menu">
+              <li><a href="{{ url_for('frontend.student', subpath='alumni-association') }}">Alumni Association</a></li>
+              <li><a href="{{ url_for('frontend.student', subpath='alumni-interaction') }}">Alumni Interaction</a></li>
+              <li><a href="{{ url_for('frontend.student', subpath='our-eminent-alumni') }}">Our Eminent Alumni</a></li>
+              <li><a href="{{ url_for('frontend.student', subpath='testimonials') }}">Testimonials</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#student">Library <i class="material-icons nav-dropdown-icon">expand_more</i></a>
+        <ul class="dropdown-menu">
+          <li><a href="https://saketcollege.edu.in/events-2/">About Library</a></li>
+          <li><a href="https://saketcollege.edu.in/dlle/">Library Commitee</a></li>
+          <li><a href="#">Activities</a></li>
+          <li><a href="#">Code Of Conduct</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="https://saketcollege.edu.in/about-library-2/">Extension Activities <i class="material-icons nav-dropdown-icon">expand_more</i></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">NSS</a></li>
+          <li><a href="#">DLLE</a></li>
+          <li><a href="#">Best Practices</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#research">Examination <i class="material-icons nav-dropdown-icon">expand_more</i></a>
+        <ul class="dropdown-menu">
+          <li><a href="#publications">Exam committee</a></li>
+          <li><a href="#projects">Exam Policy</a></li>
+          <li><a href="#patents">Exam Time-Table</a></li>
+          <li><a href="#patents">Exam Results</a></li>
+          <li><a href="#patents">Notices & Circulars</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#research">Feedback <i class="material-icons nav-dropdown-icon">expand_more</i></a>
+        <ul class="dropdown-menu">
+          <li><a href="#publications">Parents</a></li>
+          <li><a href="#projects">Employers</a></li>
+          <li><a href="#patents">Alumni</a></li>
+          <li><a href="#patents">Syllabus</a></li>
+          <li><a href="#patents">Teachers</a></li>
+          <li><a href="#patents">Students</a></li>
+          <li><a href="#patents">Grievance Feedback Form</a></li>
+          <li><a href="#patents">Action Taken Report</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#research">More <i class="material-icons nav-dropdown-icon">expand_more</i></a>
+        <ul class="dropdown-menu">
+          <li><a href="#publications">Press Reports & Newsletters</a></li>
+          <li><a href="#projects">RTI</a></li>
+          <li><a href="#patents">Some more</a></li>
+          <li><a href="#patents">Some more more</a></li>
+          <li><a href="#patents">Some more more more</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  {% block content %}{% endblock %}
+
+  <footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul class="m3-list">
+                <li><a href="#"><span class="material-icons">arrow_right</span>About Us</a></li>
+                <li><a href="#"><span class="material-icons">arrow_right</span>Admissions</a></li>
+                <li><a href="#"><span class="material-icons">arrow_right</span>Research</a></li>
+                <li><a href="#"><span class="material-icons">arrow_right</span>Campus Life</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Programs</h3>
+            <ul class="m3-list">
+                <li><a href="#"><span class="material-icons">arrow_right</span>Undergraduate</a></li>
+                <li><a href="#"><span class="material-icons">arrow_right</span>Postgraduate</a></li>
+                <li><a href="#"><span class="material-icons">arrow_right</span>Doctoral Studies</a></li>
+                <li><a href="#"><span class="material-icons">arrow_right</span>Online Courses</a></li>
+                <li><a href="#"><span class="material-icons">arrow_right</span>Executive Education</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <div class="contact-info">
+                <span class="material-icons">location_on</span>
+                <p>123 Education Street, Knowledge City</p>
+            </div>
+            <div class="contact-info">
+                <span class="material-icons">phone</span>
+                <p>+1 234 567 8900</p>
+            </div>
+            <div class="contact-info">
+                <span class="material-icons">email</span>
+                <p>info@saketcollege.edu</p>
+            </div>
+            <div class="social-links">
+                <a href="#" class="m3-icon-button"><span class="material-icons">facebook</span></a>
+                <a href="#" class="m3-icon-button"><span class="material-icons">public</span></a>
+                <a href="#" class="m3-icon-button"><span class="material-icons">business_center</span></a>
+                <a href="#" class="m3-icon-button"><span class="material-icons">photo_camera</span></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h3>Newsletter</h3>
+            <p>Subscribe to our newsletter for updates and news.</p>
+            <form class="m3-form">
+                <div class="m3-text-field">
+                    <input type="email" id="newsletter-email" placeholder=" ">
+                    <label for="newsletter-email">Email Address</label>
+                </div>
+                <button type="submit" class="m3-button">
+                    <span class="material-icons">mail</span>
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Saket College. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="https://kit.fontawesome.com/2b7b4f4f0b.js"></script>
+</body>
+</html>

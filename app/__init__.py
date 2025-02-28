@@ -22,9 +22,11 @@ def create_app(config_name='default'):
     # Register blueprints
     from app.api import api_bp
     from app.auth import auth_bp
+    from app.frontend import frontend_bp
     
     app.register_blueprint(api_bp, url_prefix='/api')
     app.register_blueprint(auth_bp)
+    app.register_blueprint(frontend_bp)
     
     # Setup static file serving for uploads
     @app.route('/uploads/<path:filename>')

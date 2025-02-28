@@ -1,0 +1,317 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Saket College{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+<!--Change me and proper styling and script rather than loading whole file. ^^^^^^^-->
+{%% endblock %}
+{% block styles %}
+  <style>
+    .notice-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .notice-filters {
+      background-color: var(--m3-surface-container);
+      padding: 1.5rem;
+      border-radius: var(--m3-shape-medium);
+      box-shadow: var(--m3-shadow-1);
+      margin-bottom: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .filter-group label {
+      color: var(--m3-on-surface-variant);
+      font-weight: 500;
+    }
+
+    .filter-group select, .filter-group input[type="date"] {
+      padding: 0.5rem;
+      border: 2px solid var(--m3-outline-variant);
+      border-radius: var(--m3-shape-small);
+      background-color: var(--m3-surface);
+      color: var(--m3-on-surface);
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .filter-group select:focus, .filter-group input[type="date"]:focus {
+      border-color: var(--m3-primary);
+      outline: none;
+    }
+
+    .notice-table {
+      background-color: var(--m3-surface-container);
+      border-radius: var(--m3-shape-medium);
+      box-shadow: var(--m3-shadow-2);
+      overflow: hidden;
+    }
+
+    .notice-table table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .notice-table th {
+      background-color: var(--m3-primary);
+      color: var(--m3-on-primary);
+      padding: 1rem;
+      text-align: left;
+      font-weight: 500;
+    }
+
+    .notice-table td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--m3-outline-variant);
+      color: var(--m3-on-surface);
+    }
+
+    .notice-table tr:hover {
+      background-color: var(--m3-surface-variant);
+    }
+
+    .notice-link {
+      color: var(--m3-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .notice-link:hover {
+      text-decoration: underline;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+
+    .pagination button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: var(--m3-surface-variant);
+      color: var(--m3-on-surface-variant);
+      border-radius: var(--m3-shape-small);
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .pagination button.active {
+      background-color: var(--m3-primary);
+      color: var(--m3-on-primary);
+    }
+
+    .pagination button:hover:not(.active) {
+      background-color: var(--m3-surface-container-highest);
+    }
+
+    .loading {
+      text-align: center;
+      padding: 2rem;
+      color: var(--m3-on-surface-variant);
+    }
+
+    @media (max-width: 768px) {
+      .notice-filters {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .filter-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .notice-table {
+        overflow-x: auto;
+      }
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="notice-container">
+
+    
+    <div class="notice-filters">
+      <div class="filter-group">
+        <label>Filter by Date:</label>
+        <input type="date" id="dateFilter">
+      </div>
+      <div class="filter-group">
+        <label>Filter by Month:</label>
+        <select id="monthFilter">
+          <option value="">All Months</option>
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="notice-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Notice Title</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="noticeTableBody">
+          <tr>
+            <td colspan="3" class="loading">Loading notices...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination" id="paginationContainer"></div>
+  </div>
+
+  <script>
+    let currentPage = 1;
+    const perPage = 5;
+
+    function formatDate(dateString) {
+      const options = { year: 'numeric', month: 'short', day: 'numeric' };
+      return new Date(dateString).toLocaleDateString('en-IN', options);
+    }
+
+    async function fetchNotices(page = 1, filters = {}) {
+      try {
+        const queryParams = new URLSearchParams({
+          page: page,
+          per_page: perPage,
+          ...filters
+        });
+
+        const response = await fetch(`http://localhost:5000/api/notices?${queryParams}`);
+        if (!response.ok) throw new Error('Failed to fetch notices');
+        
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error('Error fetching notices:', error);
+        return null;
+      }
+    }
+
+    function renderNotices(notices) {
+      const tableBody = document.getElementById('noticeTableBody');
+      tableBody.innerHTML = '';
+
+      if (!notices.length) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="3" style="text-align: center;">No notices found</td>
+          </tr>
+        `;
+        return;
+      }
+
+      notices.forEach(notice => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${formatDate(notice.date_uploaded)}</td>
+          <td>
+            <a href="${notice.url}" class="notice-link" target="_blank">
+              ${notice.title}
+            </a>
+          </td>
+          <td>
+            <a href="${notice.url}" class="notice-link" target="_blank">
+              View
+              <span class="material-icons">visibility</span>
+            </a>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    function renderPagination(data) {
+      const container = document.getElementById('paginationContainer');
+      container.innerHTML = '';
+
+      if (data.pages <= 1) return;
+
+      // Previous button
+      if (data.has_prev) {
+        const prevBtn = document.createElement('button');
+        prevBtn.innerHTML = '<span class="material-icons">chevron_left</span>';
+        prevBtn.onclick = () => changePage(currentPage - 1);
+        container.appendChild(prevBtn);
+      }
+
+      // Page numbers
+      for (let i = 1; i <= data.pages; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        btn.onclick = () => changePage(i);
+        if (i === currentPage) btn.classList.add('active');
+        container.appendChild(btn);
+      }
+
+      // Next button
+      if (data.has_next) {
+        const nextBtn = document.createElement('button');
+        nextBtn.innerHTML = '<span class="material-icons">chevron_right</span>';
+        nextBtn.onclick = () => changePage(currentPage + 1);
+        container.appendChild(nextBtn);
+      }
+    }
+
+    async function changePage(page) {
+      currentPage = page;
+      const data = await fetchNotices(page, getFilters());
+      if (data) {
+        renderNotices(data.notices);
+        renderPagination(data);
+      }
+    }
+
+    function getFilters() {
+      const filters = {};
+      const dateFilter = document.getElementById('dateFilter').value;
+      const monthFilter = document.getElementById('monthFilter').value;
+
+      if (dateFilter) filters.date = dateFilter;
+      if (monthFilter) filters.month = monthFilter;
+
+      return filters;
+    }
+
+    // Filter handlers
+    document.getElementById('dateFilter').addEventListener('change', () => changePage(1));
+    document.getElementById('monthFilter').addEventListener('change', () => changePage(1));
+
+    // Initial load
+    changePage(1);
+  </script>
+
+{% endblock %}
+
