@@ -76,9 +76,19 @@ def add_notice():
         return jsonify({'error': 'Unauthorized', 'message': 'Login required'}), 401
         
     try:
-        if 'file' in request.files:
+        # Check if file is uploaded
+        has_file = 'file' in request.files and request.files['file'] and request.files['file'].filename
+        
+        # Check if URL is provided in form data
+        url_in_form = 'url' in request.form and request.form['url'].strip()
+        
+        # If neither file nor URL is provided
+        if not has_file and not url_in_form and request.content_type != 'application/json':
+            return jsonify({'error': 'Missing data', 'message': 'Either file upload or URL is required'}), 400
+        
+        if has_file:
             file = request.files['file']
-            if file and allowed_file(file.filename):
+            if allowed_file(file.filename):
                 filename = generate_unique_filename(file.filename)
                 
                 filepath = safe_join(current_app.config['UPLOAD_FOLDER'], filename)
@@ -93,10 +103,28 @@ def add_notice():
                 db.session.commit()
                 return jsonify({'success': True, 'message': 'Notice added successfully', 'notice': new_notice.to_dict()}), 201
             return jsonify({'error': 'Invalid file', 'message': 'Invalid file format'}), 400
+        
+        # Handle URL submission either from form or JSON
+        if url_in_form:
+            title = request.form.get('title', '')
+            url = request.form['url']
             
+            # Validate URL format
+            if not url.startswith(('http://', 'https://', '/uploads/')):
+                return jsonify({'error': 'Invalid URL', 'message': 'Invalid URL format'}), 400
+                
+            new_notice = Notice(title=title, url=url)
+            db.session.add(new_notice)
+            db.session.commit()
+            return jsonify({'success': True, 'message': 'Notice added successfully', 'notice': new_notice.to_dict()}), 201
+            
+        # Handle JSON submission
         data = request.get_json()
-        if not data or 'title' not in data or 'url' not in data:
-            return jsonify({'error': 'Missing data', 'message': 'Title and URL required'}), 400
+        if not data or 'title' not in data:
+            return jsonify({'error': 'Missing data', 'message': 'Title required'}), 400
+        
+        if 'url' not in data or not data['url']:
+            return jsonify({'error': 'Missing data', 'message': 'URL required when not uploading a file'}), 400
             
         # Validate URL format
         if not data['url'].startswith(('http://', 'https://', '/uploads/')):
