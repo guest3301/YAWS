@@ -1,23 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
-    window.toggleMenu = function(hamburger) {
-        hamburger.classList.toggle('active');
-        document.querySelector('.nav-list').classList.toggle('open');
-    };
-    
+    // Hamburger menu functionality
     const hamburger = document.querySelector('.hamburger');
     const navList = document.querySelector('.nav-list');
-    
+
     if (hamburger) {
         hamburger.addEventListener('click', function() {
             this.classList.toggle('active');
             navList.classList.toggle('open');
         });
     }
-    
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+            if (!e.target.closest('.nav')) {
+                navList.classList.remove('open');
+                hamburger.classList.remove('active');
+                document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+            }
+        }
+    });
+
+    // Mobile dropdown handling
     const dropdowns = document.querySelectorAll('.dropdown');
     dropdowns.forEach(dropdown => {
-        if (window.innerWidth <= 768) {
-            const link = dropdown.querySelector('a');
+        const link = dropdown.querySelector('a');
+        if (link) {
             link.addEventListener('click', function(e) {
                 if (window.innerWidth <= 768) {
                     e.preventDefault();
@@ -32,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
-    
+
     const nestedDropdowns = document.querySelectorAll('.nested-dropdown');
     nestedDropdowns.forEach(nested => {
         if (window.innerWidth <= 768) {
@@ -47,29 +55,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    const buttons = document.querySelectorAll('button, .m3-button, .m3-icon-button');
-    buttons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            const ripple = document.createElement('span');
-            const rect = this.getBoundingClientRect();
-            
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-            
-            ripple.style.width = ripple.style.height = `${size}px`;
-            ripple.style.left = `${x}px`;
-            ripple.style.top = `${y}px`;
-            ripple.classList.add('ripple');
-            
-            this.appendChild(ripple);
-            
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
-        });
-    });
-    
+    // Modified buttons section - removed ripple effect completely
+    const buttons = document.querySelectorAll('.m3-button, .m3-icon-button');
+    // No ripple effect added - removed entirely
+
     const animateOnScroll = () => {
         const elements = document.querySelectorAll('.content, .feature-card, .achievement-card, .stat-card, .campus-card');
         
@@ -123,12 +112,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 3000);
             }
         });
-    }
+    } 
 
     // Start notice board auto-scroll
     startScrolling();
 });
-
 const captions = [
     { title: "Join Us Today", text: "Experience world-class education and vibrant campus life." },
     { title: "Your Future Starts Here", text: "Explore endless learning opportunities at Saket College." },
@@ -141,26 +129,22 @@ let currentIndex = 0;
 function changeCaption() {
     const titleElement = document.getElementById("caption-title");
     const textElement = document.getElementById("caption-text");
-    
-    if (titleElement && textElement) {
-        currentIndex = (currentIndex + 1) % captions.length;
+
+    currentIndex = (currentIndex + 1) % captions.length; // Loop through captions
+
+    titleElement.style.opacity = "0";
+    textElement.style.opacity = "0";
+
+    setTimeout(() => {
+        titleElement.textContent = captions[currentIndex].title;
+        textElement.textContent = captions[currentIndex].text;
         
-        titleElement.style.opacity = "0";
-        textElement.style.opacity = "0";
-        
-        setTimeout(() => {
-            titleElement.textContent = captions[currentIndex].title;
-            textElement.textContent = captions[currentIndex].text;
-            
-            titleElement.style.opacity = "1";
-            textElement.style.opacity = "1";
-        }, 500);
-    }
+        titleElement.style.opacity = "1";
+        textElement.style.opacity = "1";
+    }, 500); // Delay for smooth transition
 }
 
-if (document.getElementById("caption-title") && document.getElementById("caption-text")) {
-    setInterval(changeCaption, 4000);
-}
+setInterval(changeCaption, 4000); // Change text every 4 seconds
 
 function updateDateTime() {
     const dateTimeElement = document.getElementById("dateTime");
