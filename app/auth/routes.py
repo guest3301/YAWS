@@ -14,8 +14,8 @@ def login():
             flash('Login successful', 'success')
             return redirect(url_for('auth.admin_panel'))
         flash('Invalid credentials', 'error')
-        return render_template('login.html', error='Invalid credentials')
-    return render_template('login.html')
+        return render_template('auth/login.html', error='Invalid credentials')
+    return render_template('auth/login.html')
 
 @auth_bp.route('/logout')
 def logout():
@@ -30,4 +30,4 @@ def admin_panel():
     if not session.get('logged_in'):
         flash('Please login first', 'warning')
         return redirect(url_for('auth.login'))
-    return render_template('admin.html')
+    return render_template('auth/admin.html')
