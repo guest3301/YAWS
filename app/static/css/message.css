@@ -1,0 +1,176 @@
+/* Messages Page Styling */
+* {
+  box-sizing: border-box;
+}
+
+/* Column Layout */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 -15px;
+}
+
+.column {
+  flex: 0 0 calc(33.33% - 30px);
+  max-width: calc(33.33% - 30px);
+  margin: 0 15px 30px;
+}
+
+/* Leadership Card */
+.card {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.profile-image-container {
+  text-align: center;
+  padding: 20px 20px 0;
+  background: linear-gradient(135deg, #3498db, #1abc9c);
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover .profile-image {
+  transform: scale(1.05);
+}
+
+.card-container {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-container h2 {
+  margin: 10px 0;
+  font-size: 1.5rem;
+  color: #333;
+  text-align: center;
+}
+
+.title {
+  color: #777;
+  margin-bottom: 15px;
+  text-align: center;
+  font-style: italic;
+}
+
+.message-content {
+  flex-grow: 1;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.message-content p {
+  margin-bottom: 10px;
+}
+
+.read-more-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+  align-self: center;
+  width: 100%;
+}
+
+.read-more-button:hover {
+  background-color: #2980b9;
+}
+
+/* Modal Styling */
+.modal-dialog {
+  max-width: 600px;
+}
+
+.modal-content {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.modal-header {
+  background-color: #3498db;
+  color: white;
+  border-bottom: none;
+}
+
+.modal-title {
+  font-weight: bold;
+}
+
+.modal-body {
+  padding: 25px;
+}
+
+.modal-footer {
+  border-top: none;
+  padding: 15px 25px 25px;
+}
+
+.modal-profile-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.message-signature {
+  font-weight: bold;
+  text-align: right;
+  margin-top: 25px;
+  font-style: italic;
+  color: #555;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 992px) {
+  .column {
+    flex: 0 0 calc(50% - 30px);
+    max-width: calc(50% - 30px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .column {
+    flex: 0 0 calc(100% - 30px);
+    max-width: calc(100% - 30px);
+  }
+  
+  .profile-image {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .modal-dialog {
+    margin: 10px;
+  }
+}

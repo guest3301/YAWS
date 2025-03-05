@@ -11,7 +11,7 @@
   <script src="{{ url_for('static', filename='js/base.js') }}"></script>
   {% block head %}{% endblock %}
   <style>
-    {% block styles %}{% endblock %}
+    {% block styles %} {% endblock %}
   </style>
 </head>
 <body>
@@ -49,7 +49,7 @@
       <li class="dropdown">
         <a href="#academics">About us <i class="material-icons nav-dropdown-icon">expand_more</i></a>
         <ul class="dropdown-menu">
-          <li><a href="https://saketcollege.edu.in/course-outcomes/">Message</a></li>
+          <li><a href="{{ url_for('frontend.about', subpath='message')}}">Message</a></li>
           <li><a href="https://saketcollege.edu.in/pg/">Commitee</a></li>
           <li><a href="#">Organogram</a></li>
         </ul>
