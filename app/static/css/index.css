@@ -13,7 +13,7 @@
     --m3-secondary-container: #eae7c2;
     --m3-on-secondary: #ffffff;
     --m3-on-secondary-container: #24210e;
-    
+     
     /* Tertiary colors */
     --m3-tertiary: #937953;
     --m3-tertiary-container: #f3e0c7;
@@ -452,8 +452,9 @@
   .containervision{
     display: flex;
     flex-direction: column;
+   
    font-size: 1rem;
-    max-width: 12000px;
+    max-width: 100%;
     /* margin: 0 auto; */
   }
   .vision h1::after {
@@ -574,7 +575,7 @@
     cursor: pointer;
     opacity: 4px;
     position: relative;
-    height: 100%;
+    height: 15rem;
   }
   
   .feature-card.left {
@@ -717,7 +718,7 @@
       font-weight: 700;
       line-height: 1;
       margin-bottom: 12px;
-      background: linear-gradient(135deg, var(--m3-primary), var(--m3-tertiary));
+      background:var(--m3-primary);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       display: inline-block;
@@ -760,7 +761,7 @@
       position: absolute;
       width: 100px;
       height: 100px;
-      background: var(--m3-tertiary);
+      background: var(--m3-on-tertiary-container);
       opacity: 0.1;
       border-radius: 50%;
       top: -20px;
