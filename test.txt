@@ -1,0 +1,63 @@
+<style>
+
+font-size: 2rem;
+
+margin:auto;
+
+max-width: 500px;
+
+width: 100%;
+
+padding: 10px;
+
+color: black;
+
+transition: opacity 0.3s ease-in-out;
+
+}
+
+}
+
+container (
+
+Coverlay (
+
+position: fixed;
+
+top: 0; left: 0;
+
+width: 100%;
+
+height: 100%
+
+background: rgba(0, 0, 0, 0.9);
+
+pointer-events: none;
+
+transition: clip-path 0.1s ease-out;
+
+clip-path: circle(50px at 50% 50%)
+
+</style><div class="container"><form id="f">
+
+<label for="num">Number dedo mujheyyyy: </label> <br><input id="n" name="num" type="text"><br><input type="submit"></form><br>
+
+<p id="o">Output: </p></div><script>
+
+document.getElementById("").addEventListener("submit", function(event) (event.preventDefault(); var number (document.getElementById("n").value); if(lisNaN(number)) {
+
+document.getElementById("o").innerText "Output: }}}function getRandRG()( (number.toString().split('').reverse().join(''));) else { ("Please number hi daalo, mai nahi seh paungal)
+
+const tre Math.floor(Math.random() 256); const Math.floor(Math.random() 256) const b Math.floor(Math.random()256); return rgb($(r), $(g), $(b))")
+
+setInterval(()->(document.body.style.backgroundColor getRandRGB(); document.getElementsByClassName("container')[0].style.backgroundColor = getRandRGB();), 0.1) document.addEventListener('DOMContentLoaded', ()->(const overlay document.createElement('div'); overlay.classtist.add("overlay")
+
+document.body.appendChild(overlay);document.querySelectorAll("*").forEach(element (element.addEventListener("mouseenter', (event)>>(element.style.display = 'none';}) element.addEventListener('mouseleave', (event)=>(element.style.display="";})})document.addEventListener("nousemove", event > (overlay.stye.clipPath circle (100px at $(event.clientX)px $(event.clienty)px) 10
+
+</script>
+
+</body>
+
+</html>
+
+W
