@@ -184,21 +184,3 @@ function startScrolling() {
         }, 50);
     }
 }
-
-function checkVisibility() {
-    const cards = document.querySelectorAll(".feature-card");
-    
-    cards.forEach((card) => {
-        const rect = card.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100 && rect.bottom > 100) {
-            card.classList.add("visible");
-            card.classList.remove("reset");
-        } else {
-            card.classList.remove("visible");
-            card.classList.add("reset");
-        }
-    });
-}
-
-window.addEventListener("scroll", checkVisibility);
-window.addEventListener("load", checkVisibility);

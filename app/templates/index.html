@@ -9,7 +9,6 @@
 {% endblock %}
 
 
-
 {% block content %}
 
 
@@ -31,7 +30,6 @@
  <marquee id="caption-text" direction="left" scrollamount="13">Experience world-class education and vibrant campus life.</p></marquee>
 </div>
 
-
 <!-- noticee board  -->
 <div class="noticesvisionmission">
 <div class="notices">
@@ -51,12 +49,10 @@
 // Notice board functionality
 (function() {
 'use strict';
-
 let currentPage = 1;
 const perPage = 5;
 let loading = false;
 let scrollTimer = null;
-
 // Format dates in IST timezone
 function formatDate(dateString) {
   const options = {
@@ -65,7 +61,6 @@ function formatDate(dateString) {
     year: 'numeric',
     timeZone: 'Asia/Kolkata' // IST timezone
   };
-  
   return new Date(dateString).toLocaleDateString('en-IN', options);
 }
 
@@ -105,7 +100,6 @@ async function fetchNotices(page) {
 // Initialize the notice board
 function initNoticeBoard() {
   fetchNotices(currentPage);
-  
   // Load more button functionality
   const loadMoreBtn = document.getElementById('loadMoreButton');
   if (loadMoreBtn) {
@@ -158,15 +152,12 @@ window.resumeScroll = function() {
     }, 500);
   }
 };
-
 // Initialize when DOM is fully loaded
 document.addEventListener('DOMContentLoaded', initNoticeBoard);
 })();
 </script>
-
 <div class="vision">
 <h1>Our Vision & Mission</h1>
-
 <section class="containervision">
   <div class="content" id="vision">
       <h2>Our Vision</h2>
@@ -184,20 +175,7 @@ document.addEventListener('DOMContentLoaded', initNoticeBoard);
       </ul>
   </div>
 </section>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-      const contents = document.querySelectorAll(".content");
-      const observer = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                  entry.target.style.opacity = "1";
-                  entry.target.style.transform = "translateY(0)";
-              }
-          });
-      }, { threshold: 0.3 });
-      contents.forEach(content => observer.observe(content));
-  });
-</script>
+
 
   </div></div>
 
@@ -236,65 +214,31 @@ document.addEventListener('DOMContentLoaded', initNoticeBoard);
       </div>
   </div>
 </section>
-
-<!-- -----------new design--------- -->
-
 <!-- Features Section -->
-
-
 <section class="features">
 <div class="features-grid">
-  <div class="feature-card left">
+  <div class="feature-card">
       <div class="feature-icon">🎓</div>
       <h3>World-Class Education</h3>
       <p>Learn from industry experts and renowned academicians</p>
   </div>
-  <div class="feature-card right">
+  <div class="feature-card">
       <div class="feature-icon">🔬</div>
       <h3>Research Excellence</h3>
       <p>State-of-the-art research facilities and innovation centers</p>
   </div>
-  <div class="feature-card left">
+  <div class="feature-card">
       <div class="feature-icon">🌍</div>
       <h3>Global Exposure</h3>
       <p>International collaborations and exchange programs</p>
   </div>
-  <div class="feature-card right">
+  <div class="feature-card">
       <div class="feature-icon">💼</div>
       <h3>Career Support</h3>
       <p>Dedicated placement cell and industry connections</p>
   </div>
 </div>
 </section>
-
-
-
-
-
-<script >
-document.addEventListener("DOMContentLoaded", function () {
-const cards = document.querySelectorAll(".feature-card");
-
-function checkVisibility() {
-  cards.forEach((card) => {
-      const rect = card.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 100 && rect.bottom > 100) {
-          card.classList.add("visible");
-          card.classList.remove("reset");
-      } else {
-          card.classList.remove("visible");
-          card.classList.add("reset");
-      }
-  });
-}
-
-window.addEventListener("scroll", checkVisibility);
-checkVisibility(); // Initial check
-});
-
-</script>
-
-
 
 <!-- Achievement Section -->
 <section class="achievements">
@@ -321,8 +265,6 @@ checkVisibility(); // Initial check
   </div>
 </div>
 </section>
-
-
 <!-- Campus Life Section -->
 <section class="campus-life">
 <h2>Campus Life</h2>
@@ -350,6 +292,4 @@ checkVisibility(); // Initial check
   </div>
 </div>
 </section>
-
-
 {% endblock %}

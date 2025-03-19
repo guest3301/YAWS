@@ -11,7 +11,9 @@
   <script src="{{ url_for('static', filename='js/base.js') }}"></script>
   {% block head %}{% endblock %}
   <style>
-    {% block styles %} {% endblock %}
+    {% block styles %}
+    
+    {% endblock %}
   </style>
 </head>
 <body>
@@ -50,23 +52,23 @@
         <a href="#academics">About us <i class="material-icons nav-dropdown-icon">expand_more</i></a>
         <ul class="dropdown-menu">
           <li><a href="{{ url_for('frontend.about', subpath='message')}}">Message</a></li>
-          <li><a href="https://saketcollege.edu.in/pg/">Commitee</a></li>
-          <li><a href="#">Organogram</a></li>
+          <li><a href="{{ url_for('frontend.about', subpath='commitee')}}">Commitee</a></li>
+          <li><a href="{{ url_for('frontend.about', subpath='organogram')}}">Organogram</a></li>
         </ul>
       </li>
       <li class="dropdown">
         <a href="#admissions">Academics <i class="material-icons nav-dropdown-icon">expand_more</i></a>
         <ul class="dropdown-menu">
-          <li><a href="#undergraduate">Program & Courses</a></li>
-          <li><a href="#postgraduate">Course Outcomes</a></li>
-          <li><a href="#phd">Academic Calendar</a></li>
+          <li><a href="{{ url_for('frontend.academics', subpath='program_courses')}}">Program & Courses</a></li>
+          <li><a href="{{ url_for('frontend.academics', subpath='course_outcomes')}}">Course Outcomes</a></li>
+          <li><a href="{{ url_for('frontend.academics', subpath='academic_calendar')}}">Academic Calendar</a></li>
         </ul>
       </li>
       <li class="dropdown">
         <a href="#examinations">Student Corner <i class="material-icons nav-dropdown-icon">expand_more</i></a>
         <ul class="dropdown-menu">
           <li><a href="{{ url_for('frontend.student', subpath='notice') }}">Notices</a></li>
-          <li><a href="https://saketcollege.edu.in/results/">Activities</a></li>
+          <li><a href="{{ url_for('frontend.student', subpath='activities') }}">Activities</a></li>
           <li><a href="{{ url_for('frontend.student', subpath='syllabus') }}">Syllabus</a></li>
           <li><a href="{{ url_for('frontend.student', subpath='program-outcome') }}">Program Outcome</a></li>
           <li><a href="{{ url_for('frontend.student', subpath='student-support') }}">Student Support</a></li>
@@ -85,51 +87,51 @@
       <li class="dropdown">
         <a href="#student">Library <i class="material-icons nav-dropdown-icon">expand_more</i></a>
         <ul class="dropdown-menu">
-          <li><a href="https://saketcollege.edu.in/events-2/">About Library</a></li>
-          <li><a href="https://saketcollege.edu.in/dlle/">Library Commitee</a></li>
-          <li><a href="#">Activities</a></li>
-          <li><a href="#">Code Of Conduct</a></li>
+          <li><a href="{{ url_for('frontend.library', subpath='about') }}">About Library</a></li>
+          <li><a href="{{ url_for('frontend.library', subpath='commitee') }}">Library Commitee</a></li>
+          <li><a href="{{ url_for('frontend.library', subpath='activities') }}">Activities</a></li>
+          <li><a href="{{ url_for('frontend.library', subpath='code-of-conduct') }}">Code Of Conduct</a></li>
         </ul>
       </li>
       <li class="dropdown">
-        <a href="https://saketcollege.edu.in/about-library-2/">Extension Activities <i class="material-icons nav-dropdown-icon">expand_more</i></a>
+        <a href="#">Extension Activities <i class="material-icons nav-dropdown-icon">expand_more</i></a>
         <ul class="dropdown-menu">
-          <li><a href="#">NSS</a></li>
-          <li><a href="#">DLLE</a></li>
-          <li><a href="#">Best Practices</a></li>
+          <li><a href="{{ url_for('frontend.extension', subpath='nss') }}">NSS</a></li>
+          <li><a href="{{ url_for('frontend.extension', subpath='dlle') }}">DLLE</a></li>
+          <li><a href="{{ url_for('frontend.extension', subpath='best-practices') }}">Best Practices</a></li>
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#research">Examination <i class="material-icons nav-dropdown-icon">expand_more</i></a>
+        <a href="#">Examination <i class="material-icons nav-dropdown-icon">expand_more</i></a>
         <ul class="dropdown-menu">
-          <li><a href="#publications">Exam committee</a></li>
-          <li><a href="#projects">Exam Policy</a></li>
-          <li><a href="#patents">Exam Time-Table</a></li>
-          <li><a href="#patents">Exam Results</a></li>
-          <li><a href="#patents">Notices & Circulars</a></li>
+          <li><a href="{{ url_for('frontend.examination', subpath='committee') }}">Exam committee</a></li>
+          <li><a href="{{ url_for('frontend.examination', subpath='policy') }}">Exam Policy</a></li>
+          <li><a href="{{ url_for('frontend.examination', subpath='timetable') }}">Exam Time-Table</a></li>
+          <li><a href="{{ url_for('frontend.examination', subpath='results') }}">Exam Results</a></li>
+          <li><a href="{{ url_for('frontend.examination', subpath='notices') }}">Notices & Circulars</a></li>
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#research">Feedback <i class="material-icons nav-dropdown-icon">expand_more</i></a>
+        <a href="#">Feedback <i class="material-icons nav-dropdown-icon">expand_more</i></a>
         <ul class="dropdown-menu">
-          <li><a href="#publications">Parents</a></li>
-          <li><a href="#projects">Employers</a></li>
-          <li><a href="#patents">Alumni</a></li>
-          <li><a href="#patents">Syllabus</a></li>
-          <li><a href="#patents">Teachers</a></li>
-          <li><a href="#patents">Students</a></li>
-          <li><a href="#patents">Grievance Feedback Form</a></li>
-          <li><a href="#patents">Action Taken Report</a></li>
+          <li><a href="{{ url_for('frontend.feedback', subpath='parents') }}">Parents</a></li>
+          <li><a href="{{ url_for('frontend.feedback', subpath='employers') }}">Employers</a></li>
+          <li><a href="{{ url_for('frontend.feedback', subpath='alumni') }}">Alumni</a></li>
+          <li><a href="{{ url_for('frontend.feedback', subpath='syllabus') }}">Syllabus</a></li>
+          <li><a href="{{ url_for('frontend.feedback', subpath='teachers') }}">Teachers</a></li>
+          <li><a href="{{ url_for('frontend.feedback', subpath='students') }}">Students</a></li>
+          <li><a href="{{ url_for('frontend.feedback', subpath='grievance') }}">Grievance Feedback Form</a></li>
+          <li><a href="{{ url_for('frontend.feedback', subpath='action-taken') }}">Action Taken Report</a></li>
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#research">More <i class="material-icons nav-dropdown-icon">expand_more</i></a>
+        <a href="#">More <i class="material-icons nav-dropdown-icon">expand_more</i></a>
         <ul class="dropdown-menu">
-          <li><a href="#publications">Press Reports & Newsletters</a></li>
-          <li><a href="#projects">RTI</a></li>
-          <li><a href="#patents">Some more</a></li>
-          <li><a href="#patents">Some more more</a></li>
-          <li><a href="#patents">Some more more more</a></li>
+          <li><a href="{{ url_for('frontend.more', subpath='press-reports') }}">Press Reports & Newsletters</a></li>
+          <li><a href="{{ url_for('frontend.more', subpath='rti') }}">RTI</a></li>
+          <li><a href="{{ url_for('frontend.more', subpath='some-more') }}">Some more</a></li>
+          <li><a href="{{ url_for('frontend.more', subpath='some-more-more') }}">Some more more</a></li>
+          <li><a href="{{ url_for('frontend.more', subpath='some-more-more-more') }}">Some more more more</a></li>
         </ul>
       </li>
     </ul>
