@@ -18,6 +18,7 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
+    TEMPLATES_AUTO_RELOAD = True
     # You can still use SQLite for development if you prefer
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, '../../instance/test_db.sqlite3')
     # Or use MySQL for development too
