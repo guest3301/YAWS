@@ -55,9 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
-    
-    window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll();
+
     
     const formInputs = document.querySelectorAll('.m3-text-field input');
     formInputs.forEach(input => {
@@ -96,3 +94,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     } 
+});

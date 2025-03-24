@@ -8,133 +8,46 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
-        <!-- Principal's Message -->
-        <div class="column">
-            <div class="card">
-                <div class="profile-image-container">
-                    <img src="{{ url_for('static', filename='images/principal.jpg') }}" alt="Principal" class="profile-image" onerror="this.src='{{ url_for('static', filename='images/default-profile.png') }}'">
-                </div>
-                <div class="card-container">
-                    <h2>Prof.(Dr.) Vasant D. Barhate</h2>
-                    <p class="title">Principal</p>
-                    <div class="message-content">
-                        <p>Dear Students,</p>
-                        <p>Saket Gyanpeeth was established in the year 1994 with "Gyanam Anantham" as its motto catering to the aspirations not only Minority Hindi Community but also all strata of society.</p>
-                        <p>We believe in empowerment of students for their overall development through curricular, extra curricular and extensional activities which is our cherished motto.</p>
-                    </div>
-                    <button class="read-more-button" data-toggle="modal" data-target="#principalModal">Read Full Message</button>
-                </div>
+    <h1 class="page-title">Messages from Leadership</h1>
+    
+    <!-- Principal's Message -->
+    <div class="message-item">
+        <div class="message-header">
+            <img src="{{ url_for('static', filename='images/principal.jpg') }}" alt="Principal" class="profile-image" onerror="this.src='{{ url_for('static', filename='images/default-profile.png') }}'">
+            <div class="person-info">
+                <h2>Prof.(Dr.) Vasant D. Barhate</h2>
+                <p class="title">Principal</p>
             </div>
         </div>
-
-        <!-- Secretary's Message -->
-        <div class="column">
-            <div class="card">
-                <div class="profile-image-container">
-                    <img src="{{ url_for('static', filename='images/secretary.jpg') }}" alt="Secretary" class="profile-image" onerror="this.src='{{ url_for('static', filename='images/default-profile.png') }}'">
-                </div>
-                <div class="card-container">
-                    <h2>Shri Saket A Tiwari</h2>
-                    <p class="title">Hon'ble Secretary</p>
-                    <div class="message-content">
-                        <p>Greetings to all!</p>
-                        <p>As the Secretary of this institution, I anticipate the full participation and cooperation of the students and parents to make it possible for us to transform our dreams to reality.</p>
-                    </div>
-                    <button class="read-more-button" data-toggle="modal" data-target="#secretaryModal">Read Full Message</button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- CEO's Message -->
-        <div class="column">
-            <div class="card">
-                <div class="profile-image-container">
-                    <img src="{{ url_for('static', filename='images/ceo.jpg') }}" alt="CEO" class="profile-image" onerror="this.src='{{ url_for('static', filename='images/default-profile.png') }}'">
-                </div>
-                <div class="card-container">
-                    <h2>Mrs. Shobha Nair</h2>
-                    <p class="title">CEO, Saket Gyanpeeth</p>
-                    <div class="message-content">
-                        <p>Warm greetings to all!</p>
-                        <p>Higher-education is not just a means to enter into a profession but it is the path of transforming a youngster into a complete, responsible and dutiful adult.</p>
-                    </div>
-                    <button class="read-more-button" data-toggle="modal" data-target="#ceoModal">Read Full Message</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Chairman's Message -->
-        <div class="column">
-            <div class="card">
-                <div class="profile-image-container">
-                    <img src="{{ url_for('static', filename='images/chairman.jpg') }}" alt="Chairman" class="profile-image" onerror="this.src='{{ url_for('static', filename='images/default-profile.png') }}'">
-                </div>
-                <div class="card-container">
-                    <h2>Chairman</h2>
-                    <p class="title">Saket Gyanpeeth</p>
-                    <div class="message-content">
-                        <p>Our vision at Saket College extends beyond traditional education.</p>
-                        <p>We strive to create an environment that nurtures intellectual curiosity, personal growth, and professional development.</p>
-                    </div>
-                    <button class="read-more-button" data-toggle="modal" data-target="#chairmanModal">Read Full Message</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Principal Modal -->
-<div class="modal fade" id="principalModal" tabindex="-1" role="dialog" aria-labelledby="principalModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="principalModalLabel">Principal's Message</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="text-center mb-4">
-                    <img src="{{ url_for('static', filename='images/principal.jpg') }}" alt="Principal" class="modal-profile-image" onerror="this.src='{{ url_for('static', filename='images/default-profile.png') }}'">
-                    <h3>Prof.(Dr.) Vasant D. Barhate</h3>
-                    <p class="title">Principal</p>
-                </div>
-                <p>Dear Students,</p>
-                <p>Saket Gyanpeeth was established in the year 1994 with "Gyanam Anantham" as its motto catering to the aspirations not only Minority Hindi Community but also all strata of society. Saket College of Arts, Science and Commerce was established in the year 2002.</p>
+        <div class="message-content">
+            <p>Dear Students,</p>
+            <p>Saket Gyanpeeth was established in the year 1994 with "Gyanam Anantham" as its motto catering to the aspirations not only Minority Hindi Community but also all strata of society.<span class="dots" id="dots-principal">...</span></p>
+            <div class="message-expanded" id="more-principal">
+                <p>We believe in empowerment of students for their overall development through curricular, extra curricular and extensional activities which is our cherished motto.</p>
                 <p>Since its inception over a span of 18 years the institution always aimed at upgrading and enhancing the teaching-learning process by providing the best infrastructure facilities and also adding new courses for the benefit of students.</p>
                 <p>Our institute has well equipped computer laboratories, spacious classrooms, library, hi-tech air-conditioned auditorium as the state of art facilities. At present the college offers three year Under Graduate Programme in Arts, Commerce and Self-Finance Programmes which includes B.Com(A &F), B.Com(B & I), B.Com (IM), B.Com (FM), Bachelor of Management Studies (BMS), B.Sc (IT), B.Sc (CS) under Choice based Credit Grading and Semester System, and Post-Graduate programmes in M.Com(Advanced Accountancy), M.Sc.(Information Technology) and MA (Hindi).</p>
-                <p>We believe in empowerment of students for their overall development through curricular, extra curricular and extensional activities which is our cherished motto.</p>
                 <div class="message-signature">
                     – Prof.(Dr.) Vasant D. Barhate<br>
                     Principal
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
+            <button class="read-more-btn" id="btn-principal" onclick="toggleMessage('principal')">Read more</button>
         </div>
     </div>
-</div>
 
-<!-- Secretary Modal -->
-<div class="modal fade" id="secretaryModal" tabindex="-1" role="dialog" aria-labelledby="secretaryModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="secretaryModalLabel">Secretary's Message</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+    <!-- Secretary's Message -->
+    <div class="message-item">
+        <div class="message-header">
+            <img src="{{ url_for('static', filename='images/secretary.jpg') }}" alt="Secretary" class="profile-image" onerror="this.src='{{ url_for('static', filename='images/default-profile.png') }}'">
+            <div class="person-info">
+                <h2>Shri Saket A Tiwari</h2>
+                <p class="title">Hon'ble Secretary</p>
             </div>
-            <div class="modal-body">
-                <div class="text-center mb-4">
-                    <img src="{{ url_for('static', filename='images/secretary.jpg') }}" alt="Secretary" class="modal-profile-image" onerror="this.src='{{ url_for('static', filename='images/default-profile.png') }}'">
-                    <h3>Shri Saket A Tiwari</h3>
-                    <p class="title">Hon'ble Secretary, Saket Gyanpeeth</p>
-                </div>
-                <p>Greetings to all!</p>
-                <p>As the Secretary of this institution, I anticipate the full participation and cooperation of the students and parents to make it possible for us to transform our dreams to reality.</p>
+        </div>
+        <div class="message-content">
+            <p>Greetings to all!</p>
+            <p>As the Secretary of this institution, I anticipate the full participation and cooperation of the students and parents to make it possible for us to transform our dreams to reality.<span class="dots" id="dots-secretary">...</span></p>
+            <div class="message-expanded" id="more-secretary">
                 <p>It is very much apparent that we live today in a world that is so very different from the one we grew up in, the one we were educated in. Change in today's world is riding an accelerated pace and we need to pause and reflect on the entire education system.</p>
                 <p>I firmly believe that students must be taught how to think, not what to think. That reminds me of the great words of wisdom by Aristotle, 'Educating the mind without educating the heart is no education at all.' As we impart education to match the advancement of globalized world, we march our children ahead with the ethos of moral and ethical principles.</p>
                 <p>We at Saket Gyanpeeth, are committed to continually improve our quality management system and develop our students as intellectually alive and socially responsible citizens, so as to enable them to meet the future development and challenges.</p>
@@ -143,31 +56,24 @@
                     Hon'ble Secretary, Saket Gyanpeeth
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
+            <button class="read-more-btn" id="btn-secretary" onclick="toggleMessage('secretary')">Read more</button>
         </div>
     </div>
-</div>
-
-<!-- CEO Modal -->
-<div class="modal fade" id="ceoModal" tabindex="-1" role="dialog" aria-labelledby="ceoModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="ceoModalLabel">CEO's Message</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+    
+    <!-- CEO's Message -->
+    <div class="message-item">
+        <div class="message-header">
+            <img src="{{ url_for('static', filename='images/ceo.jpg') }}" alt="CEO" class="profile-image" onerror="this.src='{{ url_for('static', filename='images/default-profile.png') }}'">
+            <div class="person-info">
+                <h2>Mrs. Shobha Nair</h2>
+                <p class="title">CEO, Saket Gyanpeeth</p>
             </div>
-            <div class="modal-body">
-                <div class="text-center mb-4">
-                    <img src="{{ url_for('static', filename='images/ceo.jpg') }}" alt="CEO" class="modal-profile-image" onerror="this.src='{{ url_for('static', filename='images/default-profile.png') }}'">
-                    <h3>Mrs. Shobha Nair</h3>
-                    <p class="title">CEO, Saket Gyanpeeth</p>
-                </div>
-                <p>Warm greetings to all!</p>
-                <p>Higher-education is not just a means to enter into a profession but it is the path of transforming a youngster into a complete, responsible and dutiful adult. Change is the only constant in the present world and the pace of change is very rapid.</p>
+        </div>
+        <div class="message-content">
+            <p>Warm greetings to all!</p>
+            <p>Higher-education is not just a means to enter into a profession but it is the path of transforming a youngster into a complete, responsible and dutiful adult.<span class="dots" id="dots-ceo">...</span></p>
+            <div class="message-expanded" id="more-ceo">
+                <p>Change is the only constant in the present world and the pace of change is very rapid.</p>
                 <p>We prepare students to deal with this ever-changing world and emerge victorious as the change-makers of the world. At Saket College we believe in not just educating students for their professions but also in educating them for leading a successful and happy life as global citizens.</p>
                 <p>Apart from professional skills, students are inculcated with life skills which enable them to succeed in even the most averse situations. Present day youngsters are not as emotionally strong as older generations and here at Saket, we train our students in not just intellectual prowess but also mental wellbeing.</p>
                 <p>Our professors are our intellectual capital; who are highly trained and passionate about needs of students. I would also mention our non-teaching staff who are the administrative backbone of the institution who keep it running smoothly.</p>
@@ -176,42 +82,37 @@
                     CEO, Saket Gyanpeeth
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
+            <button class="read-more-btn" id="btn-ceo" onclick="toggleMessage('ceo')">Read more</button>
         </div>
     </div>
-</div>
 
-<!-- Chairman Modal -->
-<div class="modal fade" id="chairmanModal" tabindex="-1" role="dialog" aria-labelledby="chairmanModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="chairmanModalLabel">Chairman's Message</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+    <!-- Chairman's Message -->
+    <div class="message-item">
+        <div class="message-header">
+            <img src="{{ url_for('static', filename='images/chairman.jpg') }}" alt="Chairman" class="profile-image" onerror="this.src='{{ url_for('static', filename='images/default-profile.png') }}'">
+            <div class="person-info">
+                <h2>Chairman</h2>
+                <p class="title">Saket Gyanpeeth</p>
             </div>
-            <div class="modal-body">
-                <div class="text-center mb-4">
-                    <img src="{{ url_for('static', filename='images/chairman.jpg') }}" alt="Chairman" class="modal-profile-image" onerror="this.src='{{ url_for('static', filename='images/default-profile.png') }}'">
-                    <h3>Chairman</h3>
-                    <p class="title">Saket Gyanpeeth</p>
-                </div>
-                <p>Our vision at Saket College extends beyond traditional education.</p>
+        </div>
+        <div class="message-content">
+            <p>Our vision at Saket College extends beyond traditional education.</p>
+            <p>We strive to create an environment that nurtures intellectual curiosity, personal growth, and professional development.<span class="dots" id="dots-chairman">...</span></p>
+            <div class="message-expanded" id="more-chairman">
                 <p>To make the students aware of the various career opportunities and professions.</p>
-                <p>We strive to create an environment that nurtures intellectual curiosity, personal growth, and professional development.</p>
                 <p>Our commitment is to prepare students not just for their immediate educational goals, but for lifelong learning and success in a rapidly changing world.</p>
                 <div class="message-signature">
                     – Chairman<br>
                     Saket Gyanpeeth
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
+            <button class="read-more-btn" id="btn-chairman" onclick="toggleMessage('chairman')">Read more</button>
         </div>
     </div>
 </div>
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/base.js') }}"></script>
+<script src="{{ url_for('static', filename='js/message.js') }}"></script>
+{% endblock %}
+
 {% endblock %}

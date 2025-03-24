@@ -55,9 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Modified buttons section - removed ripple effect completely
     const buttons = document.querySelectorAll('.m3-button, .m3-icon-button');
-    // No ripple effect added - removed entirely
 
     const animateOnScroll = () => {
         const elements = document.querySelectorAll('.content, .feature-card, .achievement-card, .stat-card, .campus-card');

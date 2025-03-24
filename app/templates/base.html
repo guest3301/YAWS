@@ -10,11 +10,12 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
   <script src="{{ url_for('static', filename='js/base.js') }}"></script>
   {% block head %}{% endblock %}
-  <style>
     {% block styles %}
     
     {% endblock %}
-  </style>
+    {% block scripts %}
+    
+    {% endblock %}
 </head>
 <body>
   <header>
