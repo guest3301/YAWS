@@ -113,6 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } 
 
     // Start notice board auto-scroll
+    isScrollPaused = false;
     startScrolling();
 });
 const captions = [

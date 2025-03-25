@@ -1,13 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}Admin Panel{% endblock %}
 
-{% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - Notice Management</title>
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+<script src="{{ url_for('static', filename='js/base.js') }}"></script>
     <style>
         * {
             margin: 0;
@@ -17,8 +13,6 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            background-color: #f4f4f4;
-            padding: 20px;
         }
         .container {
             max-width: 800px;
@@ -160,8 +154,8 @@
             border-radius: 4px;
         }
     </style>
-</head>
-<body>
+{% endblock %}
+{% block content%}
     <div class="container">
         <div class="header">
             <h1>Notice Management</h1>
@@ -196,7 +190,6 @@
     </div>
 
     <script>
-        // Admin Panel JavaScript - Notice Management
         
         // Use IIFE to avoid global scope pollution
         (function() {
@@ -385,6 +378,4 @@
             document.addEventListener('DOMContentLoaded', init);
         })();
     </script>
-</body>
-</html>
 {% endblock %}

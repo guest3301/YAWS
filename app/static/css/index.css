@@ -502,7 +502,7 @@
      Stats Section - Material 3
   ============================================ */
   .stats {
-      background: linear-gradient(180deg, var(--m3-on-surface-variant) 0%, var(--m3-outline) 100%);
+      background: var(--m3-tertiary);
       padding: 80px 24px;
       text-align: center;
       position: relative;
@@ -572,27 +572,7 @@
       height: 2px;
       background: var(--m3-tertiary);
   }
-  
-  .stat-card::before {
-      content: '';
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      background: var(--m3-on-tertiary-container);
-      opacity: 0.1;
-      border-radius: 50%;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: -1;
-      transition: all 0.3s ease;
-  }
-  
-  .stat-card:hover::before {
-      transform: translateX(-50%) scale(1.2);
-      opacity: 0.15;
-  }
-  
+
   @keyframes floatIn {
       0% {
           opacity: 0;
