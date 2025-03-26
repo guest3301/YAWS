@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 {% block title %}Admin Panel{% endblock %}
 
-{% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-<script src="{{ url_for('static', filename='js/base.js') }}"></script>
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Notice Management</title>
     <style>
         * {
             margin: 0;
@@ -13,6 +17,8 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
+            background-color: #f4f4f4;
+            padding: 20px;
         }
         .container {
             max-width: 800px;
@@ -48,7 +54,7 @@
             text-decoration: none;
             font-size: 14px;
         }
-        .notice-form, .image-form {
+        .notice-form {
             background: #f8f9fa;
             padding: 20px;
             border-radius: 4px;
@@ -63,16 +69,12 @@
             color: #333;
             font-weight: bold;
         }
-        .form-group input, .form-group textarea, .form-group select {
+        .form-group input {
             width: 100%;
             padding: 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 14px;
-        }
-        .form-group textarea {
-            height: 100px;
-            resize: vertical;
         }
         .submit-btn {
             background: #28a745;
@@ -95,10 +97,10 @@
             margin-top: 10px;
         }
         /* Notices List Styles */
-        .notices-container, .images-container {
+        .notices-container {
             margin-top: 20px;
         }
-        .notice-item, .image-item {
+        .notice-item {
             background: #f8f9fa;
             padding: 15px;
             border-radius: 4px;
@@ -108,10 +110,10 @@
             align-items: center;
             transition: all 0.2s;
         }
-        .notice-item:hover, .image-item:hover {
+        .notice-item:hover {
             background: #e9ecef;
         }
-        .notice-title, .image-title {
+        .notice-title {
             font-weight: bold;
             color: #495057;
         }
@@ -124,12 +126,12 @@
         .notice-url:hover {
             text-decoration: underline;
         }
-        .notice-date, .image-date {
+        .notice-date {
             color: #6c757d;
             font-size: 0.8rem;
             margin-right: 15px;
         }
-        .notice-actions, .image-actions {
+        .notice-actions {
             display: flex;
             align-items: center;
         }
@@ -150,246 +152,86 @@
             padding: 20px;
             color: #6c757d;
         }
-        .no-notices, .no-images {
+        .no-notices {
             text-align: center;
             padding: 20px;
             color: #6c757d;
             background: #f8f9fa;
             border-radius: 4px;
         }
-        
-        /* Tabs styles */
-        .tabs {
-            display: flex;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #ddd;
-        }
-        .tab {
-            padding: 10px 20px;
-            cursor: pointer;
-            background: #f8f9fa;
-            border: 1px solid #ddd;
-            border-bottom: none;
-            margin-right: 5px;
-            border-top-left-radius: 4px;
-            border-top-right-radius: 4px;
-        }
-        .tab.active {
-            background: #fff;
-            border-bottom: 1px solid #fff;
-            margin-bottom: -1px;
-            font-weight: bold;
-        }
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        
-        /* Image gallery in admin */
-        .admin-image-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        .admin-image-item {
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            overflow: hidden;
-            position: relative;
-        }
-        .admin-image-item img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            display: block;
-        }
-        .admin-image-info {
-            padding: 10px;
-            background: #f8f9fa;
-        }
-        .admin-image-title {
-            font-weight: bold;
-            margin-bottom: 5px;
-            font-size: 14px;
-        }
-        .admin-image-description {
-            font-size: 12px;
-            color: #6c757d;
-            margin-bottom: 5px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .admin-image-actions {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 5px;
-        }
-        .admin-image-delete {
-            background: #dc3545;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 3px 8px;
-            cursor: pointer;
-            font-size: 12px;
-        }
     </style>
-{% endblock %}
-{% block content%}
+</head>
+<body>
     <div class="container">
         <div class="header">
-            <h1>Admin Panel</h1>
+            <h1>Notice Management</h1>
             <a href="/logout" class="logout-btn">Logout</a>
         </div>
         
-        <div class="tabs">
-            <div class="tab active" data-tab="notices">Notices</div>
-            <div class="tab" data-tab="images">Cultural Event Images</div>
-        </div>
-        
-        <div id="notices-tab" class="tab-content active">
-            <form id="noticeForm" class="notice-form" method="post" enctype="multipart/form-data" action="/api/notices">
-                <div class="form-group">
-                    <label for="title">Notice Title:</label>
-                    <input type="text" id="title" name="title" required placeholder="Enter notice title">
-                </div>
-                
-                <div class="form-group">
-                    <label for="url">URL (Optional if uploading file):</label>
-                    <input type="text" id="url" name="url" placeholder="Enter URL">
-                </div>
-                
-                <div class="form-group">
-                    <label for="file">Upload PDF:</label>
-                    <input type="file" id="file" name="file" accept="application/pdf">
-                </div>
-                
-                <button type="submit" class="submit-btn">Add Notice</button>
-            </form>
-            
-            <div id="notice-message" class="message"></div>
-            
-            <h2>Manage Existing Notices</h2>
-            <div id="notices-container" class="notices-container">
-                <div id="notices-loading" class="loading">Loading notices...</div>
+        <form id="noticeForm" class="notice-form" method="post" enctype="multipart/form-data" action="/api/notices">
+            <div class="form-group">
+                <label for="title">Notice Title:</label>
+                <input type="text" id="title" name="title" required placeholder="Enter notice title">
             </div>
-        </div>
-        
-        <div id="images-tab" class="tab-content">
-            <form id="imageForm" class="image-form" method="post" enctype="multipart/form-data" action="/api/images">
-                <div class="form-group">
-                    <label for="image-title">Image Title:</label>
-                    <input type="text" id="image-title" name="title" required placeholder="Enter image title">
-                </div>
-                
-                <div class="form-group">
-                    <label for="image-description">Description:</label>
-                    <textarea id="image-description" name="description" placeholder="Enter image description"></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="image-category">Category:</label>
-                    <select id="image-category" name="category" required>
-                        <option value="cultural" selected>Cultural Events</option>
-                        <option value="sports">Sports</option>
-                        <option value="clubs">Student Clubs</option>
-                        <option value="campus">Campus</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="image-file">Upload Image:</label>
-                    <input type="file" id="image-file" name="file" accept="image/*" required>
-                </div>
-                
-                <button type="submit" class="submit-btn">Add Image</button>
-            </form>
             
-            <div id="image-message" class="message"></div>
-            
-            <h2>Manage Existing Images</h2>
-            <div id="images-container" class="images-container">
-                <div id="images-loading" class="loading">Loading images...</div>
-                <div id="admin-image-grid" class="admin-image-grid"></div>
+            <div class="form-group">
+                <label for="url">URL (Optional if uploading file):</label>
+                <input type="text" id="url" name="url" placeholder="Enter URL">
             </div>
+            
+            <div class="form-group">
+                <label for="file">Upload PDF:</label>
+                <input type="file" id="file" name="file" accept="application/pdf">
+            </div>
+            
+            <button type="submit" class="submit-btn">Add Notice</button>
+        </form>
+        
+        <div id="message"></div>
+        
+        <h2>Manage Existing Notices</h2>
+        <div id="notices-container" class="notices-container">
+            <div id="loading" class="loading">Loading notices...</div>
         </div>
     </div>
+
     <script>
+        // Admin Panel JavaScript - Notice Management
+        
         // Use IIFE to avoid global scope pollution
         (function() {
             'use strict';
             
             // Constants
             const API_ENDPOINTS = {
-                NOTICES: '/api/notices',
-                IMAGES: '/api/images'
+                NOTICES: '/api/notices'
             };
             
             // DOM elements cache
             const elements = {
-                // Tab elements
-                tabs: document.querySelectorAll('.tab'),
-                tabContents: document.querySelectorAll('.tab-content'),
-                
-                // Notices elements
                 noticeForm: document.getElementById('noticeForm'),
                 fileInput: document.getElementById('file'),
                 urlInput: document.getElementById('url'),
-                noticeMessageElem: document.getElementById('notice-message'),
+                messageElem: document.getElementById('message'),
                 noticesContainer: document.getElementById('notices-container'),
-                noticesLoadingElem: document.getElementById('notices-loading'),
-                
-                // Images elements
-                imageForm: document.getElementById('imageForm'),
-                imageFileInput: document.getElementById('image-file'),
-                imageMessageElem: document.getElementById('image-message'),
-                imagesContainer: document.getElementById('images-container'),
-                imagesLoadingElem: document.getElementById('images-loading'),
-                adminImageGrid: document.getElementById('admin-image-grid')
+                loadingElem: document.getElementById('loading')
             };
             
             // Initialize the application
             function init() {
-                // Attach event listeners for tabs
-                elements.tabs.forEach(tab => {
-                    tab.addEventListener('click', () => switchTab(tab.dataset.tab));
-                });
-                
-                // Attach form submission handlers
-                elements.noticeForm.addEventListener('submit', handleNoticeFormSubmit);
-                elements.imageForm.addEventListener('submit', handleImageFormSubmit);
+                // Attach event listeners
+                elements.noticeForm.addEventListener('submit', handleFormSubmit);
                 
                 // Fetch initial data
                 fetchNotices();
-                fetchImages();
             }
             
-            // Tab switching function
-            function switchTab(tabId) {
-                // Update tab buttons
-                elements.tabs.forEach(tab => {
-                    tab.classList.toggle('active', tab.dataset.tab === tabId);
-                });
-                
-                // Update tab contents
-                elements.tabContents.forEach(content => {
-                    if (content.id === tabId + '-tab') {
-                        content.classList.add('active');
-                    } else {
-                        content.classList.remove('active');
-                    }
-                });
-            }
-            
-            // Notice form validation and submission
-            function handleNoticeFormSubmit(e) {
+            // Form validation and submission
+            function handleFormSubmit(e) {
                 e.preventDefault();
                 
                 if (!elements.fileInput.files.length && !elements.urlInput.value) {
-                    showMessage(elements.noticeMessageElem, 'error', 'Please either upload a file or provide a URL');
+                    showMessage('error', 'Please either upload a file or provide a URL');
                     return;
                 }
                 
@@ -404,49 +246,16 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        showMessage(elements.noticeMessageElem, 'success', data.message);
+                        showMessage('success', data.message);
                         elements.noticeForm.reset();
                         // Refresh notices list
                         fetchNotices();
                     } else {
-                        showMessage(elements.noticeMessageElem, 'error', data.message || 'An error occurred while adding the notice');
+                        showMessage('error', data.message || 'An error occurred while adding the notice');
                     }
                 })
                 .catch(error => {
-                    showMessage(elements.noticeMessageElem, 'error', 'Error: ' + error.message);
-                });
-            }
-            
-            // Image form validation and submission
-            function handleImageFormSubmit(e) {
-                e.preventDefault();
-                
-                if (!elements.imageFileInput.files.length) {
-                    showMessage(elements.imageMessageElem, 'error', 'Please select an image file to upload');
-                    return;
-                }
-                
-                // Create form data for submission
-                const formData = new FormData(elements.imageForm);
-                
-                // Submit the form using fetch
-                fetch(API_ENDPOINTS.IMAGES, {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        showMessage(elements.imageMessageElem, 'success', data.message);
-                        elements.imageForm.reset();
-                        // Refresh images list
-                        fetchImages();
-                    } else {
-                        showMessage(elements.imageMessageElem, 'error', data.message || 'An error occurred while adding the image');
-                    }
-                })
-                .catch(error => {
-                    showMessage(elements.imageMessageElem, 'error', 'Error: ' + error.message);
+                    showMessage('error', 'Error: ' + error.message);
                 });
             }
             
@@ -468,12 +277,12 @@
             
             // Function to fetch notices
             function fetchNotices() {
-                elements.noticesLoadingElem.style.display = 'block';
+                elements.loadingElem.style.display = 'block';
                 
                 fetch(API_ENDPOINTS.NOTICES)
                     .then(response => response.json())
                     .then(data => {
-                        elements.noticesLoadingElem.style.display = 'none';
+                        elements.loadingElem.style.display = 'none';
                         
                         if (data.notices.length === 0) {
                             elements.noticesContainer.innerHTML = '<div class="no-notices">No notices available</div>';
@@ -483,37 +292,10 @@
                         renderNotices(data.notices);
                     })
                     .catch(error => {
-                        elements.noticesLoadingElem.style.display = 'none';
+                        elements.loadingElem.style.display = 'none';
                         elements.noticesContainer.innerHTML = `
                             <div class="error">
                                 Error loading notices: ${error.message}
-                            </div>
-                        `;
-                    });
-            }
-            
-            // Function to fetch images
-            function fetchImages() {
-                elements.imagesLoadingElem.style.display = 'block';
-                elements.adminImageGrid.innerHTML = '';
-                
-                fetch(API_ENDPOINTS.IMAGES + '?category=cultural')
-                    .then(response => response.json())
-                    .then(data => {
-                        elements.imagesLoadingElem.style.display = 'none';
-                        
-                        if (!data.images || data.images.length === 0) {
-                            elements.adminImageGrid.innerHTML = '<div class="no-images">No cultural event images available</div>';
-                            return;
-                        }
-                        
-                        renderImages(data.images);
-                    })
-                    .catch(error => {
-                        elements.imagesLoadingElem.style.display = 'none';
-                        elements.adminImageGrid.innerHTML = `
-                            <div class="error">
-                                Error loading images: ${error.message}
                             </div>
                         `;
                     });
@@ -532,7 +314,7 @@
                             </div>
                             <div class="notice-actions">
                                 <span class="notice-date">${formatDate(notice.date_uploaded)}</span>
-                                <button class="delete-btn notice-delete-btn" data-id="${notice.id}">Delete</button>
+                                <button class="delete-btn" data-id="${notice.id}">Delete</button>
                             </div>
                         </div>
                     `;
@@ -541,7 +323,7 @@
                 elements.noticesContainer.innerHTML = noticesHtml;
                 
                 // Attach event listeners to delete buttons
-                document.querySelectorAll('.notice-delete-btn').forEach(btn => {
+                document.querySelectorAll('.delete-btn').forEach(btn => {
                     btn.addEventListener('click', function() {
                         const id = this.getAttribute('data-id');
                         deleteNotice(id);
@@ -549,47 +331,16 @@
                 });
             }
             
-            // Render images to DOM
-            function renderImages(images) {
-                let imagesHtml = '';
-                
-                images.forEach(image => {
-                    imagesHtml += `
-                        <div class="admin-image-item" id="image-${image.id}">
-                            <img src="${image.url}" alt="${image.title}">
-                            <div class="admin-image-info">
-                                <div class="admin-image-title">${image.title}</div>
-                                <div class="admin-image-description">${image.description || 'No description'}</div>
-                                <div class="admin-image-date">Uploaded: ${formatDate(image.date_uploaded)}</div>
-                                <div class="admin-image-actions">
-                                    <button class="admin-image-delete" data-id="${image.id}">Delete</button>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                });
-                
-                elements.adminImageGrid.innerHTML = imagesHtml;
-                
-                // Attach event listeners to delete buttons
-                document.querySelectorAll('.admin-image-delete').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const id = this.getAttribute('data-id');
-                        deleteImage(id);
-                    });
-                });
-            }
-            
             // Display messages to the user
-            function showMessage(element, type, text) {
-                element.className = type;
-                element.textContent = text;
+            function showMessage(type, text) {
+                elements.messageElem.className = type;
+                elements.messageElem.textContent = text;
                 
                 // Auto-hide success messages after 5 seconds
                 if (type === 'success') {
                     setTimeout(() => {
-                        element.textContent = '';
-                        element.className = 'message';
+                        elements.messageElem.textContent = '';
+                        elements.messageElem.className = '';
                     }, 5000);
                 }
             }
@@ -609,7 +360,7 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        showMessage(elements.noticeMessageElem, 'success', data.message);
+                        showMessage('success', data.message);
                         
                         // Remove the notice from the DOM
                         const noticeElement = document.getElementById(`notice-${id}`);
@@ -618,51 +369,15 @@
                         }
                         
                         // Check if there are any notices left
-                        if (!document.querySelector('.notice-item')) {
+                        if (!elements.noticesContainer.querySelector('.notice-item')) {
                             elements.noticesContainer.innerHTML = '<div class="no-notices">No notices available</div>';
                         }
                     } else {
-                        showMessage(elements.noticeMessageElem, 'error', data.message || 'An error occurred while deleting the notice');
+                        showMessage('error', data.message || 'An error occurred while deleting the notice');
                     }
                 })
                 .catch(error => {
-                    showMessage(elements.noticeMessageElem, 'error', 'Error: ' + error.message);
-                });
-            }
-            
-            // Function to delete an image
-            function deleteImage(id) {
-                if (!confirm('Are you sure you want to delete this image?')) {
-                    return;
-                }
-                
-                fetch(`${API_ENDPOINTS.IMAGES}/${id}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        showMessage(elements.imageMessageElem, 'success', data.message);
-                        
-                        // Remove the image from the DOM
-                        const imageElement = document.getElementById(`image-${id}`);
-                        if (imageElement) {
-                            imageElement.remove();
-                        }
-                        
-                        // Check if there are any images left
-                        if (!document.querySelector('.admin-image-item')) {
-                            elements.adminImageGrid.innerHTML = '<div class="no-images">No cultural event images available</div>';
-                        }
-                    } else {
-                        showMessage(elements.imageMessageElem, 'error', data.message || 'An error occurred while deleting the image');
-                    }
-                })
-                .catch(error => {
-                    showMessage(elements.imageMessageElem, 'error', 'Error: ' + error.message);
+                    showMessage('error', 'Error: ' + error.message);
                 });
             }
             
@@ -670,4 +385,6 @@
             document.addEventListener('DOMContentLoaded', init);
         })();
     </script>
+</body>
+</html>
 {% endblock %}

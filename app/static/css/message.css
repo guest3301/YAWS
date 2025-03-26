@@ -3,152 +3,105 @@
   box-sizing: border-box;
 }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.page-title {
-  text-align: center;
-  margin-bottom: 30px;
-  color: var(--m3-primary);
-  padding-bottom: 10px;
-  border-bottom: 2px solid var(--m3-tertiary);
-}
-
-/* Message Item */
-.message-item {
-  margin-bottom: 30px;
-  background-color: var(--m3-surface-container);
-  border-radius: var(--m3-shape-medium);
-  padding: 20px;
-  box-shadow: var(--m3-shadow-1);
-  transition: all 0.3s ease;
-}
-
-.message-item:hover {
-  box-shadow: var(--m3-shadow-2);
-  transform: translateY(-2px);
-}
-
-.message-item:last-child {
-  margin-bottom: 0;
-}
-
-.message-header {
+/* Column Layout */
+.row {
   display: flex;
-  align-items: center;
-  margin-bottom: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 -15px;
+}
+
+.column {
+  flex: 0 0 calc(33.33% - 30px);
+  max-width: calc(33.33% - 30px);
+  margin: 0 15px 30px;
+}
+
+/* Leadership Card */
+.card {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.profile-image-container {
+  text-align: center;
+  padding: 20px 20px 0;
+  background: linear-gradient(135deg, #3498db, #1abc9c);
 }
 
 .profile-image {
-  width: 80px;
-  height: 80px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid var(--m3-surface-container-highest);
-  box-shadow: var(--m3-shadow-1);
-  margin-right: 20px;
+  border: 5px solid #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-.person-info {
-  flex: 1;
+.card:hover .profile-image {
+  transform: scale(1.05);
 }
 
-.person-info h2 {
-  margin: 0 0 5px;
-  font-size: 1.4rem;
-  color: var(--m3-primary);
+.card-container {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-container h2 {
+  margin: 10px 0;
+  font-size: 1.5rem;
+  color: #333;
+  text-align: center;
 }
 
 .title {
-  color: var(--m3-on-surface-variant);
-  margin: 0;
+  color: #777;
+  margin-bottom: 15px;
+  text-align: center;
   font-style: italic;
-  font-size: 0.95rem;
 }
 
 .message-content {
-  line-height: 1.6;
-  color: var(--m3-on-surface);
-  padding: 0 0 10px 0;
+  flex-grow: 1;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 .message-content p {
   margin-bottom: 10px;
 }
 
-/* The expanded part of the message that will be hidden initially */
-.message-expanded {
-  display: none;
-}
-
-/* Dots (...) styling */
-.dots {
-  font-weight: bold;
-  color: var(--m3-primary);
-}
-
-/* Read more button styling */
-.read-more-btn {
-  background-color: var(--m3-primary);
-  color: var(--m3-on-primary);
+.read-more-button {
+  background-color: #3498db;
+  color: white;
   border: none;
-  border-radius: var(--m3-shape-small);
-  padding: 8px 16px;
+  border-radius: 5px;
+  padding: 10px 15px;
+  text-align: center;
   cursor: pointer;
   font-weight: 500;
   transition: all 0.3s;
-  display: inline-block;
-  margin-top: 5px;
-  text-transform: uppercase;
-  font-size: 0.875rem;
-  letter-spacing: 0.5px;
+  align-self: center;
+  width: 100%;
 }
 
-.read-more-btn:hover {
-  background-color: var(--m3-primary-container);
-}
-
-.message-signature {
-  font-weight: bold;
-  text-align: right;
-  margin-top: 25px;
-  font-style: italic;
-  color: var(--m3-primary);
-}
-
-/* Full Message View */
-.full-message {
-  display: none;
-  margin-top: 15px;
-  padding-top: 15px;
-  border-top: 1px dashed var(--m3-outline-variant);
-  animation: fadeIn 0.3s ease forwards;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.close-message {
-  background-color: var(--m3-surface-variant);
-  color: var(--m3-on-surface-variant);
-  border: none;
-  border-radius: var(--m3-shape-small);
-  padding: 6px 12px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s;
-  display: inline-block;
-  margin-top: 15px;
-  font-size: 0.875rem;
-}
-
-.close-message:hover {
-  background-color: var(--m3-outline-variant);
+.read-more-button:hover {
+  background-color: #2980b9;
 }
 
 /* Modal Styling */
@@ -181,25 +134,40 @@
 }
 
 .modal-profile-image {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #fff;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   margin-bottom: 15px;
 }
 
+.message-signature {
+  font-weight: bold;
+  text-align: right;
+  margin-top: 25px;
+  font-style: italic;
+  color: #555;
+}
+
 /* Responsive Adjustments */
-@media screen and (max-width: 576px) {
-  .message-header {
-    flex-direction: column;
-    text-align: center;
+@media screen and (max-width: 992px) {
+  .column {
+    flex: 0 0 calc(50% - 30px);
+    max-width: calc(50% - 30px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .column {
+    flex: 0 0 calc(100% - 30px);
+    max-width: calc(100% - 30px);
   }
   
   .profile-image {
-    margin-right: 0;
-    margin-bottom: 15px;
+    width: 120px;
+    height: 120px;
   }
   
   .modal-dialog {
