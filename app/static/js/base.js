@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Close menu when clicking outside
     document.addEventListener('click', function(e) {
         if (window.innerWidth <= 768) {
             if (!e.target.closest('.nav')) {
@@ -22,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Mobile dropdown handling
     const dropdowns = document.querySelectorAll('.dropdown');
     dropdowns.forEach(dropdown => {
         const link = dropdown.querySelector('a');
@@ -55,9 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
-    
-    window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll();
+
     
     const formInputs = document.querySelectorAll('.m3-text-field input');
     formInputs.forEach(input => {
@@ -96,3 +92,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     } 
+});
