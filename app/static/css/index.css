@@ -10,10 +10,30 @@
     justify-content: center;
     text-align: center;
     color: rgba(2, 3, 27, 0.9);
-    /* padding: 20px; */
     overflow: hidden;
-    /* border-radius: var(--m3-shape-medium); */
-   
+    margin: 0 0 20px 0;
+  ;
+  }
+  
+  .hero-carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .carousel-item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .carousel-item.active {
+    opacity: 1;
   }
   
   .hero-video {
@@ -36,6 +56,59 @@
     /* box-shadow: var(--m3-shadow-3); */
     max-width: 600px;
     width: 90%;
+  }
+  
+  .carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    border: none;
+    padding: 16px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 2;
+  }
+  
+  .carousel-control:hover {
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .prev {
+    left: 20px;
+   background-color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .next {
+    right: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+  }
+  
+  .indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--m3-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .indicator.active {
+    background: var(--m3-tertiary);
+    /* transform: scale(1.2); */
   }
   
   .hero h1 {
@@ -81,27 +154,29 @@
   ============================================ */
   .caption-card {
     position: static;
+    height: 70px;
     /* margin: 24px auto; */
     background: var(--m3-primary-container);
     color: var(--m3-on-primary-container);
-    padding: 20px 25px;
-    border-radius: var(--m3-shape-medium);
+    padding: 15px 25px;
+    /* border-radius: var(--m3-shape-medium); */
     text-align: center;
     width: calc(100% - 48px);
     max-width: 12000px;
     box-shadow: var(--m3-shadow-2);
-    animation: fadeInSlideUp 1.2s ease-out 0.5s backwards;
+    /* animation: fadeInSlideUp 1.2s ease-out 0.5s backwards; */
   }
   
   #caption-titlej,
   #caption-text {
-    transition: 0.3s ease-in-out;
+    /* transition: 0.3s ease-in-out; */
+    font-size: 1rem;
   }
   
   #caption-titlej {
     font-size: 1.5rem;
     font-weight: 500;
-    margin: 0 0 12px;
+    margin: 0 0 8px;
   }
   
   /* ============================================
@@ -510,7 +585,18 @@
       display: flex;
   }
   
-  
+  .stats {
+  position: relative;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+    url('https://saketcollege.edu.in/wp-content/uploads/2024/01/WhatsApp-Image-2024-01-13-at-14.17.28.jpeg');
+  color: white;
+}
+
+.stats .stats-grid {
+  position: relative;
+  z-index: 2;
+}
+
   .stats .stats-grid {
       display: flex; 
       flex-wrap: wrap;
@@ -535,7 +621,7 @@
       font-weight: 700;
       line-height: 1;
       margin-bottom: 12px;
-      background:var(--m3-primary);
+      background: rgb(186, 151, 12);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       display: inline-block;
@@ -555,7 +641,7 @@
   
   .stats .stat-label {
       font-size: 1.25rem;
-      color: var(--m3-on-surface);
+      color: var(--m3-on-primary-container);
       font-weight: 500;
       position: relative;
       margin-top: 8px;
@@ -609,26 +695,37 @@
     padding: 64px 24px;
     background: linear-gradient(135deg, var(--m3-primary), var(--m3-tertiary));
     color: var(--m3-on-primary);
-    border-radius: var(--m3-shape-large);
-    margin: 24px;
+    /* border-radius: var(--m3-shape-large); */
+   margin-top: 24px;
   }
-  
+
+  .achievements {
+  position: relative;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+    url('https://saketcollege.edu.in/wp-content/uploads/2024/01/WhatsApp-Image-2024-01-13-at-14.17.28.jpeg');
+}
+
+.achievements .achievement-grid {
+  position: relative;
+  z-index: 2;
+}
+
   .achievement-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 32px;
+    gap: 40px;
     max-width: 1200px;
-    margin: 0 auto;
+    margin:0 auto;
   }
   
   .achievement-card {
     background: rgba(255, 255, 255, 0.1);
     padding: 32px 24px;
-    border-radius: var(--m3-shape-large);
+    border-radius: var(--m3-shape-medium);
     backdrop-filter: blur(10px);
     transition: all 0.3s;
     text-align: center;
-    box-shadow: var(--m3-shadow-1);
+    /* box-shadow: var(--m3-shadow-1); */
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
   
@@ -681,11 +778,11 @@
   }
   
   .campus-card {
+   
     position: relative;
     height: 400px;
-    border-radius: var(--m3-shape-large);
+    border-radius: var(--m3-shape-medium);
     overflow: hidden;
-    box-shadow: var(--m3-shadow-2);
     cursor: pointer;
     transition: transform 0.5s, box-shadow 0.5s;
   }
@@ -1169,3 +1266,30 @@
   ::-webkit-scrollbar-thumb:hover {
     background: var(--m3-primary);
   }
+
+/* Parallax Effects */
+.parallax-section {
+  position: relative;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.parallax-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .parallax-section {
+    background-attachment: scroll;
+  }
+}
