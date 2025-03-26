@@ -579,16 +579,16 @@
   .stats {
       background: linear-gradient(180deg, var(--m3-on-surface-variant) 0%, var(--m3-outline) 100%);
       padding: 80px 24px;
+      height: 200px;
       text-align: center;
       position: relative;
       overflow: hidden;
       display: flex;
-  }
-  
-  .stats {
+     
+      align-items: center;
   position: relative;
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-    url('https://saketcollege.edu.in/wp-content/uploads/2024/01/WhatsApp-Image-2024-01-13-at-14.17.28.jpeg');
+    url('https://gyaanarth.com/wp-content/uploads/2022/01/AF1QipN_I2MYJ3dkXm73FohlCKAffEW3ZsTgYptFjMmas1024.jpg');
   color: white;
 }
 
@@ -598,6 +598,7 @@
 }
 
   .stats .stats-grid {
+      display: grid;
       display: flex; 
       flex-wrap: wrap;
       gap: 60px;
@@ -722,7 +723,7 @@
   .achievements {
   position: relative;
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-    url('https://saketcollege.edu.in/wp-content/uploads/2024/01/WhatsApp-Image-2024-01-13-at-14.17.28.jpeg');
+    url('https://gyaanarth.com/wp-content/uploads/2022/01/AF1QipN_I2MYJ3dkXm73FohlCKAffEW3ZsTgYptFjMmas1024.jpg');
 }
 
 .achievements .achievement-grid {
