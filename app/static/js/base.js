@@ -1,5 +1,5 @@
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded'), function() {
     // Hamburger menu functionality
     const hamburger = document.querySelector('.hamburger');
     const navList = document.querySelector('.nav-list');
@@ -95,4 +95,4 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 3000);
             }
         });
-    } 
+    } }
