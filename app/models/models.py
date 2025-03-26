@@ -32,3 +32,36 @@ class Notice(db.Model):
             'date_uploaded': self.date_uploaded.isoformat(),
             'filename': self.filename
         }
+
+class Image(db.Model):
+    __tablename__ = 'images'
+    
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.Text, nullable=True)
+    filename = db.Column(db.String(255), nullable=False)
+    category = db.Column(db.String(100), nullable=False, default='general')  # e.g., 'cultural', 'sports', etc.
+    date_uploaded = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    def __init__(self, title, filename, category='general', description=None):
+        if not title or len(title.strip()) == 0:
+            raise ValueError("Title cannot be empty")
+        if not filename or len(filename.strip()) == 0:
+            raise ValueError("Filename cannot be empty")
+        
+        # Sanitize inputs
+        self.title = re.sub(r'[<>]', '', title.strip())
+        self.filename = filename.strip()
+        self.category = re.sub(r'[<>]', '', category.strip())
+        self.description = description.strip() if description else None
+        
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'description': self.description,
+            'filename': self.filename,
+            'category': self.category,
+            'date_uploaded': self.date_uploaded.isoformat(),
+            'url': f'/api/uploads/images/{self.filename}'
+        }
