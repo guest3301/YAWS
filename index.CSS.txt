@@ -1,0 +1,1316 @@
+/* ============================================
+     Hero Section - Material 3
+  ============================================ */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 480px; /* Increased height for better visual impact */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: rgba(2, 3, 27, 0.9);
+    overflow: hidden;
+    margin: 0 0 20px 0;
+  ;
+  }
+  
+  .hero-carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .carousel-item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .carousel-item.active {
+    opacity: 1;
+  }
+  
+  .hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    /* background-color: rgba(255, 255, 255, 0.3); */
+    padding: 32px 48px;
+    border-radius: var(--m3-shape-large);
+    /* backdrop-filter: blur(10px); */
+    /* box-shadow: var(--m3-shadow-3); */
+    max-width: 600px;
+    width: 90%;
+  }
+  
+  .carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    border: none;
+    padding: 16px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 2;
+  }
+  
+  .carousel-control:hover {
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .prev {
+    left: 20px;
+   background-color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .next {
+    right: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+  }
+  
+  .indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--m3-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .indicator.active {
+    background: var(--m3-tertiary);
+    /* transform: scale(1.2); */
+  }
+  
+  .hero h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    animation: fadeInUp 1s ease-out;
+    color: var(--m3-primary);
+  }
+  
+  .hero p {
+    font-size: 18px;
+    padding: 10px;
+    padding-bottom: 30px;
+    animation: fadeInUp 1s ease-out 0.3s backwards;
+    color: var(--m3-on-surface);
+  }
+  
+  .hero button {
+    height: 50px;
+    min-width: 120px;
+    border: none;
+    border-radius: var(--m3-shape-small);
+    text-align: center;
+    background-color: var(--m3-primary);
+    color: white;
+    animation: fadeInUp 1s ease-out 0.6s backwards;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: var(--m3-shadow-1);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .hero button:hover {
+    background-color: #4d3109;
+    box-shadow: var(--m3-shadow-2);
+    transform: translateY(-3px);
+  }
+  
+  /* ============================================
+     Caption Card - Material 3
+  ============================================ */
+  .caption-card {
+    position: static;
+    height: 70px;
+    /* margin: 24px auto; */
+    background: var(--m3-primary-container);
+    color: var(--m3-on-primary-container);
+    padding: 15px 25px;
+    /* border-radius: var(--m3-shape-medium); */
+    text-align: center;
+    width: calc(100% - 48px);
+    max-width: 12000px;
+    box-shadow: var(--m3-shadow-2);
+    /* animation: fadeInSlideUp 1.2s ease-out 0.5s backwards; */
+  }
+  
+  #caption-titlej,
+  #caption-text {
+    /* transition: 0.3s ease-in-out; */
+    font-size: 1rem;
+  }
+  
+  #caption-titlej {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0 0 8px;
+  }
+  
+  /* ============================================
+     Notices / Vision / Mission Section - Material 3
+  ============================================ */
+  .noticesvisionmission {
+    display: flex;
+    background-color: var(--m3-surface);
+    padding: 32px 34px 0 32px;
+    gap: 32px;
+    max-width: 14000px;
+    /* margin: 0 auto; */
+    align-items: stretch;
+  }
+  
+  .notices {
+    flex: 0.9;
+    height:fit-content;
+    min-width: 280px;
+    max-width: 380px; /* Added max-width for better proportions */
+    overflow: hidden;
+    padding-top: 100px;
+  }
+  
+  .notice-board {
+   
+    height: 100%;
+    min-height: 360px; /* Reduced from 400px */
+    max-height: 440px; /* Reduced from 500px */
+    border-radius: var(--m3-shape-large);
+  
+    box-shadow: var(--m3-shadow-4);
+    transition: all 0.3s ease;
+    padding: 16px ; /* Reduced from 20px */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: var(--m3-surface-dim);
+  }
+  
+  .notice-title {
+    font-size: 1.25rem; /* Reduced from 1.5rem */
+    color: var(--m3-primary);
+    font-weight: 500;
+    margin-bottom: 8px; /* Reduced from 12px */
+    padding-bottom: 6px; /* Reduced from 8px */
+    border-bottom: 3px solid var(--m3-outline-variant);
+  }
+  
+  .date-time {
+    color: var(--m3-on-surface-variant);
+    font-size: 0.85rem; /* Reduced from 0.9rem */
+    margin-bottom: 12px; /* Reduced from 16px */
+  }
+  
+  .notices-wrapper {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 6px; /* Reduced from 8px */
+  }
+  
+  .notices-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Reduced from 12px */
+  }
+  
+  .notice {
+    padding: 10px; /* Reduced from 12px */
+    background: var(--m3-surface-container-high);
+    border-radius: var(--m3-shape-small);
+    transition: all 0.3s ease;
+    border: 1px solid var(--m3-outline-variant);
+  }
+  
+  .notice:hover {
+    transform: translateX(8px);
+    background: var(--m3-surface-container-highest);
+    border-color: var(--m3-primary);
+  }
+  
+  .notice-date {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--m3-on-surface-variant);
+    margin-bottom: 4px;
+  }
+  
+  .notice-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--m3-primary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    gap: 8px;
+  }
+  
+  .notice-icon {
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .notice:hover .notice-icon {
+    opacity: 1;
+  }
+  
+  .load-more-btn {
+    margin-top: 16px;
+    width: 100%;
+    padding: 8px;
+    background: var(--m3-primary-container);
+    color: var(--m3-on-primary-container);
+    border: none;
+    border-radius: var(--m3-shape-small);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .load-more-btn:hover {
+    background: var(--m3-primary);
+    color: var(--m3-on-primary);
+  }
+  
+  /* Scrollbar styling for notices */
+  .notices-wrapper::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .notices-wrapper::-webkit-scrollbar-track {
+    background: var(--m3-surface-container);
+    border-radius: 3px;
+  }
+  
+  .notices-wrapper::-webkit-scrollbar-thumb {
+    background: var(--m3-outline);
+    border-radius: 3px;
+  }
+  
+  .notices-wrapper::-webkit-scrollbar-thumb:hover {
+    background: var(--m3-primary);
+  }
+  
+  .loading {
+    text-align: center;
+    padding: 20px;
+    color: var(--m3-on-surface-variant);
+  }
+  
+  .vision {
+    flex: 2;
+    padding: 0;
+  }
+  
+  .vision h1 {
+    font-size: 2rem;
+    color: var(--m3-primary);
+    text-align: center;
+    margin-bottom: 24px;
+    position: relative;
+    padding-bottom: 16px;
+  }
+  .containervision{
+    display: flex;
+    flex-direction: column;
+   
+   font-size: 1rem;
+    max-width: 100%;
+    /* margin: 0 auto; */
+  }
+  .vision h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--m3-tertiary);
+    transition: width 0.3s ease;
+  }
+  
+  .vision h1:hover::after {
+    width: 140px;
+  }
+  
+  .content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+    padding: 0 32px;
+    margin-bottom: 24px;
+  }
+  
+  .content h2 {
+    color: var(--m3-primary);
+    font-size: 1.6rem;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .content h2::before {
+    content: '•';
+    color: var(--m3-tertiary);
+    font-size: 1.8rem;
+  }
+  
+  .content p, .content li {
+    color: var(--m3-on-surface-variant);
+    line-height: 1.8;
+    transition: all 0.3s ease;
+    position: relative;
+    padding-left: 24px;
+  }
+  
+  .content li {
+    margin-bottom: 12px;
+  }
+  
+  .content li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--m3-tertiary);
+    transition: transform 0.3s ease;
+  }
+  
+  .content li:hover {
+    color: var(--m3-primary);
+    transform: translateX(8px);
+  }
+  
+  .content li:hover::before {
+    color: var(--m3-primary);
+  }
+  
+  @media (max-width: 768px) {
+    .noticesvisionmission {
+      flex-direction: column;
+      padding: 16px;
+    }
+  
+    .vision h1 {
+      font-size: 1.8rem;
+    }
+  
+    .content {
+      padding: 0 16px;
+    }
+  
+    .notices {
+      max-width: 100%;
+    }
+    
+    .notice-board {
+      min-height: 320px;
+      max-height: 400px;
+    }
+  }
+  
+  /* ============================================
+     Features Section - Material 3
+  ============================================ */
+  .features {
+    padding: 48px 24px;
+    /* background: var(--m3-surface); */
+    overflow: hidden;
+    margin: 10px;
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 26px;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  
+  .feature-card {
+    /* background: var(--m3-surface-container); */
+    padding: 20px;
+    border-radius: var(--m3-shape-large);
+    box-shadow: var(--m3-shadow-1);
+    transition: all 0.5s ease-out;
+    cursor: pointer;
+    opacity: 4px;
+    position: relative;
+    height: 100%;
+  }
+  
+  .feature-card.left {
+    transform: translateX(-100%);
+  }
+  
+  .feature-card.right {
+    transform: translateX(100%);
+  }
+  
+  .feature-card.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .feature-card.reset {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  
+  .feature-card.right.reset {
+    transform: translateX(100%);
+  }
+  
+  .feature-card:hover {
+    transform: scale(1.03);
+    box-shadow: var(--m3-shadow-3);
+    background-color: var(--m3-primary);
+    color: var(--m3-on-primary-container);
+  }
+  
+  .feature-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--m3-primary);
+    border-radius: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: var(--m3-shadow-1);
+  }
+  
+  .feature-card:hover .feature-icon {
+    background: var(--m3-tertiary);
+    transform: scale(1.1);
+  }
+  
+  .feature-card h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-weight: 500;
+    font-size: 1.25rem;
+    color: var(--m3-primary);
+  }
+  
+  .feature-card:hover h3 {
+    color: var(--m3-on-primary-container);
+  }
+  
+  /* ============================================
+     About Section - Material 3
+  ============================================ */
+  .about-section {
+    padding: 64px 5%;
+    /* background: var(--m3-surface-variant); */
+    border-radius: var(--m3-shape-large);
+    margin: 24px;
+  }
+  
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .about-text h2 {
+    font-size: 2.25rem;
+    color: var(--m3-primary);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  
+  .about-text p {
+    margin-bottom: 16px;
+    line-height: 1.6;
+    color: var(--m3-on-surface);
+  }
+  
+  .about-image img {
+    width: 100%;
+    border-radius: var(--m3-shape-large);
+    box-shadow: var(--m3-shadow-3);
+    transition: transform 0.5s;
+  }
+  
+  .about-image:hover img {
+    transform: scale(1.02);
+  }
+  
+  /* ============================================
+     Stats Section - Material 3
+  ============================================ */
+  .stats {
+      background: linear-gradient(180deg, var(--m3-on-surface-variant) 0%, var(--m3-outline) 100%);
+      padding: 80px 24px;
+      height: 200px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+     
+      align-items: center;
+  position: relative;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+    url('https://gyaanarth.com/wp-content/uploads/2022/01/AF1QipN_I2MYJ3dkXm73FohlCKAffEW3ZsTgYptFjMmas1024.jpg');
+  color: white;
+}
+
+.stats .stats-grid {
+  position: relative;
+  z-index: 2;
+}
+
+  .stats .stats-grid {
+      display: grid;
+      display: flex; 
+      flex-wrap: wrap;
+      gap: 60px;
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+  }
+  
+  .stats .stat-card {
+      flex: 0 1 auto;
+      min-width: 200px;
+      position: relative;
+      transform: translateY(40px);
+      opacity: 0;
+      animation: floatIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      animation-delay: calc(var(--index) * 0.2s);
+  }
+  
+  .stats .stat-number {
+      font-size: 4.5rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 12px;
+      background: rgb(186, 151, 12);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+      position: relative;
+  }
+  
+  .stats .stat-number::after {
+      content: '+';
+      font-size: 2.5rem;
+      position: absolute;
+      right: -20px;
+      top: 0;
+      background: inherit;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+  }
+  
+  .stats .stat-label {
+      font-size: 1.25rem;
+      color: var(--m3-on-primary-container);
+      font-weight: 500;
+      position: relative;
+      margin-top: 8px;
+      opacity: 0.87;
+  }
+  
+  .stats .stat-label::before {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 2px;
+      background: var(--m3-tertiary);
+  }
+  
+  .stat-card::before {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: var(--m3-on-tertiary-container);
+      opacity: 0.1;
+      border-radius: 50%;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: -1;
+      transition: all 0.3s ease;
+  }
+  
+  .stat-card:hover::before {
+      transform: translateX(-50%) scale(1.2);
+      opacity: 0.15;
+  }
+  
+  @keyframes floatIn {
+      0% {
+          opacity: 0;
+          transform: translateY(40px);
+      }
+      100% {
+          opacity: 1;
+          transform: translateY(0);
+      }
+  }
+  
+  @media (max-width: 768px) {
+      .stats {
+          padding: 60px 16px;
+      }
+      
+      .stats .stat-number {
+          font-size: 3.5rem;
+      }
+      
+      .stats .stat-label {
+          font-size: 1.1rem;
+      }
+      
+      .stats .stats-grid {
+          gap: 40px;
+      }
+  }
+  
+  /* ============================================
+     Achievements Section - Material 3
+  ============================================ */
+  .achievements {
+    padding: 64px 24px;
+    background: linear-gradient(135deg, var(--m3-primary), var(--m3-tertiary));
+    color: var(--m3-on-primary);
+    /* border-radius: var(--m3-shape-large); */
+   margin-top: 24px;
+  }
+
+  .achievements {
+  position: relative;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+    url('https://gyaanarth.com/wp-content/uploads/2022/01/AF1QipN_I2MYJ3dkXm73FohlCKAffEW3ZsTgYptFjMmas1024.jpg');
+}
+
+.achievements .achievement-grid {
+  position: relative;
+  z-index: 2;
+}
+
+  .achievement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin:0 auto;
+  }
+  
+  .achievement-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 32px 24px;
+    border-radius: var(--m3-shape-medium);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+    text-align: center;
+    /* box-shadow: var(--m3-shadow-1); */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .achievement-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: var(--m3-shadow-3);
+  }
+  
+  .achievement-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .achievement-card h3 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  
+  .achievement-card p {
+    opacity: 0.9;
+    margin: 0;
+  }
+  
+  /* ============================================
+     Campus Life Section - Material 3
+  ============================================ */
+  .campus-life {
+    padding: 64px 24px;
+    background: var(--m3-surface);
+  }
+  
+  .campus-life h2 {
+    text-align: center;
+    font-size: 2.25rem;
+    color: var(--m3-primary);
+    margin-bottom: 48px;
+    font-weight: 500;
+  }
+  
+  .campus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .campus-card {
+   
+    position: relative;
+    height: 400px;
+    border-radius: var(--m3-shape-medium);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.5s, box-shadow 0.5s;
+  }
+  
+  .campus-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--m3-shadow-4);
+  }
+  
+  .campus-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  
+  .campus-card:hover img {
+    transform: scale(1.05);
+  }
+  
+  .campus-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    padding: 32px;
+    color: white;
+    transform: translateY(80px);
+    transition: transform 0.5s;
+  }
+  
+  .campus-card:hover .campus-overlay {
+    transform: translateY(0);
+  }
+  
+  .campus-overlay h3 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  
+  .campus-overlay p {
+    margin: 0;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  
+  .campus-card:hover .campus-overlay p {
+    opacity: 1;
+  }
+  
+  /* ============================================
+     Keyframes
+  ============================================ */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* (For notices, we’re using a slightly different fadeIn) */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes scrollNotices {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+  
+  @keyframes borderAnimation {
+    0% {
+      border-color: #db3434;
+    }
+    50% {
+      border-color: #e7e73c;
+    }
+    100% {
+      border-color: #3b2600;
+    }
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes glow {
+    0% {
+      box-shadow: 0 0 5px rgba(26, 54, 93, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(26, 54, 93, 0.8);
+    }
+    100% {
+      box-shadow: 0 0 5px rgba(26, 54, 93, 0.5);
+    }
+  }
+  
+  /* ============================================
+     Footer - Material 3
+  ============================================ */
+  .footer {
+    background: var(--m3-primary);
+    color: var(--m3-on-primary);
+    padding: 64px 5% 32px;
+    margin-top: 48px;
+    border-radius: var(--m3-shape-large) var(--m3-shape-large) 0 0;
+  }
+  
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+  
+  .footer-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 24px;
+    position: relative;
+    font-weight: 500;
+  }
+  
+  .footer-section h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 40px;
+    height: 3px;
+    background: var(--m3-tertiary);
+    border-radius: 2px;
+  }
+  
+  .m3-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .m3-list li {
+    margin-bottom: 12px;
+  }
+  
+  .m3-list li a {
+    color: var(--m3-on-primary);
+    text-decoration: none;
+    opacity: 0.85;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    border-radius: var(--m3-shape-small);
+  }
+  
+  .m3-list li a:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .m3-list .material-icons {
+    font-size: 18px;
+  }
+  
+  .contact-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .contact-info .material-icons {
+    opacity: 0.85;
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  
+  .m3-icon-button {
+    color: var(--m3-on-primary);
+    background: rgba(255, 255, 255, 0.12);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s, transform 0.3s;
+  }
+  
+  .m3-icon-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0.8;
+    font-size: 0.875rem;
+  }
+  
+  .m3-form {
+    margin-top: 16px;
+  }
+  
+  .m3-form .m3-button {
+    margin-top: 8px;
+    width: 100%;
+  }
+  
+  /* ============================================
+     Responsive Media Queries - Material 3
+  ============================================ */
+  @media (max-width: 900px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .noticesvisionmission {
+      flex-direction: column;
+    }
+    
+    .hero-content {
+      padding: 24px;
+      width: 95%;
+    }
+    
+    .hero h1 {
+      font-size: 28px;
+    }
+    
+    .hero p {
+      font-size: 16px;
+      padding-bottom: 20px;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .stats .stat-number {
+      font-size: 2.5rem;
+    }
+    
+    .campus-card {
+      height: 320px;
+    }
+    
+    .campus-overlay {
+      padding: 20px;
+      transform: translateY(60px);
+    }
+    
+    .achievement-card {
+      padding: 24px 16px;
+    }
+    
+    .feature-card {
+      padding: 20px;
+    }
+    
+    .about-section, .stats, .achievements {
+      margin: 12px;
+      padding: 40px 16px;
+    }
+    
+    .about-text h2, .campus-life h2 {
+      font-size: 1.75rem;
+    }
+  }
+  
+  /* Material 3 Animation Effects */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes scrollNotices {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+  
+  /* Material 3 Ripple Effect */
+  .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+  }
+  
+  @keyframes ripple {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+  
+  /* Material 3 Card States */
+  .content.in-view,
+  .achievement-card.in-view,
+  .stat-card.in-view,
+  .campus-card.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Material 3 Form Validation */
+  .m3-text-field.valid input {
+    border-color: #4caf50;
+  }
+  
+  .m3-text-field.invalid input {
+    border-color: var(--m3-error);
+  }
+  
+  .m3-success-message {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #4caf50;
+    padding: 8px 16px;
+    border-radius: var(--m3-shape-small);
+    margin-top: 12px;
+    font-weight: 500;
+    text-align: center;
+    animation: fadeIn 0.3s;
+  }
+  
+  /* Material 3 Elevation Hover States */
+  .m3-button:active {
+    box-shadow: var(--m3-shadow-1);
+    transform: translateY(1px);
+  }
+  
+  /* Material 3 State Layer */
+  .nav-list a::before,
+  .facu a::before,
+  .m3-list a::before,
+  .m3-icon-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: currentColor;
+    opacity: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  
+  .nav-list a:hover::before,
+  .facu a:hover::before,
+  .m3-list a:hover::before,
+  .m3-icon-button:hover::before {
+    opacity: 0.08;
+  }
+  
+  .nav-list a:active::before,
+  .facu a:active::before,
+  .m3-list a:active::before,
+  .m3-icon-button:active::before {
+    opacity: 0.12;
+  }
+  
+  /* Additional Material 3 Responsive Enhancements */
+  @media (max-width: 600px) {
+    :root {
+      --m3-shape-large: 16px;
+      --m3-shape-medium: 12px;
+    }
+    
+    .hero-content {
+      padding: 24px;
+    }
+    
+    .content {
+      padding: 16px;
+    }
+    
+    .notice-board {
+      padding: 16px;
+    }
+  }
+  
+  /* Ensure proper Material 3 spacing */
+  section {
+    margin-bottom: 40px;
+  }
+  
+  /* Material 3 style scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--m3-surface-container);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--m3-outline);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--m3-primary);
+  }
+
+/* Parallax Effects */
+.parallax-section {
+  position: relative;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.parallax-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .parallax-section {
+    background-attachment: scroll;
+  }
+}
