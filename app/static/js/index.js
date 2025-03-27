@@ -78,9 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     window.addEventListener('scroll', animateOnScroll);
-    document.addEventListener('DOMContentLoaded', animateOnScroll);
-    
-    window.addEventListener('scroll', animateOnScroll);
     animateOnScroll();
     
     const formInputs = document.querySelectorAll('.m3-text-field input');
@@ -130,7 +127,7 @@ const captions = [
     { title: "Your Future Starts Here", text: "Explore endless learning opportunities at Saket College." },
     { title: "Learn, Grow, Succeed", text: "Join a community that fosters innovation and success." },
     { title: "Be a Part of Excellence", text: "Shape your career with our top-notch faculty and resources." }
-];
+]; 
 
 let currentIndex = 0;
 
@@ -151,7 +148,7 @@ function changeCaption() {
         textElement.style.opacity = "1";
     }, 500); // Delay for smooth transition
 }
-
+alert(0)
 setInterval(changeCaption, 4000); // Change text every 4 seconds
 
 function updateDateTime() {
