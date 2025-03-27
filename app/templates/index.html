@@ -5,6 +5,7 @@
 {% endblock %}
 {% block content %}
 <section class="hero">
+<<<<<<< HEAD
   <video autoplay muted loop class="hero-video" style="overflow: hidden;">
     <source src="static/video.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -13,11 +14,64 @@
     <h1 id="caption-title" style="color: rgb(167, 130, 27);">Welcome to Saket College</h1>
     <p id="caption-text" style="color: rgb(65, 40, 0);">Empowering minds and shaping futures through excellence in education since 1975</p>
     <a href="https://saketcollege.edu.in/contact/"><button>Apply Now</button></a>
+=======
+  <div class="hero-carousel">
+    <div class="carousel-item active">
+      <video autoplay muted loop class="hero-video">
+        <source src="static/video.mp4" type="video/mp4">
+      </video>
+      <div class="hero-content">
+        <h1 id="caption-title" style="color: rgb(167, 130, 27);">Welcome to Saket College</h1>
+        <p id="caption-text" style="color: rgb(65, 40, 0);">Empowering minds and shaping futures through excellence in education since 1975</p>
+        <a href="https://saketcollege.edu.in/contact/"><button>Apply Now</button></a>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://vjti.ac.in/wp-content/uploads/2024/05/ugstudents.png" alt="Campus View" class="hero-video">
+      <div class="hero-content">
+        <h1 style="color: rgb(167, 130, 27);">State-of-the-Art Campus</h1>
+        <p style="color: rgb(65, 40, 0);">Modern facilities for the modern learner</p>
+        <button>Learn More</button>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://vjti.ac.in/wp-content/uploads/2024/05/pgstudents.png" alt="Library" class="hero-video">
+      <div class="hero-content">
+        <h1 style="color: rgb(167, 130, 27);">World-Class Education</h1>
+        <p style="color: rgb(125, 107, 78,0.5);">Experience excellence in every classroom</p>
+        <button>Discover</button>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://vjti.ac.in/wp-content/uploads/2024/05/pgstudents.png" alt="Library" class="hero-video">
+      <div class="hero-content">
+        <h1 style="color: rgb(167, 130, 27);">World-Class Education</h1>
+        <p style="color: rgb(125, 107, 78,0.5);">Experience excellence in every classroom</p>
+        <button>Discover</button>
+      </div>
+    </div>
+    
+    <!-- <button class="carousel-control prev" onclick="moveSlide(-1)">❮</button>
+    <button class="carousel-control next" onclick="moveSlide(1)">❯</button> -->
+    
+    <div class="carousel-indicators">
+      <!-- Indicators will be added by JavaScript -->
+    </div>
+>>>>>>> 029edf7074c1f74476d7642d11e34576d7a798f0
   </div>
 </section>
+
 <div class="caption-card">
+<<<<<<< HEAD
   <h3 id="caption-titlej">NOTICE</h3>
   <marquee id="caption-text" direction="left" scrollamount="13">Some Important Notice</marquee>
+=======
+  <h3 id="caption-titlej">UPCOMING EVENTS</h3>
+  <marquee id="caption-text" direction="left" scrollamount="13">☆ Admission Started 2025-2026 ☆ ☆ Admission Started 2025-2026 ☆ 
+    ☆ Admission Started 2025-2026 ☆ ☆ Admission Started 2025-2026 ☆ ☆ Admission Started 2025-2026 ☆ ☆ Admission Started 2025-2026 ☆
+  </p>
+  </marquee>
+>>>>>>> 029edf7074c1f74476d7642d11e34576d7a798f0
 </div>
 <div class="noticesvisionmission">
   <div class="notices">
@@ -32,6 +86,7 @@
       </div>
     </div>
   </div>
+<<<<<<< HEAD
 <script>
 (function() {
 'use strict';
@@ -54,10 +109,47 @@ async function fetchNotices(page) {
       const noticeElement = document.createElement('div');
       noticeElement.className = 'notice';
       noticeElement.innerHTML = `
+=======
+
+  <script>
+    // Notice board functionality
+    (function () {
+      'use strict';
+      let currentPage = 1;
+      const perPage = 5;
+      let loading = false;
+      let scrollTimer = null;
+      // Format dates in IST timezone
+      function formatDate(dateString) {
+        const options = {
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric',
+          timeZone: 'Asia/Kolkata' // IST timezone
+        };
+        return new Date(dateString).toLocaleDateString('en-IN', options);
+      }
+
+      // Fetch notices from the API
+      async function fetchNotices(page) {
+        try {
+          loading = true;
+          document.getElementById('noticeLoading').style.display = 'block';
+
+          const response = await fetch(`/api/notices?page=${page}&per_page=${perPage}`);
+          const data = await response.json();
+          const noticeContainer = document.getElementById('noticeContainer');
+
+          data.notices.forEach(notice => {
+            const noticeElement = document.createElement('div');
+            noticeElement.className = 'notice';
+            noticeElement.innerHTML = `
+>>>>>>> 029edf7074c1f74476d7642d11e34576d7a798f0
         <span class="notice-date">${formatDate(notice.date_uploaded)}</span>
         <a href="${notice.url}" target="_blank" class="notice-link">
           ${notice.title}
           <span class="material-icons notice-icon">arrow_forward</span>
+<<<<<<< HEAD
         </a>`;
       noticeContainer.appendChild(noticeElement);
     });
@@ -133,10 +225,115 @@ document.addEventListener('DOMContentLoaded', initNoticeBoard);
   </section>
 </div>
 </div>
+=======
+        </a>
+      `;
+            noticeContainer.appendChild(noticeElement);
+          });
+
+          // Update load more button visibility
+          document.getElementById('loadMoreButton').style.display = data.has_next ? 'block' : 'none';
+        } catch (error) {
+          console.error('Error fetching notices:', error);
+        } finally {
+          loading = false;
+          document.getElementById('noticeLoading').style.display = 'none';
+        }
+      }
+
+      // Initialize the notice board
+      function initNoticeBoard() {
+        fetchNotices(currentPage);
+        // Load more button functionality
+        const loadMoreBtn = document.getElementById('loadMoreButton');
+        if (loadMoreBtn) {
+          loadMoreBtn.addEventListener('click', () => {
+            if (!loading) {
+              currentPage++;
+              fetchNotices(currentPage);
+            }
+          });
+        }
+
+        // Update date-time display with IST timezone
+        const updateDateTime = () => {
+          const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            timeZone: 'Asia/Kolkata', // IST timezone
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true
+          };
+
+          const now = new Date();
+          const dateTimeElement = document.getElementById('dateTime');
+          if (dateTimeElement) {
+            dateTimeElement.textContent = now.toLocaleString('en-IN', options);
+          }
+        };
+
+        updateDateTime();
+        setInterval(updateDateTime, 60000); // Update every minute
+      }
+
+      // Auto-scroll functionality for notices
+      window.pauseScroll = function () {
+        const noticesContent = document.querySelector('.notices-content');
+        if (noticesContent) {
+          noticesContent.style.animationPlayState = 'paused';
+          if (scrollTimer) clearTimeout(scrollTimer);
+        }
+      };
+
+      window.resumeScroll = function () {
+        const noticesContent = document.querySelector('.notices-content');
+        if (noticesContent) {
+          scrollTimer = setTimeout(() => {
+            noticesContent.style.animationPlayState = 'running';
+          }, 500);
+        }
+      };
+      // Initialize when DOM is fully loaded
+      document.addEventListener('DOMContentLoaded', initNoticeBoard);
+    })();
+  </script>
+  <div class="vision">
+    <h1>Our Vision & Mission</h1>
+    <section class="containervision">
+      <div class="content" id="vision">
+        <h2>Our Vision</h2>
+        <p>To develop young citizens into competent, intellectual &amp; committed human beings with a moral and social
+          responsibility capable of surviving in a competitive world.</p>
+      </div>
+      <div class="content" id="mission">
+        <h2>Our Mission</h2>
+        <ul style="list-style-type: none; padding: 0;">
+          <li>To equip students with advanced knowledge and the latest skills in their chosen discipline.</li>
+          <li>To provide education opportunities to financially weaker section of the society through fees flexibility.
+          </li>
+          <li>To provide value-based education this will mould them into good and responsible citizens.</li>
+          <li>To tap the students’ potentials and offer a platform for their overall development.</li>
+          <li>To provide integrated learning experiences that will equip students with qualities that will enable to
+            achieve their potential.</li>
+          <li>To make education job-oriented.</li>
+        </ul>
+      </div>
+    </section>
+
+
+  </div>
+</div>
+
+<!-- Quick Links Section -->
+>>>>>>> 029edf7074c1f74476d7642d11e34576d7a798f0
 <section class="about-section">
   <div class="about-grid">
     <div class="about-text">
       <h2>Excellence in Education</h2>
+<<<<<<< HEAD
       <p>Saket College of Arts, Science & Commerce (Affiliated to University of Mumbai) was established in the year 2002 and offers education leading to B.A., B.Com., B.M.S., B.Com. (B & I), B.Com. (A & F), B.Com. (IM), B.Com. (FM), B.Sc. (I.T.), B.Sc. (C.S.), M.Sc. (I.T.), M.Com. (Advanced Accountancy), and M.A. (Hindi).</p>
       <p>We offer a number of courses at UG and PG levels to more than 5,000 students. Our college has acquired a good reputation for campus discipline, high-quality academic standards, and the overall personality development of students. The college also ensures that students are offered different opportunities to excel in extracurricular fields like sports, cultural activities, and co-curricular activities like NSS and DLLE.</p>
     </div>
@@ -146,6 +343,27 @@ document.addEventListener('DOMContentLoaded', initNoticeBoard);
   </div>
 </section>
 <section class="stats">
+=======
+      <p>Saket College of Arts, Science & Commerce, affiliated with the University of Mumbai, was established in 2002
+        and has been dedicated to providing quality education. The college offers a diverse range of undergraduate and
+        postgraduate programs, including B.A., B.Com., B.M.S., B.Com. (B&I), B.Com. (A&F), B.Com. (IM), B.Com. (FM),
+        B.Sc. (I.T.), B.Sc. (C.S.), M.Sc. (I.T.), M.Com. (Advanced Accountancy), and M.A. (Hindi).</p>
+      <p> With a student base of over 5,000, we take pride in maintaining high academic standards, a disciplined campus
+        environment, and a strong focus on the holistic development of our students. Beyond academics, the college
+        actively encourages participation in extracurricular activities such as sports and cultural events, along with
+        co-curricular initiatives like NSS and DLLE, providing students with ample opportunities to grow and excel.</p>
+    </div>
+    <div class="about-image">
+      <img src="https://saketcollege.edu.in/wp-content/uploads/2023/12/WhatsApp-Image-2022-01-20-at-1.07.43-PM.jpeg"
+        alt="Campus Life" style="width: 100%; border-radius: 10px;">
+    </div>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats parallax-section">
+  <div class="parallax-overlay"></div>
+>>>>>>> 029edf7074c1f74476d7642d11e34576d7a798f0
   <div class="stats-grid">
     <div class="stat-card">
       <div class="stat-number">5000+</div>
@@ -165,12 +383,23 @@ document.addEventListener('DOMContentLoaded', initNoticeBoard);
     </div>
   </div>
 </section>
+<<<<<<< HEAD
 <section class="features">
   <div class="features-grid">
     <div class="feature-card">
       <div class="feature-icon">🎓</div>
       <h3>Quality Education</h3>
       <p>College known for excellence to ensure a high-quality education that aligns with your career goals.</p>
+=======
+
+<!-- Features Section -->
+<section class="features">
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🏆</div>
+      <h3>NAAC B Grade</h3>
+      <p>Highest accreditation for academic excellence</p>
+>>>>>>> 029edf7074c1f74476d7642d11e34576d7a798f0
     </div>
     <div class="feature-card">
       <div class="feature-icon">🔬</div>
@@ -183,6 +412,7 @@ document.addEventListener('DOMContentLoaded', initNoticeBoard);
       <p>College where you feel comfort and can thrive socially and academically.</p>
     </div>
     <div class="feature-card">
+<<<<<<< HEAD
       <div class="feature-icon">💼</div>
       <h3>Student Support Services</h3>
       <p>Counselling Services, Career Guidance, Extracurricular Activities, Internships and Job Placement Opportunities provided by the college.</p>
@@ -213,10 +443,48 @@ document.addEventListener('DOMContentLoaded', initNoticeBoard);
     </div>
   </div>
 </section>
+=======
+      <div class="feature-icon">🎓</div>
+      <h3>Quality Education</h3>
+      <p>College known for excellence to ensure a high-quality education that aligns with your career goals.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Achievement Section -->
+<section class="achievements parallax-section">
+  <div class="parallax-overlay"></div>
+  <div class="achievement-grid">
+    <div class="achievement-card">
+      <div class="achievement-icon">💼</div>
+      <h3>Student Support Services</h3>
+      <p>Counselling Services, Career Guidance, Extracurricular Activities, Internships and Job Placement Opportunities provided by the college.</p>
+    </div>
+    <div class="achievement-card">
+      <div class="achievement-icon">🎓</div>
+      <h3>Teaching Method's</h3>
+      <p>At Saket College, we blend traditional learning with modern techniques like smart classrooms, virtual labs, and practical exposure to develop real-world skills and critical thinking.</p>
+    </div>
+    <div class="achievement-card">
+      <div class="achievement-icon">🌟</div>
+      <h3>Facilities And Resources</h3>
+      <p>Library, IT Laboratories, Gymkhana, Sports Ground, Yoga Hall, . These resources can significantly impact your educational experience.</p>
+    </div>
+    <div class="achievement-card">
+      <div class="achievement-icon">🤝</div>
+      <h3>Certificate Courses</h3>
+      <p>A certificate program is considered continuing education in some cases because it builds on your knowledge of a particular career or industry.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Campus Life Section -->
+>>>>>>> 029edf7074c1f74476d7642d11e34576d7a798f0
 <section class="campus-life">
   <h2>Campus Life</h2>
   <div class="campus-grid">
     <div class="campus-card">
+<<<<<<< HEAD
       <img src="https://saketcollege.edu.in/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-28-at-13.38.29-3.jpeg" alt="Cultural Events">
       <div class="campus-overlay">
         <h3>Cultural Events</h3>
@@ -226,13 +494,30 @@ document.addEventListener('DOMContentLoaded', initNoticeBoard);
     </div>
     <div class="campus-card">
       <img src="https://saketcollege.edu.in/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-28-at-13.38.00-2.jpeg" alt="Sports Activities">
+=======
+      <img src="https://saketcollege.edu.in/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-28-at-13.38.29-3.jpeg"
+        alt="Cultural Events">
+      <div class="campus-overlay">
+        <h3>Cultural Events</h3>
+        <p>Vibrant cultural festivals and celebrations</p>
+      </div>
+    </div>
+    <div class="campus-card">
+      <img src="https://saketcollege.edu.in/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-28-at-13.38.00-2.jpeg"
+        alt="Sports Activities">
+>>>>>>> 029edf7074c1f74476d7642d11e34576d7a798f0
       <div class="campus-overlay">
         <h3>Sports Activities</h3>
         <p>State-level tournaments and fitness facilities</p>
       </div>
     </div>
     <div class="campus-card">
+<<<<<<< HEAD
       <img src="https://saketcollege.edu.in/wp-content/uploads/2024/04/WhatsApp-Image-2024-03-30-at-18.50.34.jpeg" alt="Student Clubs">
+=======
+      <img src="https://saketcollege.edu.in/wp-content/uploads/2024/04/WhatsApp-Image-2024-03-30-at-18.50.34.jpeg"
+        alt="Student Clubs">
+>>>>>>> 029edf7074c1f74476d7642d11e34576d7a798f0
       <div class="campus-overlay">
         <h3>Student Clubs</h3>
         <p>Over 30 active student clubs and societies</p>
@@ -240,6 +525,7 @@ document.addEventListener('DOMContentLoaded', initNoticeBoard);
     </div>
   </div>
 </section>
+<<<<<<< HEAD
 <script>
   function ViewCulturalEvents() {
     // Create modal container
@@ -478,4 +764,6 @@ document.addEventListener('DOMContentLoaded', initNoticeBoard);
 {% endblock %}<script src="{{ url_for('static', filename='js/index.js') }}"></script>
 {% block scripts %}
 
+=======
+>>>>>>> 029edf7074c1f74476d7642d11e34576d7a798f0
 {% endblock %}

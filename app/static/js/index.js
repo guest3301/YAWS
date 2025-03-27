@@ -59,17 +59,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const animateOnScroll = () => {
         const elements = document.querySelectorAll('.content, .feature-card, .achievement-card, .stat-card, .campus-card');
-        
+    
+        if (elements.length === 0) {
+            console.error("No elements found for animation.");
+            return;
+        }
+    
         elements.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top;
-            const elementBottom = element.getBoundingClientRect().bottom;
-            const isVisible = (elementTop < window.innerHeight - 100) && (elementBottom > 0);
-            
+            const rect = element.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+    
             if (isVisible) {
                 element.classList.add('in-view');
+            } else {
+                element.classList.remove('in-view'); // Optional
             }
         });
     };
+    
+    window.addEventListener('scroll', animateOnScroll);
+    document.addEventListener('DOMContentLoaded', animateOnScroll);
     
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll();
@@ -183,3 +192,107 @@ function startScrolling() {
         }, 50);
     }
 }
+//varousellll part
+document.addEventListener("DOMContentLoaded", () => {
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-item');
+    const indicatorsContainer = document.querySelector('.carousel-indicators');
+  
+    console.log("Slides found:", slides.length);
+    console.log("Indicators container found:", indicatorsContainer !== null);
+  
+    if (slides.length === 0 || !indicatorsContainer) {
+      console.error("❌ Error: Slides or indicators container not found!");
+      return;
+    }
+  
+    // Create indicators
+    slides.forEach((_, index) => {
+      const indicator = document.createElement('div');
+      indicator.classList.add('indicator');
+      indicator.onclick = () => goToSlide(index);
+      indicatorsContainer.appendChild(indicator);
+    });
+  
+    const indicators = document.querySelectorAll('.indicator');
+    console.log("Indicators created:", indicators.length);
+  
+    function updateSlides() {
+      if (!slides[currentSlide]) {
+        console.error(`❌ Error: Slide at index ${currentSlide} does not exist!`);
+        return;
+      }
+      if (!indicators[currentSlide]) {
+        console.error(`❌ Error: Indicator at index ${currentSlide} does not exist!`);
+        return;
+      }
+  
+      slides.forEach(slide => slide.classList.remove('active'));
+      indicators.forEach(indicator => indicator.classList.remove('active'));
+  
+      slides[currentSlide].classList.add('active');
+      indicators[currentSlide].classList.add('active');
+    }
+  
+    function moveSlide(direction) {
+      currentSlide += direction;
+      if (currentSlide >= slides.length) currentSlide = 0;
+      if (currentSlide < 0) currentSlide = slides.length - 1;
+      updateSlides();
+    }
+  
+    function goToSlide(index) {
+      if (index < 0 || index >= slides.length) {
+        console.error(`❌ Error: Invalid slide index ${index}`);
+        return;
+      }
+      currentSlide = index;
+      updateSlides();
+    }
+  
+    // Auto advance slides
+    setInterval(() => moveSlide(1), 10000);
+  
+    // Initialize first slide
+    updateSlides();
+  });
+
+// Parallax effect
+function initParallax() {
+  const parallaxSections = document.querySelectorAll('.parallax-section');
+  let ticking = false;
+  
+  function updateParallax() {
+    parallaxSections.forEach(section => {
+      const scrolled = window.pageYOffset;
+      const rate = scrolled * -0.3;
+      const rect = section.getBoundingClientRect();
+      
+      // Only apply effect when section is in view
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        section.style.backgroundPosition = `50% ${rate}px`;
+      }
+    });
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateParallax();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Initial update
+  updateParallax();
+}
+
+// Initialize parallax on load
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.innerWidth > 768) {
+    initParallax();
+  }
+});
