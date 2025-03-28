@@ -1313,4 +1313,4 @@
   .parallax-section {
     background-attachment: scroll;
   }
-}
+} 
