@@ -1,5 +1,4 @@
- //-------------------------------------------no changes in this file-------------------------------------------
- document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     // Hamburger menu functionality
     const hamburger = document.querySelector('.hamburger');
     const navList = document.querySelector('.nav-list');
@@ -9,7 +8,7 @@
             this.classList.toggle('active');
             navList.classList.toggle('open');
         });
-    } 
+    }
 
     // Close menu when clicking outside
     document.addEventListener('click', function(e) {

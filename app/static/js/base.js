@@ -44,8 +44,8 @@ document.addEventListener('DOMContentLoaded'), function() {
 
     const nestedDropdowns = document.querySelectorAll('.nested-dropdown');
     nestedDropdowns.forEach(nested => {
-        const nestedLink = nested.querySelector('a');
-        if (nestedLink) {
+        if (window.innerWidth <= 768) {
+            const nestedLink = nested.querySelector('a');
             nestedLink.addEventListener('click', function(e) {
                 if (window.innerWidth <= 768) {
                     e.preventDefault();
@@ -63,14 +63,12 @@ document.addEventListener('DOMContentLoaded'), function() {
     formInputs.forEach(input => {
         const validateInput = () => {
             const field = input.closest('.m3-text-field');
-            if (field) {
-                if (input.validity.valid) {
-                    field.classList.remove('invalid');
-                    field.classList.add('valid');
-                } else {
-                    field.classList.remove('valid');
-                    field.classList.add('invalid');
-                }
+            if (input.validity.valid) {
+                field.classList.remove('invalid');
+                field.classList.add('valid');
+            } else {
+                field.classList.remove('valid');
+                field.classList.add('invalid');
             }
         };
         
@@ -85,18 +83,16 @@ document.addEventListener('DOMContentLoaded'), function() {
             const emailField = this.querySelector('input[type="email"]');
             
             if (emailField && emailField.validity.valid) {
-                if (!this.querySelector('.m3-success-message')) {
-                    const successMsg = document.createElement('div');
-                    successMsg.textContent = 'Thank you for subscribing!';
-                    successMsg.classList.add('m3-success-message');
-                    
-                    this.appendChild(successMsg);
-                    emailField.value = '';
-                    
-                    setTimeout(() => {
-                        successMsg.remove();
-                    }, 3000);
-                }
+                const successMsg = document.createElement('div');
+                successMsg.textContent = 'Thank you for subscribing!';
+                successMsg.classList.add('m3-success-message');
+                
+                this.appendChild(successMsg);
+                emailField.value = '';
+                
+                setTimeout(() => {
+                    successMsg.remove();
+                }, 3000);
             }
         });
     } }
