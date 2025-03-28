@@ -3,26 +3,187 @@
 {% block title %}Program Courses - Saket College{% endblock %}
 
 {% block styles %}
-.content-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: var(--m3-surface);
-  border-radius: var(--m3-shape-medium);
-  box-shadow: var(--m3-shadow-1);
+<style>
+.programs-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
-.page-title {
-  color: var(--m3-primary);
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--m3-outline-variant);
+.programs-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem 0;
 }
+
+.program-button {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    background-color: var(--m3-primary-container);
+    color: var(--m3-on-primary-container);
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.program-button:hover {
+    background-color: var(--m3-primary);
+    color: var(--m3-on-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section {
+    display: none;
+    background-color: var(--m3-surface-variant);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+}
+
+.section.active {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.section-title {
+    color: var(--m3-primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--m3-primary);
+    padding-bottom: 0.5rem;
+}
+
+.sub-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    padding: 0;
+    list-style: none;
+}
+
+.sub-button {
+    display: block;
+    padding: 1rem;
+    background-color: var(--m3-secondary-container);
+    color: var(--m3-on-secondary-container);
+    text-decoration: none;
+    border-radius: 6px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.sub-button:hover {
+    background-color: var(--m3-secondary);
+    color: var(--m3-on-secondary);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
 {% endblock %}
 
 {% block content %}
-<div class="content-container">
-  <h1 class="page-title">Program Courses</h1>
-  <p>Content for this page is coming soon.</p>
+<div class="programs-container">
+    <h1 class="section-title">Program Courses</h1>
+
+    <ul class="programs-list">
+        <li>
+            <button class="program-button" onclick="showSection('ug')">Undergraduate Programs (UG)</button>
+        </li>
+        <li>
+            <button class="program-button" onclick="showSection('pg')">Postgraduate Programs (PG)</button>
+        </li>
+        <li>
+            <button class="program-button" onclick="showSection('jc')">Junior College</button>
+        </li>
+    </ul>
+
+    <div id="ug" class="section">
+        <h2 class="section-title">Undergraduate Programs</h2>
+        <ul class="sub-list">
+            <li><a href="/academics/ug/admission" class="sub-button">Admission Process</a></li>
+            <li><a href="/academics/ug/departments" class="sub-button">Departments</a></li>
+            <li><a href="/academics/course_outcomes" class="sub-button">Program Outcomes</a></li>
+            <li><a href="/academics/ug/syllabus" class="sub-button">Syllabus</a></li>
+            <li><a href="/academics/ug/timetable" class="sub-button">Time Table</a></li>
+        </ul>
+    </div>
+
+    <div id="pg" class="section">
+        <h2 class="section-title">Postgraduate Programs</h2>
+        <ul class="sub-list">
+            <li><a href="/academics/pg/departments" class="sub-button">Departments</a></li>
+            <li><a href="/academics/pg/admission" class="sub-button">Admission Process</a></li>
+            <li><a href="/academics/pg/syllabus" class="sub-button">Syllabus</a></li>
+            <li><a href="/academics/pg/research" class="sub-button">Research Programs</a></li>
+            <li><a href="/academics/pg/timetable" class="sub-button">Time Table</a></li>
+        </ul>
+    </div>
+
+    <div id="jc" class="section">
+        <h2 class="section-title">Junior College</h2>
+        <ul class="sub-list">
+            <li><a href="/academics/jc/courses" class="sub-button">Available Courses</a></li>
+            <li><a href="/academics/jc/admission" class="sub-button">Admission Process</a></li>
+            <li><a href="/academics/jc/notices" class="sub-button">Notices & Updates</a></li>
+            <li><a href="/academics/jc/examination" class="sub-button">Examination</a></li>
+            <li><a href="/academics/jc/certificate" class="sub-button">Certificate Courses</a></li>
+            <li><a href="/academics/jc/professional" class="sub-button">Professional Courses</a></li>
+        </ul>
+    </div>
 </div>
+
+<script>
+function showSection(sectionId) {
+    // Hide all sections
+    document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+    });
+
+    // Show selected section
+    const selectedSection = document.getElementById(sectionId);
+    if (selectedSection) {
+        selectedSection.classList.add('active');
+    }
+}
+
+function loadContent(url, targetId) {
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(html => {
+            document.getElementById(targetId).innerHTML = html;
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+}
+
+// Show first section by default
+document.addEventListener('DOMContentLoaded', () => {
+    showSection('ug');
+
+    // Example: Load content dynamically for UG section
+    loadContent('/academics/ug/content', 'ug');
+});
+</script>
 {% endblock %}
