@@ -832,7 +832,7 @@
     background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
     padding: 32px;
     color: white;
-    transform: translateY(80px);
+    transform: translateY(150px);
     transition: transform 0.5s;
   }
   
