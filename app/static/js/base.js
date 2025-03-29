@@ -1,5 +1,5 @@
 
-document.addEventListener('DOMContentLoaded'), function() {
+document.addEventListener('DOMContentLoaded', function() {
     // Hamburger menu functionality
     const hamburger = document.querySelector('.hamburger');
     const navList = document.querySelector('.nav-list');
@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded'), function() {
         });
     }
 
-    // Close menu when clicking outside
     document.addEventListener('click', function(e) {
         if (window.innerWidth <= 768) {
             if (!e.target.closest('.nav')) {
@@ -22,7 +21,6 @@ document.addEventListener('DOMContentLoaded'), function() {
         }
     });
 
-    // Mobile dropdown handling
     const dropdowns = document.querySelectorAll('.dropdown');
     dropdowns.forEach(dropdown => {
         const link = dropdown.querySelector('a');
@@ -44,8 +42,8 @@ document.addEventListener('DOMContentLoaded'), function() {
 
     const nestedDropdowns = document.querySelectorAll('.nested-dropdown');
     nestedDropdowns.forEach(nested => {
-        if (window.innerWidth <= 768) {
-            const nestedLink = nested.querySelector('a');
+        const nestedLink = nested.querySelector('a');
+        if (nestedLink) {
             nestedLink.addEventListener('click', function(e) {
                 if (window.innerWidth <= 768) {
                     e.preventDefault();
@@ -55,20 +53,19 @@ document.addEventListener('DOMContentLoaded'), function() {
             });
         }
     });
-    
-    window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll();
-    
+
     const formInputs = document.querySelectorAll('.m3-text-field input');
     formInputs.forEach(input => {
         const validateInput = () => {
             const field = input.closest('.m3-text-field');
-            if (input.validity.valid) {
-                field.classList.remove('invalid');
-                field.classList.add('valid');
-            } else {
-                field.classList.remove('valid');
-                field.classList.add('invalid');
+            if (field) {
+                if (input.validity.valid) {
+                    field.classList.remove('invalid');
+                    field.classList.add('valid');
+                } else {
+                    field.classList.remove('valid');
+                    field.classList.add('invalid');
+                }
             }
         };
         
@@ -83,16 +80,19 @@ document.addEventListener('DOMContentLoaded'), function() {
             const emailField = this.querySelector('input[type="email"]');
             
             if (emailField && emailField.validity.valid) {
-                const successMsg = document.createElement('div');
-                successMsg.textContent = 'Thank you for subscribing!';
-                successMsg.classList.add('m3-success-message');
-                
-                this.appendChild(successMsg);
-                emailField.value = '';
-                
-                setTimeout(() => {
-                    successMsg.remove();
-                }, 3000);
+                if (!this.querySelector('.m3-success-message')) {
+                    const successMsg = document.createElement('div');
+                    successMsg.textContent = 'Thank you for subscribing!';
+                    successMsg.classList.add('m3-success-message');
+                    
+                    this.appendChild(successMsg);
+                    emailField.value = '';
+                    
+                    setTimeout(() => {
+                        successMsg.remove();
+                    }, 3000);
+                }
             }
         });
-    } }
+    } 
+});

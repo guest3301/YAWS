@@ -55,9 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Modified buttons section - removed ripple effect completely
     const buttons = document.querySelectorAll('.m3-button, .m3-icon-button');
-    // No ripple effect added - removed entirely
 
     const animateOnScroll = () => {
         const elements = document.querySelectorAll('.content, .feature-card, .achievement-card, .stat-card, .campus-card');
@@ -78,9 +76,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     };
-    
-    window.addEventListener('scroll', animateOnScroll);
-    document.addEventListener('DOMContentLoaded', animateOnScroll);
     
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll();
@@ -124,6 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } 
 
     // Start notice board auto-scroll
+    isScrollPaused = false;
     startScrolling();
 });
 const captions = [
@@ -131,7 +127,7 @@ const captions = [
     { title: "Your Future Starts Here", text: "Explore endless learning opportunities at Saket College." },
     { title: "Learn, Grow, Succeed", text: "Join a community that fosters innovation and success." },
     { title: "Be a Part of Excellence", text: "Shape your career with our top-notch faculty and resources." }
-];
+]; 
 
 let currentIndex = 0;
 
@@ -152,7 +148,7 @@ function changeCaption() {
         textElement.style.opacity = "1";
     }, 500); // Delay for smooth transition
 }
-
+alert(0)
 setInterval(changeCaption, 4000); // Change text every 4 seconds
 
 function updateDateTime() {
