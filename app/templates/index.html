@@ -1,19 +1,20 @@
 {% extends "base.html" %}
-
 {% block title %}Home - Saket College{% endblock %}
-
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-<script src="{{ url_for('static', filename='js/index.js') }}"></script>
-
 {% endblock %}
-
-
 {% block content %}
-
-
-<!-- Hero Section -->
 <section class="hero">
+<<<<<<< HEAD
+  <video autoplay muted loop class="hero-video" style="overflow: hidden;">
+    <source src="static/video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="hero-content">
+    <h1 id="caption-title" style="color: rgb(167, 130, 27);">Welcome to Saket College</h1>
+    <p id="caption-text" style="color: rgb(65, 40, 0);">Empowering minds and shaping futures through excellence in education since 1975</p>
+    <a href="https://saketcollege.edu.in/contact/"><button>Apply Now</button></a>
+=======
   <div class="hero-carousel">
     <div class="carousel-item active">
       <video autoplay muted loop class="hero-video">
@@ -56,18 +57,22 @@
     <div class="carousel-indicators">
       <!-- Indicators will be added by JavaScript -->
     </div>
+>>>>>>> 029edf7074c1f74476d7642d11e34576d7a798f0
   </div>
 </section>
 
 <div class="caption-card">
+<<<<<<< HEAD
+  <h3 id="caption-titlej">NOTICE</h3>
+  <marquee id="caption-text" direction="left" scrollamount="13">Some Important Notice</marquee>
+=======
   <h3 id="caption-titlej">UPCOMING EVENTS</h3>
   <marquee id="caption-text" direction="left" scrollamount="13">☆ Admission Started 2025-2026 ☆ ☆ Admission Started 2025-2026 ☆ 
     ☆ Admission Started 2025-2026 ☆ ☆ Admission Started 2025-2026 ☆ ☆ Admission Started 2025-2026 ☆ ☆ Admission Started 2025-2026 ☆
   </p>
   </marquee>
+>>>>>>> 029edf7074c1f74476d7642d11e34576d7a798f0
 </div>
-
-<!-- noticee board  -->
 <div class="noticesvisionmission">
   <div class="notices">
     <div class="notice-board">
@@ -81,6 +86,30 @@
       </div>
     </div>
   </div>
+<<<<<<< HEAD
+<script>
+(function() {
+'use strict';
+let currentPage = 1;
+const perPage = 5;
+let loading = false;
+let scrollTimer = null;
+function formatDate(dateString) {
+  const options = { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' };
+  return new Date(dateString).toLocaleDateString('en-IN', options);
+}
+async function fetchNotices(page) {
+  try {
+    loading = true;
+    document.getElementById('noticeLoading').style.display = 'block';
+    const response = await fetch(`/api/notices?page=${page}&per_page=${perPage}`);
+    const data = await response.json();
+    const noticeContainer = document.getElementById('noticeContainer');
+    data.notices.forEach(notice => {
+      const noticeElement = document.createElement('div');
+      noticeElement.className = 'notice';
+      noticeElement.innerHTML = `
+=======
 
   <script>
     // Notice board functionality
@@ -115,10 +144,88 @@
             const noticeElement = document.createElement('div');
             noticeElement.className = 'notice';
             noticeElement.innerHTML = `
+>>>>>>> 029edf7074c1f74476d7642d11e34576d7a798f0
         <span class="notice-date">${formatDate(notice.date_uploaded)}</span>
         <a href="${notice.url}" target="_blank" class="notice-link">
           ${notice.title}
           <span class="material-icons notice-icon">arrow_forward</span>
+<<<<<<< HEAD
+        </a>`;
+      noticeContainer.appendChild(noticeElement);
+    });
+    document.getElementById('loadMoreButton').style.display = data.has_next ? 'block' : 'none';
+  } catch (error) {
+    console.error('Error fetching notices:', error);
+  } finally {
+    loading = false;
+    document.getElementById('noticeLoading').style.display = 'none';
+  }
+}
+function initNoticeBoard() {
+  fetchNotices(currentPage);
+  const loadMoreBtn = document.getElementById('loadMoreButton');
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', () => {
+      if (!loading) {
+        currentPage++;
+        fetchNotices(currentPage);
+      }
+    });
+  }
+  const updateDateTime = () => {
+    const options = {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+      timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', hour12: true
+    };
+    const now = new Date();
+    const dateTimeElement = document.getElementById('dateTime');
+    if (dateTimeElement) {
+      dateTimeElement.textContent = now.toLocaleString('en-IN', options);
+    }
+  };
+  updateDateTime();
+  setInterval(updateDateTime, 60000);
+}
+window.pauseScroll = function() {
+  const noticesContent = document.querySelector('.notices-content');
+  if (noticesContent) {
+    noticesContent.style.animationPlayState = 'paused';
+    if (scrollTimer) clearTimeout(scrollTimer);
+  }
+};
+window.resumeScroll = function() {
+  const noticesContent = document.querySelector('.notices-content');
+  if (noticesContent) {
+    scrollTimer = setTimeout(() => {
+      noticesContent.style.animationPlayState = 'running';
+    }, 500);
+  }
+};
+document.addEventListener('DOMContentLoaded', initNoticeBoard);
+})();
+</script>
+<div class="vision">
+  <h1>Our Vision & Mission</h1>
+  <section class="containervision">
+    <div class="content" id="vision">
+      <h2>Our Vision</h2>
+      <p>To develop young citizens into competent, intellectual &amp; committed human beings with a moral and social responsibility capable of surviving in a competitive world.</p>
+    </div>
+    <div class="content" id="mission">
+      <h2>Our Mission</h2>
+      <ul style="list-style-type: none; padding: 0;">
+        <li>To equip students with advanced knowledge and the latest skills in their chosen discipline.</li>
+        <li>To provide education opportunities to financially weaker section of the society through fees flexibility.</li>
+        <li>To provide value-based education this will mould them into good and responsible citizens.</li>
+        <li>To tap the students' potentials and offer a platform for their overall development.</li>
+        <li>To provide integrated learning experiences that will equip students with qualities that will enable to achieve their potential.</li>
+        <li>To make education job-oriented.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+</div>
+=======
         </a>
       `;
             noticeContainer.appendChild(noticeElement);
@@ -221,10 +328,22 @@
 </div>
 
 <!-- Quick Links Section -->
+>>>>>>> 029edf7074c1f74476d7642d11e34576d7a798f0
 <section class="about-section">
   <div class="about-grid">
     <div class="about-text">
       <h2>Excellence in Education</h2>
+<<<<<<< HEAD
+      <p>Saket College of Arts, Science & Commerce (Affiliated to University of Mumbai) was established in the year 2002 and offers education leading to B.A., B.Com., B.M.S., B.Com. (B & I), B.Com. (A & F), B.Com. (IM), B.Com. (FM), B.Sc. (I.T.), B.Sc. (C.S.), M.Sc. (I.T.), M.Com. (Advanced Accountancy), and M.A. (Hindi).</p>
+      <p>We offer a number of courses at UG and PG levels to more than 5,000 students. Our college has acquired a good reputation for campus discipline, high-quality academic standards, and the overall personality development of students. The college also ensures that students are offered different opportunities to excel in extracurricular fields like sports, cultural activities, and co-curricular activities like NSS and DLLE.</p>
+    </div>
+    <div class="about-image">
+      <img src="https://saketcollege.edu.in/wp-content/uploads/2023/12/WhatsApp-Image-2022-01-20-at-1.07.43-PM.jpeg" alt="Campus Life" style="width: 100%; border-radius: 10px;">
+    </div>
+  </div>
+</section>
+<section class="stats">
+=======
       <p>Saket College of Arts, Science & Commerce, affiliated with the University of Mumbai, was established in 2002
         and has been dedicated to providing quality education. The college offers a diverse range of undergraduate and
         postgraduate programs, including B.A., B.Com., B.M.S., B.Com. (B&I), B.Com. (A&F), B.Com. (IM), B.Com. (FM),
@@ -244,6 +363,7 @@
 <!-- Stats Section -->
 <section class="stats parallax-section">
   <div class="parallax-overlay"></div>
+>>>>>>> 029edf7074c1f74476d7642d11e34576d7a798f0
   <div class="stats-grid">
     <div class="stat-card">
       <div class="stat-number">5000+</div>
@@ -263,6 +383,14 @@
     </div>
   </div>
 </section>
+<<<<<<< HEAD
+<section class="features">
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🎓</div>
+      <h3>Quality Education</h3>
+      <p>College known for excellence to ensure a high-quality education that aligns with your career goals.</p>
+=======
 
 <!-- Features Section -->
 <section class="features">
@@ -271,6 +399,7 @@
       <div class="feature-icon">🏆</div>
       <h3>NAAC B Grade</h3>
       <p>Highest accreditation for academic excellence</p>
+>>>>>>> 029edf7074c1f74476d7642d11e34576d7a798f0
     </div>
     <div class="feature-card">
       <div class="feature-icon">🔬</div>
@@ -283,6 +412,38 @@
       <p>College where you feel comfort and can thrive socially and academically.</p>
     </div>
     <div class="feature-card">
+<<<<<<< HEAD
+      <div class="feature-icon">💼</div>
+      <h3>Student Support Services</h3>
+      <p>Counselling Services, Career Guidance, Extracurricular Activities, Internships and Job Placement Opportunities provided by the college.</p>
+    </div>
+  </div>
+</section>
+<section class="achievements">
+  <div class="achievement-grid">
+    <div class="achievement-card">
+      <div class="achievement-icon">🏆</div>
+      <h3>NAAC B+ Grade</h3>
+      <p>Highest accreditation for academic excellence</p>
+    </div>
+    <div class="achievement-card">
+      <div class="achievement-icon">🌟</div>
+      <h3>Research Excellence</h3>
+      <p>100+ research papers published annually</p>
+    </div>
+    <div class="achievement-card">
+      <div class="achievement-icon">🎓</div>
+      <h3>Alumni Success</h3>
+      <p>Over 50,000 successful alumni worldwide</p>
+    </div>
+    <div class="achievement-card">
+      <div class="achievement-icon">🤝</div>
+      <h3>Industry Partners</h3>
+      <p>200+ corporate collaborations</p>
+    </div>
+  </div>
+</section>
+=======
       <div class="feature-icon">🎓</div>
       <h3>Quality Education</h3>
       <p>College known for excellence to ensure a high-quality education that aligns with your career goals.</p>
@@ -318,10 +479,22 @@
 </section>
 
 <!-- Campus Life Section -->
+>>>>>>> 029edf7074c1f74476d7642d11e34576d7a798f0
 <section class="campus-life">
   <h2>Campus Life</h2>
   <div class="campus-grid">
     <div class="campus-card">
+<<<<<<< HEAD
+      <img src="https://saketcollege.edu.in/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-28-at-13.38.29-3.jpeg" alt="Cultural Events">
+      <div class="campus-overlay">
+        <h3>Cultural Events</h3>
+        <p>Vibrant cultural festivals and celebrations</p>
+        <a href="javascript:void(0);" onclick="ViewCulturalEvents()"><span>View</span></a>
+      </div>
+    </div>
+    <div class="campus-card">
+      <img src="https://saketcollege.edu.in/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-28-at-13.38.00-2.jpeg" alt="Sports Activities">
+=======
       <img src="https://saketcollege.edu.in/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-28-at-13.38.29-3.jpeg"
         alt="Cultural Events">
       <div class="campus-overlay">
@@ -332,14 +505,19 @@
     <div class="campus-card">
       <img src="https://saketcollege.edu.in/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-28-at-13.38.00-2.jpeg"
         alt="Sports Activities">
+>>>>>>> 029edf7074c1f74476d7642d11e34576d7a798f0
       <div class="campus-overlay">
         <h3>Sports Activities</h3>
         <p>State-level tournaments and fitness facilities</p>
       </div>
     </div>
     <div class="campus-card">
+<<<<<<< HEAD
+      <img src="https://saketcollege.edu.in/wp-content/uploads/2024/04/WhatsApp-Image-2024-03-30-at-18.50.34.jpeg" alt="Student Clubs">
+=======
       <img src="https://saketcollege.edu.in/wp-content/uploads/2024/04/WhatsApp-Image-2024-03-30-at-18.50.34.jpeg"
         alt="Student Clubs">
+>>>>>>> 029edf7074c1f74476d7642d11e34576d7a798f0
       <div class="campus-overlay">
         <h3>Student Clubs</h3>
         <p>Over 30 active student clubs and societies</p>
@@ -347,4 +525,245 @@
     </div>
   </div>
 </section>
+<<<<<<< HEAD
+<script>
+  function ViewCulturalEvents() {
+    // Create modal container
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); display:flex; justify-content:center; align-items:center; z-index:1000;';
+    
+    // Create modal content
+    const modalContent = document.createElement('div');
+    modalContent.className = 'modal-content';
+    modalContent.style.cssText = 'background-color:#fff; border-radius:8px; width:80%; max-width:1200px; max-height:90vh; overflow-y:auto; padding:20px; position:relative;';
+    
+    // Add close button
+    const closeBtn = document.createElement('span');
+    closeBtn.innerHTML = '&times;';
+    closeBtn.className = 'close-button';
+    closeBtn.style.cssText = 'position:absolute; top:10px; right:20px; font-size:28px; font-weight:bold; cursor:pointer; color:#333;';
+    closeBtn.onclick = function() {
+      document.body.removeChild(modal);
+    };
+    
+    // Add modal header
+    const header = document.createElement('h2');
+    header.textContent = 'Cultural Events';
+    header.style.cssText = 'margin-bottom:20px; color:#333; border-bottom:1px solid #ddd; padding-bottom:10px;';
+    
+    // Add image container for the grid
+    const imageGrid = document.createElement('div');
+    imageGrid.className = 'image-grid';
+    imageGrid.style.cssText = 'display:grid; grid-template-columns:repeat(auto-fill, minmax(250px, 1fr)); gap:15px; margin-top:20px;';
+    
+    // Add loading indicator
+    const loadingDiv = document.createElement('div');
+    loadingDiv.textContent = 'Loading images...';
+    loadingDiv.style.cssText = 'text-align:center; padding:20px; width:100%;';
+    
+    // Build the modal structure
+    modalContent.appendChild(closeBtn);
+    modalContent.appendChild(header);
+    modalContent.appendChild(loadingDiv);
+    modalContent.appendChild(imageGrid);
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+    
+    // Fetch cultural event images from the server
+    fetch('/api/images?category=cultural&per_page=20')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch images');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Remove loading indicator
+        loadingDiv.style.display = 'none';
+        
+        if (!data.images || data.images.length === 0) {
+          const noImagesMsg = document.createElement('p');
+          noImagesMsg.textContent = 'No cultural event images available.';
+          noImagesMsg.style.cssText = 'text-align:center; padding:20px; width:100%;';
+          imageGrid.appendChild(noImagesMsg);
+          return;
+        }
+        
+        // Add images to the grid
+        data.images.forEach(image => {
+          const imgContainer = document.createElement('div');
+          imgContainer.className = 'image-item';
+          imgContainer.style.cssText = 'border-radius:8px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1); position:relative;';
+          
+          const img = document.createElement('img');
+          img.src = image.url;
+          img.alt = image.title;
+          img.style.cssText = 'width:100%; height:200px; object-fit:cover; display:block;';
+          
+          // Image overlay with title and description
+          const overlay = document.createElement('div');
+          overlay.className = 'image-overlay';
+          overlay.style.cssText = 'position:absolute; bottom:0; left:0; right:0; background:rgba(0,0,0,0.7); color:white; padding:10px; transition:all 0.3s ease;';
+          
+          const imageTitle = document.createElement('h4');
+          imageTitle.textContent = image.title;
+          imageTitle.style.cssText = 'margin:0 0 5px 0; font-size:16px;';
+          
+          overlay.appendChild(imageTitle);
+          
+          if (image.description) {
+            const imageDesc = document.createElement('p');
+            imageDesc.textContent = image.description;
+            imageDesc.style.cssText = 'margin:0; font-size:14px;';
+            overlay.appendChild(imageDesc);
+          }
+          
+          // Add click to view full image
+          img.onclick = function() {
+            const fullView = document.createElement('div');
+            fullView.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.9); display:flex; justify-content:center; align-items:center; z-index:1100;';
+            
+            const fullImg = document.createElement('img');
+            fullImg.src = image.url;
+            fullImg.alt = image.title;
+            fullImg.style.cssText = 'max-width:90%; max-height:90%; object-fit:contain;';
+            
+            fullView.appendChild(fullImg);
+            fullView.onclick = function() {
+              document.body.removeChild(fullView);
+            };
+            
+            document.body.appendChild(fullView);
+          };
+          
+          // Assemble the image container
+          imgContainer.appendChild(img);
+          imgContainer.appendChild(overlay);
+          imageGrid.appendChild(imgContainer);
+        });
+        
+        // Add "Load More" button if there are more images
+        if (data.has_next) {
+          const loadMoreBtn = document.createElement('button');
+          loadMoreBtn.textContent = 'Load More';
+          loadMoreBtn.style.cssText = 'grid-column:1/-1; padding:10px 20px; background-color:#4a89dc; color:white; border:none; border-radius:4px; margin-top:15px; cursor:pointer; font-weight:bold;';
+          let currentPage = 1;
+          
+          loadMoreBtn.onclick = function() {
+            currentPage++;
+            
+            // Show loading state
+            loadMoreBtn.textContent = 'Loading...';
+            loadMoreBtn.disabled = true;
+            
+            fetch(`/api/images?category=cultural&per_page=20&page=${currentPage}`)
+              .then(response => response.json())
+              .then(moreData => {
+                moreData.images.forEach(image => {
+                  // Create and add more image items (same code as above)
+                  const imgContainer = document.createElement('div');
+                  imgContainer.className = 'image-item';
+                  imgContainer.style.cssText = 'border-radius:8px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1); position:relative;';
+                  
+                  const img = document.createElement('img');
+                  img.src = image.url;
+                  img.alt = image.title;
+                  img.style.cssText = 'width:100%; height:200px; object-fit:cover; display:block;';
+                  
+                  const overlay = document.createElement('div');
+                  overlay.className = 'image-overlay';
+                  overlay.style.cssText = 'position:absolute; bottom:0; left:0; right:0; background:rgba(0,0,0,0.7); color:white; padding:10px;';
+                  
+                  const imageTitle = document.createElement('h4');
+                  imageTitle.textContent = image.title;
+                  imageTitle.style.cssText = 'margin:0 0 5px 0; font-size:16px;';
+                  
+                  overlay.appendChild(imageTitle);
+                  
+                  if (image.description) {
+                    const imageDesc = document.createElement('p');
+                    imageDesc.textContent = image.description;
+                    imageDesc.style.cssText = 'margin:0; font-size:14px;';
+                    overlay.appendChild(imageDesc);
+                  }
+                  
+                  // Full view functionality
+                  img.onclick = function() {
+                    const fullView = document.createElement('div');
+                    fullView.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.9); display:flex; justify-content:center; align-items:center; z-index:1100;';
+                    
+                    const fullImg = document.createElement('img');
+                    fullImg.src = image.url;
+                    fullImg.alt = image.title;
+                    fullImg.style.cssText = 'max-width:90%; max-height:90%; object-fit:contain;';
+                    
+                    fullView.appendChild(fullImg);
+                    fullView.onclick = function() {
+                      document.body.removeChild(fullView);
+                    };
+                    
+                    document.body.appendChild(fullView);
+                  };
+                  
+                  imgContainer.appendChild(img);
+                  imgContainer.appendChild(overlay);
+                  imageGrid.appendChild(imgContainer);
+                });
+                
+                // Reset button state
+                loadMoreBtn.disabled = false;
+                loadMoreBtn.textContent = 'Load More';
+                
+                // Hide button if no more images
+                if (!moreData.has_next) {
+                  loadMoreBtn.style.display = 'none';
+                }
+              })
+              .catch(error => {
+                console.error('Error loading more images:', error);
+                loadMoreBtn.textContent = 'Error Loading More';
+                setTimeout(() => {
+                  loadMoreBtn.textContent = 'Try Again';
+                  loadMoreBtn.disabled = false;
+                }, 2000);
+              });
+          };
+          
+          imageGrid.appendChild(loadMoreBtn);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching images:', error);
+        loadingDiv.textContent = 'Error loading images. Please try again later.';
+        loadingDiv.style.color = 'red';
+      });
+    
+    // Close modal when clicking outside content
+    modal.addEventListener('click', function(event) {
+      if (event.target === modal) {
+        document.body.removeChild(modal);
+      }
+    });
+    
+    // Prevent scrolling of background content when modal is open
+    document.body.style.overflow = 'hidden';
+    
+    // Re-enable scrolling when modal closes
+    closeBtn.addEventListener('click', function() {
+      document.body.style.overflow = '';
+    });
+    
+    modal.addEventListener('click', function(event) {
+      if (event.target === modal) {
+        document.body.style.overflow = '';
+      }
+    });
+  }
+</script>
+{% endblock %}<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% block scripts %}
+
+=======
+>>>>>>> 029edf7074c1f74476d7642d11e34576d7a798f0
 {% endblock %}
