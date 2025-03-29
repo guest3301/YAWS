@@ -18,11 +18,164 @@
   padding-bottom: 10px;
   border-bottom: 1px solid var(--m3-outline-variant);
 }
+
+.outcomes-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: var(--m3-surface-container);
+  border-radius: var(--m3-shape-small);
+  overflow: hidden;
+  box-shadow: var(--m3-shadow-1);
+}
+
+.outcomes-table th,
+.outcomes-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--m3-outline-variant);
+}
+
+.outcomes-table th {
+  background: var(--m3-primary);
+  color: var(--m3-on-primary);
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.outcomes-table tr:last-child td {
+  border-bottom: none;
+}
+
+.outcomes-table tr:hover {
+  background: var(--m3-surface-variant);
+}
+
+.view-link {
+  color: var(--m3-primary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  padding: 4px 0;
+}
+
+.view-link:hover {
+  color: var(--m3-primary-container);
+}
+
+.view-link::before {
+  content: '📄';
+  font-size: 1.1em;
+  opacity: 0.8;
+}
+
+.view-link:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--m3-primary);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+.view-link:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.sr-no {
+  width: 80px;
+  color: var(--m3-on-surface-variant);
+  font-weight: 500;
+}
+
+.description {
+  margin-bottom: 20px;
+  color: var(--m3-on-surface-variant);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .content-container {
+    padding: 15px;
+    margin: 10px;
+  }
+  
+  .outcomes-table th,
+  .outcomes-table td {
+    padding: 10px;
+  }
+  
+  .sr-no {
+    width: 60px;
+  }
+  
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+}
 {% endblock %}
 
 {% block content %}
 <div class="content-container">
   <h1 class="page-title">Course Outcomes</h1>
-  <p>Content for this page is coming soon.</p>
+  <p class="description">Access detailed course outcomes and learning objectives for all academic programs offered at Saket College. Click on any course to view its complete outcome documentation.</p>
+  
+  <table class="outcomes-table">
+    <thead>
+      <tr>
+        <th class="sr-no">Sr.No</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/B.A.%20Economics.pdf" class="view-link" target="_blank">B.A. Economics</a></td></tr>
+      <tr><td>2</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/B.A..pdf" class="view-link" target="_blank">B.A</a></td></tr>
+      <tr><td>3</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/B.Com.%20(A.%20%26%20F).pdf" class="view-link" target="_blank">B.Com. (A. & F)</a></td></tr>
+      <tr><td>4</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/B.Com.%20(B.%20%26%20I).pdf" class="view-link" target="_blank">B.Com. (B. & I)</a></td></tr>
+      <tr><td>5</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/B.Sc.I.T.pdf" class="view-link" target="_blank">B.Sc.I.T</a></td></tr>
+      <tr><td>6</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/BMS.pdf" class="view-link" target="_blank">BMS</a></td></tr>
+      <tr><td>7</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/F.Y.%20B.Sc.C.S.pdf" class="view-link" target="_blank">F.Y. B.Sc.C.S</a></td></tr>
+      <tr><td>8</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/F.Y.%20B.Sc.I.T.pdf" class="view-link" target="_blank">F.Y. B.Sc.I.T</a></td></tr>
+      <tr><td>9</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/F.Y.B.A.pdf" class="view-link" target="_blank">F.Y.B.A</a></td></tr>
+      <tr><td>10</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/F.Y.B.Com.%20(I.M).pdf" class="view-link" target="_blank">F.Y.B.Com. (I.M)</a></td></tr>
+      <tr><td>11</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/F.Y.B.Com.%20(F.Mg).pdf" class="view-link" target="_blank">F.Y.B.Com.(F.Mg)</a></td></tr>
+      <tr><td>12</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/F.Y.B.Com.pdf" class="view-link" target="_blank">F.Y.B.Com</a></td></tr>
+      <tr><td>13</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/F.Y.BMS.pdf" class="view-link" target="_blank">F.Y.BMS</a></td></tr>
+      <tr><td>14</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/M.Com%20Part%20I.pdf" class="view-link" target="_blank">M.Com Part I</a></td></tr>
+      <tr><td>15</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/M.Com%20Part%20II.pdf" class="view-link" target="_blank">M.Com Part II</a></td></tr>
+      <tr><td>16</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/M.Com.pdf" class="view-link" target="_blank">M.Com</a></td></tr>
+      <tr><td>17</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/M.Sc.I.T.%20Part%20I.pdf" class="view-link" target="_blank">M.Sc.I.T. Part I</a></td></tr>
+      <tr><td>18</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/M.Sc.I.T.%20Part%20II.pdf" class="view-link" target="_blank">M.Sc.I.T. Part II</a></td></tr>
+      <tr><td>19</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/S.Y.B.A.%20Eco.pdf" class="view-link" target="_blank">S.Y.B.A. Eco</a></td></tr>
+      <tr><td>20</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/S.Y.B.Com%20(B.%20%26%20I).pdf" class="view-link" target="_blank">S.Y.B.Com (B. & I)</a></td></tr>
+      <tr><td>21</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/S.Y.B.Com.%20(I.%20M.).pdf" class="view-link" target="_blank">S.Y.B.Com. (I. M.)</a></td></tr>
+      <tr><td>22</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/S.Y.B.Com.%20(F.Mg.).pdf" class="view-link" target="_blank">S.Y.B.Com.(F.Mg.)</a></td></tr>
+      <tr><td>23</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/S.Y.B.Com.pdf" class="view-link" target="_blank">S.Y.B.Com</a></td></tr>
+      <tr><td>24</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/S.Y.B.Sc.C.S.pdf" class="view-link" target="_blank">S.Y.B.Sc.C.S.</a></td></tr>
+      <tr><td>25</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/S.Y.B.Sc.I.T.pdf" class="view-link" target="_blank">S.Y.B.Sc.I.T</a></td></tr>
+      <tr><td>26</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/S.Y.BMS.pdf" class="view-link" target="_blank">S.Y.BMS</a></td></tr>
+      <tr><td>27</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/T.Y.B.A.%20Economics.pdf" class="view-link" target="_blank">T.Y.B.A. Economics</a></td></tr>
+      <tr><td>28</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/T.Y.B.A.%20Hist.pdf" class="view-link" target="_blank">T.Y.B.A. Hist</a></td></tr>
+      <tr><td>29</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/T.Y.B.Com%20(B.%20%26%20I.).pdf" class="view-link" target="_blank">T.Y.B.Com (B. & I.)</a></td></tr>
+      <tr><td>30</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/T.Y.B.Com.%20(F.Mg.).pdf" class="view-link" target="_blank">T.Y.B.Com.(F.Mg.)</a></td></tr>
+      <tr><td>31</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/T.Y.B.Com.pdf" class="view-link" target="_blank">T.Y.B.Com</a></td></tr>
+      <tr><td>32</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/T.Y.B.Sc.C.S.pdf" class="view-link" target="_blank">T.Y.B.Sc.C.S</a></td></tr>
+      <tr><td>33</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/T.Y.B.Sc.I.T.pdf" class="view-link" target="_blank">T.Y.B.Sc.I.T</a></td></tr>
+      <tr><td>34</td><td><a href="https://saketcollege.edu.in/Docs/Outcomes/T.Y.BMS.pdf" class="view-link" target="_blank">T.Y.BMS</a></td></tr>
+    </tbody>
+  </table>
 </div>
 {% endblock %}

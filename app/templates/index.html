@@ -1,9 +1,18 @@
 {% extends "base.html" %}
+
 {% block title %}Home - Saket College{% endblock %}
+
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
 {% endblock %}
+
+
 {% block content %}
+
+
+<!-- Hero Section -->
 <section class="hero">
   <div class="hero-carousel">
     <div class="carousel-item active">
@@ -57,6 +66,8 @@
   </p>
   </marquee>
 </div>
+
+<!-- noticee board  -->
 <div class="noticesvisionmission">
   <div class="notices">
     <div class="notice-board">
@@ -70,107 +81,146 @@
       </div>
     </div>
   </div>
-<script>
-(function() {
-'use strict';
-let currentPage = 1;
-const perPage = 5;
-let loading = false;
-let scrollTimer = null;
-function formatDate(dateString) {
-  const options = { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' };
-  return new Date(dateString).toLocaleDateString('en-IN', options);
-}
-async function fetchNotices(page) {
-  try {
-    loading = true;
-    document.getElementById('noticeLoading').style.display = 'block';
-    const response = await fetch(`/api/notices?page=${page}&per_page=${perPage}`);
-    const data = await response.json();
-    const noticeContainer = document.getElementById('noticeContainer');
-    data.notices.forEach(notice => {
-      const noticeElement = document.createElement('div');
-      noticeElement.className = 'notice';
-      noticeElement.innerHTML = `
+
+  <script>
+    // Notice board functionality
+    (function () {
+      'use strict';
+      let currentPage = 1;
+      const perPage = 5;
+      let loading = false;
+      let scrollTimer = null;
+      // Format dates in IST timezone
+      function formatDate(dateString) {
+        const options = {
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric',
+          timeZone: 'Asia/Kolkata' // IST timezone
+        };
+        return new Date(dateString).toLocaleDateString('en-IN', options);
+      }
+
+      // Fetch notices from the API
+      async function fetchNotices(page) {
+        try {
+          loading = true;
+          document.getElementById('noticeLoading').style.display = 'block';
+
+          const response = await fetch(`/api/notices?page=${page}&per_page=${perPage}`);
+          const data = await response.json();
+          const noticeContainer = document.getElementById('noticeContainer');
+
+          data.notices.forEach(notice => {
+            const noticeElement = document.createElement('div');
+            noticeElement.className = 'notice';
+            noticeElement.innerHTML = `
         <span class="notice-date">${formatDate(notice.date_uploaded)}</span>
         <a href="${notice.url}" target="_blank" class="notice-link">
           ${notice.title}
           <span class="material-icons notice-icon">arrow_forward</span>
-        </a>`;
-      noticeContainer.appendChild(noticeElement);
-    });
-    document.getElementById('loadMoreButton').style.display = data.has_next ? 'block' : 'none';
-  } catch (error) {
-    console.error('Error fetching notices:', error);
-  } finally {
-    loading = false;
-    document.getElementById('noticeLoading').style.display = 'none';
-  }
-}
-function initNoticeBoard() {
-  fetchNotices(currentPage);
-  const loadMoreBtn = document.getElementById('loadMoreButton');
-  if (loadMoreBtn) {
-    loadMoreBtn.addEventListener('click', () => {
-      if (!loading) {
-        currentPage++;
-        fetchNotices(currentPage);
+        </a>
+      `;
+            noticeContainer.appendChild(noticeElement);
+          });
+
+          // Update load more button visibility
+          document.getElementById('loadMoreButton').style.display = data.has_next ? 'block' : 'none';
+        } catch (error) {
+          console.error('Error fetching notices:', error);
+        } finally {
+          loading = false;
+          document.getElementById('noticeLoading').style.display = 'none';
+        }
       }
-    });
-  }
-  const updateDateTime = () => {
-    const options = {
-      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
-      timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', hour12: true
-    };
-    const now = new Date();
-    const dateTimeElement = document.getElementById('dateTime');
-    if (dateTimeElement) {
-      dateTimeElement.textContent = now.toLocaleString('en-IN', options);
-    }
-  };
-  updateDateTime();
-  setInterval(updateDateTime, 60000);
-}
-window.pauseScroll = function() {
-  const noticesContent = document.querySelector('.notices-content');
-  if (noticesContent) {
-    noticesContent.style.animationPlayState = 'paused';
-    if (scrollTimer) clearTimeout(scrollTimer);
-  }
-};
-window.resumeScroll = function() {
-  const noticesContent = document.querySelector('.notices-content');
-  if (noticesContent) {
-    scrollTimer = setTimeout(() => {
-      noticesContent.style.animationPlayState = 'running';
-    }, 500);
-  }
-};
-document.addEventListener('DOMContentLoaded', initNoticeBoard);
-})();
-</script>
-<div class="vision">
-  <h1>Our Vision & Mission</h1>
-  <section class="containervision">
-    <div class="content" id="vision">
-      <h2>Our Vision</h2>
-      <p>To develop young citizens into competent, intellectual &amp; committed human beings with a moral and social responsibility capable of surviving in a competitive world.</p>
-    </div>
-    <div class="content" id="mission">
-      <h2>Our Mission</h2>
-      <ul style="list-style-type: none; padding: 0;">
-        <li>To equip students with advanced knowledge and the latest skills in their chosen discipline.</li>
-        <li>To provide education opportunities to financially weaker section of the society through fees flexibility.</li>
-        <li>To provide value-based education this will mould them into good and responsible citizens.</li>
-        <li>To tap the students' potentials and offer a platform for their overall development.</li>
-        <li>To provide integrated learning experiences that will equip students with qualities that will enable to achieve their potential.</li>
-        <li>To make education job-oriented.</li>
-      </ul>
-    </div>
-  </section>
+
+      // Initialize the notice board
+      function initNoticeBoard() {
+        fetchNotices(currentPage);
+        // Load more button functionality
+        const loadMoreBtn = document.getElementById('loadMoreButton');
+        if (loadMoreBtn) {
+          loadMoreBtn.addEventListener('click', () => {
+            if (!loading) {
+              currentPage++;
+              fetchNotices(currentPage);
+            }
+          });
+        }
+
+        // Update date-time display with IST timezone
+        const updateDateTime = () => {
+          const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            timeZone: 'Asia/Kolkata', // IST timezone
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true
+          };
+
+          const now = new Date();
+          const dateTimeElement = document.getElementById('dateTime');
+          if (dateTimeElement) {
+            dateTimeElement.textContent = now.toLocaleString('en-IN', options);
+          }
+        };
+
+        updateDateTime();
+        setInterval(updateDateTime, 60000); // Update every minute
+      }
+
+      // Auto-scroll functionality for notices
+      window.pauseScroll = function () {
+        const noticesContent = document.querySelector('.notices-content');
+        if (noticesContent) {
+          noticesContent.style.animationPlayState = 'paused';
+          if (scrollTimer) clearTimeout(scrollTimer);
+        }
+      };
+
+      window.resumeScroll = function () {
+        const noticesContent = document.querySelector('.notices-content');
+        if (noticesContent) {
+          scrollTimer = setTimeout(() => {
+            noticesContent.style.animationPlayState = 'running';
+          }, 500);
+        }
+      };
+      // Initialize when DOM is fully loaded
+      document.addEventListener('DOMContentLoaded', initNoticeBoard);
+    })();
+  </script>
+  <div class="vision">
+    <h1>Our Vision & Mission</h1>
+    <section class="containervision">
+      <div class="content" id="vision">
+        <h2>Our Vision</h2>
+        <p>To develop young citizens into competent, intellectual &amp; committed human beings with a moral and social
+          responsibility capable of surviving in a competitive world.</p>
+      </div>
+      <div class="content" id="mission">
+        <h2>Our Mission</h2>
+        <ul style="list-style-type: none; padding: 0;">
+          <li>To equip students with advanced knowledge and the latest skills in their chosen discipline.</li>
+          <li>To provide education opportunities to financially weaker section of the society through fees flexibility.
+          </li>
+          <li>To provide value-based education this will mould them into good and responsible citizens.</li>
+          <li>To tap the students’ potentials and offer a platform for their overall development.</li>
+          <li>To provide integrated learning experiences that will equip students with qualities that will enable to
+            achieve their potential.</li>
+          <li>To make education job-oriented.</li>
+        </ul>
+      </div>
+    </section>
+
+
+  </div>
 </div>
-</div>
+
+<!-- Quick Links Section -->
 <section class="about-section">
   <div class="about-grid">
     <div class="about-text">
@@ -272,7 +322,8 @@ document.addEventListener('DOMContentLoaded', initNoticeBoard);
   <h2>Campus Life</h2>
   <div class="campus-grid">
     <div class="campus-card">
-      <img src="https://saketcollege.edu.in/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-28-at-13.38.29-3.jpeg" alt="Cultural Events">
+      <img src="https://saketcollege.edu.in/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-28-at-13.38.29-3.jpeg"
+        alt="Cultural Events">
       <div class="campus-overlay">
         <h3>Cultural Events</h3>
         <p>Vibrant cultural festivals and celebrations</p>
@@ -280,17 +331,21 @@ document.addEventListener('DOMContentLoaded', initNoticeBoard);
       </div>
     </div>
     <div class="campus-card">
-      <img src="https://saketcollege.edu.in/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-28-at-13.38.00-2.jpeg" alt="Sports Activities">
+      <img src="https://saketcollege.edu.in/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-28-at-13.38.00-2.jpeg"
+        alt="Sports Activities">
       <div class="campus-overlay">
         <h3>Sports Activities</h3>
         <p>State-level tournaments and fitness facilities</p>
+        <a href="javascript:void(0);" onclick="ViewCulturalEvents()"><span>View</span></a>
       </div>
     </div>
     <div class="campus-card">
-      <img src="https://saketcollege.edu.in/wp-content/uploads/2024/04/WhatsApp-Image-2024-03-30-at-18.50.34.jpeg" alt="Student Clubs">
+      <img src="https://saketcollege.edu.in/wp-content/uploads/2024/04/WhatsApp-Image-2024-03-30-at-18.50.34.jpeg"
+        alt="Student Clubs">
       <div class="campus-overlay">
         <h3>Student Clubs</h3>
         <p>Over 30 active student clubs and societies</p>
+        <a href="javascript:void(0);" onclick="ViewCulturalEvents()"><span>View</span></a>
       </div>
     </div>
   </div>
@@ -530,7 +585,4 @@ document.addEventListener('DOMContentLoaded', initNoticeBoard);
     });
   }
 </script>
-{% endblock %}<script src="{{ url_for('static', filename='js/index.js') }}"></script>
-{% block scripts %}
-
 {% endblock %}
