@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% block title %}Program Courses - Saket College{% endblock %}
+
+{% block styles %}
+<style>
+/* Previous styles remain unchanged */
+.syllabus-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.syllabus-table td {
+    padding: 1rem;
+    border: 1px solid var(--m3-outline);
+}
+
+.syllabus-table a {
+    color: var(--m3-primary);
+    text-decoration: none;
+}
+
+.stream-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--m3-surface);
+    border-radius: 8px;
+}
+
+.stream-section h3 {
+    color: var(--m3-primary);
+    margin-bottom: 1rem;
+}
+
+.pdf-button {
+    background-color: var(--m3-primary-container);
+    color: var(--m3-on-primary-container);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.admission-content {
+    background-color: var(--m3-surface-variant);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.admission-content h3 {
+    color: var(--m3-primary);
+    margin-bottom: 1rem;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="programs-container">
+    <h1 class="section-title">Program Courses</h1>
+
+    <ul class="programs-list">
+        <li>
+            <button class="program-button" onclick="showSection('ug')">Undergraduate Programs (UG)</button>
+        </li>
+        <li>
+            <button class="program-button" onclick="showSection('pg')">Postgraduate Programs (PG)</button>
+        </li>
+        <li>
+            <button class="program-button" onclick="showSection('jc')">Junior College</button>
+        </li>
+    </ul>
+
+    <!-- UG Section -->
+    <div id="ug" class="section active">
+        <h2 class="section-title">Undergraduate Programs</h2>
+        
+        <div class="admission-content">
+            <h3>Admission Procedure</h3>
+            <p><b>Online Admission Procedure:</b> Applicants must apply through the University's online portal. Our College Code: <b>613</b></p>
+            <p><b>Documents Required:</b></p>
+            <ul>
+                <li>Original Mark sheet of Std. XII with two self-attested copies</li>
+                <li>Leaving Certificate & Passing Certificate</li>
+                <li>Caste certificate (if applicable)</li>
+                <li>Aadhar Card/Address Proof</li>
+            </ul>
+        </div>
+
+        <div class="sub-section">
+            <h3 class="section-title">Syllabus</h3>
+            <table class="syllabus-table">
+                <tr><td>Bachelor of Arts</td><td><a href="https://saketcollege.edu.in/Docs/Dept/UG/Bachelor%20of%20Arts.pdf?_t=1699123812" class="pdf-button">View PDF</a></td></tr>
+                <tr><td>B.Sc Computer Science</td><td><a href="https://saketcollege.edu.in/Docs/Dept/UG/Bachelor%20of%20Science%20in%20Computer%20Science.pdf?_t=1699123864" class="pdf-button">View PDF</a></td></tr>
+                <tr><td>B.Sc Information Technology</td><td><a href="https://saketcollege.edu.in/Docs/Dept/UG/Bachelor%20of%20Science%20in%20Information%20Technology.pdf?_t=1699123902" class="pdf-button">View PDF</a></td></tr>
+                <tr><td>B.Com</td><td><a href="https://saketcollege.edu.in/Docs/Dept/UG/Bachelor%20of%20Commerce.pdf?_t=1699123944" class="pdf-button">View PDF</a></td></tr>
+            </table>
+        </div>
+
+        <div class="sub-section">
+            <h3 class="section-title">Course Outcomes</h3>
+            <ul class="sub-list">
+                <li><a href="https://saketcollege.edu.in/Course-outcome/B.A.%20Economics.pdf?_t=1698489239" class="sub-button">B.A. Economics</a></li>
+                <li><a href="https://saketcollege.edu.in/Course-outcome/B.Sc.I.T..pdf?_t=1698489240" class="sub-button">B.Sc IT</a></li>
+                <li><a href="https://saketcollege.edu.in/Course-outcome/BMS.pdf?_t=1698489240" class="sub-button">BMS</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- PG Section -->
+    <div id="pg" class="section">
+        <h2 class="section-title">Postgraduate Programs</h2>
+        
+        <div class="sub-section">
+            <h3 class="section-title">Syllabus</h3>
+            <table class="syllabus-table">
+                <tr><td>M.A. Hindi</td><td><a href="https://saketcollege.edu.in/Docs/Dept/PG/Master%20of%20Arts%20in%20Hindi.pdf?_t=1699124100" class="pdf-button">View PDF</a></td></tr>
+                <tr><td>M.Sc IT</td><td><a href="https://saketcollege.edu.in/Docs/Dept/PG/Master%20of%20Science%20in%20Information%20Technology.pdf?_t=1699124174" class="pdf-button">View PDF</a></td></tr>
+                <tr><td>M.Com Accountancy</td><td><a href="https://saketcollege.edu.in/Docs/Dept/PG/Master%20of%20Commerce%20in%20Advanced%20Accountancy.pdf?_t=1699123666" class="pdf-button">View PDF</a></td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Junior College Section -->
+    <div id="jc" class="section">
+        <h2 class="section-title">Junior College</h2>
+        
+        <div class="stream-section">
+            <h3>Arts Stream (Marathi Medium)</h3>
+            <ul>
+                <li>Compulsory: English</li>
+                <li>Optional: Marathi/Hindi/IT</li>
+                <li>Subjects: Economics, Political Science, History, Geography</li>
+            </ul>
+        </div>
+
+        <div class="stream-section">
+            <h3>Science Stream (English Medium)</h3>
+            <ul>
+                <li>Compulsory: English</li>
+                <li>Optional: Marathi/Hindi/IT</li>
+                <li>Subjects: Mathematics, Physics, Chemistry, Biology</li>
+            </ul>
+        </div>
+
+        <div class="stream-section">
+            <h3>Commerce Stream (English Medium)</h3>
+            <ul>
+                <li>Compulsory: English</li>
+                <li>Optional: Marathi/Hindi/IT</li>
+                <li>Subjects: Economics, Accountancy, Business Studies</li>
+            </ul>
+        </div>
+
+        <div class="stream-section">
+            <h3>Bifocal (Computer Science)</h3>
+            <ul>
+                <li>Compulsory: English</li>
+                <li>Subjects: Computer Science I & II, Mathematics, Physics</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+// Keep existing JavaScript unchanged
+function showSection(sectionId) {
+    document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+    });
+    const selectedSection = document.getElementById(sectionId);
+    if (selectedSection) {
+        selectedSection.classList.add('active');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    showSection('ug');
+});
+</script>
+{% endblock %}
