@@ -4,14 +4,8 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-<script src="{{ url_for('static', filename='js/index.js') }}"></script>
-
 {% endblock %}
-
-
 {% block content %}
-
-
 <!-- Hero Section -->
 <section class="hero">
   <div class="hero-carousel">
@@ -585,4 +579,7 @@
     });
   }
 </script>
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}
 {% endblock %}

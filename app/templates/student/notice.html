@@ -3,8 +3,6 @@
 {% block title %}Home - Saket College{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-<script src="{{ url_for('static', filename='js/index.js') }}"></script>
-<!--Change me and proper styling and script rather than loading whole file. ^^^^^^^-->
 {% endblock %}
 {% block styles %}
   <style>
@@ -312,6 +310,7 @@
     // Initial load
     changePage(1);
   </script>
-
+{% block scripts %}
+{% endblock %}
 {% endblock %}
 
