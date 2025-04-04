@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+
+{% block title %}NAAC - Saket College{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/naac.css') }}">
+{% endblock %}
+
+{% block content %}
+<main class="naac-container">
+  <div class="naac-content">
+    <!-- NAAC Navigation -->
+    <nav class="naac-nav">
+      <ul>
+        <li><a href="#naac-dvv">NAAC – DVV</a></li>
+        <li><a href="#naac-appeal">NAAC – Appeal</a></li>
+        <li><a href="#iqac">IQAC</a></li>
+        <li><a href="#strategic-plan">Strategic Plan</a></li>
+        <li><a href="#documentation">Documentation</a></li>
+        <li><a href="#institutional">Institutional Distinctiveness</a></li>
+      </ul>
+    </nav>
+
+    <!-- Dynamic Content Sections -->
+    <div class="content-sections">
+      <!-- NAAC Appeal Section -->
+      <section id="naac-appeal" class="naac-section">
+        <h2>NAAC Appeal</h2>
+        <div class="appeal-grid">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>CR - 01</th>
+                <th>CR - 02</th>
+                <th>CR - 04</th>
+                <th>CR - 05</th>
+                <th>CR - 06</th>
+                <th>CR - 07</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1.3.1</td>
+                <td>2.5.1</td>
+                <td>4.1.1</td>
+                <td>5.4.1</td>
+                <td>6.3.1</td>
+                <td>7.2.1</td>
+              </tr>
+              <tr>
+                <td>N/A</td>
+                <td>2.6.1</td>
+                <td>4.2.1</td>
+                <td>N/A</td>
+                <td>6.4.1</td>
+                <td>7.3.1</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- IQAC Section -->
+      <section id="iqac" class="naac-section">
+        <h2>IQAC Details</h2>
+        <div class="tab-container">
+          <div class="tab-buttons">
+            <button class="tab-btn active" data-tab="composition">Composition</button>
+            <button class="tab-btn" data-tab="minutes">Minutes</button>
+            <button class="tab-btn" data-tab="feedback">Feedback</button>
+          </div>
+          
+          <div id="composition" class="tab-content active">
+            <table id="iqac-composition-table" class="data-table">
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div id="minutes" class="tab-content">
+            <table id="iqac-minutes-table" class="data-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Minutes</th>
+                  <th>ATR</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div id="feedback" class="tab-content">
+            <table id="feedback-table" class="data-table">
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Documentation Section -->
+      <section id="documentation" class="naac-section">
+        <h2>Criteria-wise Documentation</h2>
+        <div class="criteria-grid">
+          <table id="criteria-table" class="data-table">
+            <thead>
+              <tr>
+                <th>Extended Profile</th>
+                <th>Cr-1</th>
+                <th>Cr-2</th>
+                <th>Cr-3</th>
+                <th>Cr-4</th>
+                <th>Cr-5</th>
+                <th>Cr-6</th>
+                <th>Cr-7</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SSR Section -->
+      <section id="ssr" class="naac-section">
+        <h2>SSR Documents</h2>
+        <div class="ssr-documents">
+          <div class="doc-grid"></div>
+        </div>
+      </section>
+
+      <!-- Institutional Distinctiveness -->
+      <section id="institutional" class="naac-section">
+        <h2>Institutional Distinctiveness</h2>
+        <div class="vision-mission">
+          <div class="vision">
+            <h3>Vision</h3>
+            <p>To develop young citizens into competent, intellectual & committed human beings with a moral and social responsibility, capable of surviving in a competitive world.</p>
+          </div>
+          <div class="mission">
+            <h3>Mission</h3>
+            <ul>
+              <li>To equip students with appropriate knowledge and suitable skills in their chosen discipline.</li>
+              <li>To provide education opportunities to all aspirants and especially to students from weaker section of the society through need based financial support system.</li>
+              <li>To provide value-based education to mould them into dutiful and responsible citizens.</li>
+              <li>To recognize and promote student's potential and offer a platform for their overall development.</li>
+              <li>To provide integrated learning experiences to equip students with qualities that will enable to realize their ambition.</li>
+              <li>To focus on providing vocational education.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/naac.js') }}" defer></script>
+{% endblock %}

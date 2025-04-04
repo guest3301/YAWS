@@ -1,0 +1,186 @@
+.naac-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.naac-nav {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.naac-nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.naac-nav a {
+    text-decoration: none;
+    color: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.naac-nav a:hover {
+    background-color: #f0f0f0;
+}
+
+.naac-section {
+    margin-bottom: 3rem;
+}
+
+.naac-section h2 {
+    color: #333;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #8B4513;
+}
+
+/* Tab styles */
+.tab-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.tab-buttons {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.tab-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: 500;
+    color: #666;
+    transition: color 0.3s;
+}
+
+.tab-btn.active {
+    color: #8B4513;
+    border-bottom: 2px solid #8B4513;
+}
+
+.tab-content {
+    display: none;
+    padding: 1rem;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Table styles */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.data-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.view-btn button {
+    padding: 0.25rem 1rem;
+    background-color: #8B4513;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.view-btn button:hover {
+    background-color: #654321;
+}
+
+/* Criteria grid */
+.criteria-grid {
+    overflow-x: auto;
+}
+
+.criteria-link {
+    color: #8B4513;
+    text-decoration: none;
+}
+
+.criteria-link:hover {
+    text-decoration: underline;
+}
+
+/* Vision Mission section */
+.vision-mission {
+    display: grid;
+    gap: 2rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.vision h3,
+.mission h3 {
+    color: #8B4513;
+    margin-bottom: 1rem;
+}
+
+.mission ul {
+    padding-left: 1.5rem;
+}
+
+.mission li {
+    margin-bottom: 0.5rem;
+}
+
+/* Appeal section specific styles */
+.appeal-grid {
+    margin-top: 1rem;
+}
+
+.appeal-grid .data-table {
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.appeal-grid .data-table th {
+    background-color: #8B4513;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+.appeal-grid .data-table td {
+    text-align: center;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .tab-buttons {
+        flex-wrap: wrap;
+    }
+    
+    .naac-nav ul {
+        flex-direction: column;
+    }
+    
+    .data-table {
+        font-size: 0.9rem;
+    }
+}

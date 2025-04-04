@@ -236,7 +236,7 @@ header {
 .facu {
   display: flex;
   align-items: center;
-  gap: 15px;
+  /* gap: 15px; */
   margin-left: auto;
   padding-bottom: 50px;
 }
@@ -244,6 +244,7 @@ header {
 .facu a {
   color: var(--m3-primary);
   text-decoration: none;
+  text-align:center;
   position: relative;
   padding: 5px 8px;
   border-radius: var(--m3-shape-small);
@@ -253,6 +254,8 @@ header {
 
 .facu a:hover {
   background-color: var(--m3-surface-variant);
+ text-decoration: underline;
+  color: var(--m3-on-surface);
 }
 
 .facu a:not(:last-child)::after {
