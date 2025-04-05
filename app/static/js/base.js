@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        // Here you would typically send the form data to your backend
+        // Here you would typically send the form data to backend
         // For now, we'll just show a success message
         alert('Thank you for your message! We will get back to you soon.');
         modal.classList.remove('active');
