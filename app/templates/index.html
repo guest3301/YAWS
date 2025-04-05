@@ -321,7 +321,7 @@
       <div class="campus-overlay">
         <h3>Cultural Events</h3>
         <p>Vibrant cultural festivals and celebrations</p>
-        <a href="javascript:void(0);" onclick="ViewCulturalEvents()"><span>View</span></a>
+        <a href="javascript:void(0);" onclick="ViewCampusImages('cultural', 'Cultural Events')"><span>View</span></a>
       </div>
     </div>
     <div class="campus-card">
@@ -330,7 +330,7 @@
       <div class="campus-overlay">
         <h3>Sports Activities</h3>
         <p>State-level tournaments and fitness facilities</p>
-        <a href="javascript:void(0);" onclick="ViewCulturalEvents()"><span>View</span></a>
+        <a href="javascript:void(0);" onclick="ViewCampusImages('sports', 'Sports Activities')"><span>View</span></a>
       </div>
     </div>
     <div class="campus-card">
@@ -339,13 +339,13 @@
       <div class="campus-overlay">
         <h3>Student Clubs</h3>
         <p>Over 30 active student clubs and societies</p>
-        <a href="javascript:void(0);" onclick="ViewCulturalEvents()"><span>View</span></a>
+        <a href="javascript:void(0);" onclick="ViewCampusImages('clubs', 'Student Clubs')"><span>View</span></a>
       </div>
     </div>
   </div>
 </section>
 <script>
-  function ViewCulturalEvents() {
+  function ViewCampusImages(category, title) {
     // Create modal container
     const modal = document.createElement('div');
     modal.className = 'modal';
@@ -367,7 +367,7 @@
     
     // Add modal header
     const header = document.createElement('h2');
-    header.textContent = 'Cultural Events';
+    header.textContent = title;
     header.style.cssText = 'margin-bottom:20px; color:#333; border-bottom:1px solid #ddd; padding-bottom:10px;';
     
     // Add image container for the grid
@@ -388,8 +388,8 @@
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
     
-    // Fetch cultural event images from the server
-    fetch('/api/images?category=cultural&per_page=20')
+    // Fetch images from the server for the specified category
+    fetch(`/api/images?category=${category}&per_page=20`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Failed to fetch images');
@@ -402,7 +402,7 @@
         
         if (!data.images || data.images.length === 0) {
           const noImagesMsg = document.createElement('p');
-          noImagesMsg.textContent = 'No cultural event images available.';
+          noImagesMsg.textContent = `No ${title.toLowerCase()} images available.`;
           noImagesMsg.style.cssText = 'text-align:center; padding:20px; width:100%;';
           imageGrid.appendChild(noImagesMsg);
           return;
@@ -475,7 +475,7 @@
             loadMoreBtn.textContent = 'Loading...';
             loadMoreBtn.disabled = true;
             
-            fetch(`/api/images?category=cultural&per_page=20&page=${currentPage}`)
+            fetch(`/api/images?category=${category}&per_page=20&page=${currentPage}`)
               .then(response => response.json())
               .then(moreData => {
                 moreData.images.forEach(image => {
