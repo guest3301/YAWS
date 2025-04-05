@@ -62,7 +62,7 @@ def more(subpath):
     except:
         return render_template('404.html')
 
-@frontend_bp.route('/naac/<string:subpath>', methods=['GET'])
+@frontend_bp.route('/<string:subpath>', methods=['GET'])
 def facu(subpath):
     try:
         return render_template(f'facu/{subpath}.html')
