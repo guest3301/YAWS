@@ -18,11 +18,73 @@
   padding-bottom: 10px;
   border-bottom: 1px solid var(--m3-outline-variant);
 }
+
+.notice-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 24px;
+}
+
+.notice-table th {
+  background-color: var(--m3-surface-container);
+  color: var(--m3-primary);
+  font-weight: 500;
+  padding: 16px;
+  text-align: left;
+}
+
+.notice-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--m3-outline-variant);
+}
+
+.view-button {
+  background-color: var(--m3-primary);
+  color: var(--m3-on-primary);
+  padding: 8px 16px;
+  border: none;
+  border-radius: var(--m3-shape-small);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.view-button:hover {
+  background-color: var(--m3-primary-hover);
+}
 {% endblock %}
 
 {% block content %}
 <div class="content-container">
-  <h1 class="page-title">Notices</h1>
-  <p>Content for this page is coming soon.</p>
+  <h1 class="page-title">Examination Notices</h1>
+  <table class="notice-table">
+    <thead>
+      <tr>
+        <th>Notice</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>TYBMS, TYBAF, TYBBI, TYBSC (IT) SEM VI ADDITIONAL INTERNAL (MEDICAL GROUND) EXAM TIMETABLE MARCH - 2025 (10POINTS)</td>
+        <td><a href="https://saketcollege.edu.in/Docs/Time-Table/TYBMS%20%2C%20TYBAF%2C%20TYBBI%2CTYBSC%20%28IT%29%20SEM%20VI%20ADDITIONAL%20INTERNAL%20%28MEDICAL%20GROUND%29%20EXAM%20TIMETABLE%20MARCH%20-%202025%20%2810POINTS%29.pdf" target="_blank"><button class="view-button">View</button></a></td>
+      </tr>
+      <tr>
+        <td>TY.BSc (CS) (SEM VI) ONLINE ADDITIONAL INTERNAL (MEDICAL GROUND) EXAM-MARCH-2025-TIMETABLE (10POINTS)</td>
+        <td><a href="https://saketcollege.edu.in/Docs/Time-Table/TY.BSc%20%28CS%29%20%28SEM%20VI%29%20ONLINE%20ADDITIONAL%20INTERNAL%20%28MEDICAL%20GROUND%29%20EXAM-MARCH-2025-TIMETABLE%20%2810POINTS%29.pdf" target="_blank"><button class="view-button">View</button></a></td>
+      </tr>
+      <tr>
+        <td>SYBMS, SYBAF, SYBBI, SYBSC(IT) SEM IV ADDITIONAL INTERNAL (MEDICAL GROUND) EXAM TIMETABLE MARCH-2025 (10POINTS)</td>
+        <td><a href="https://saketcollege.edu.in/Docs/Time-Table/SYBMS%2C%20SYBAF%2C%20SYBBI%2C%20SYBSC%28IT%29%20SEM%20IV%20ADDITIONAL%20INTERNAL%20%28MEDICAL%20GROUND%29%20EXAM%20TIMETABLE%20MARCH-2025%20%2810POINTS%29.pdf" target="_blank"><button class="view-button">View</button></a></td>
+      </tr>
+      <tr>
+        <td>SY BSc (SEM IV) ONLINE ADDITIONAL INTERNAL (MEDICAL GROUND)EXAM-MARCH-2025-TIMETABLE(10POINTS)</td>
+        <td><a href="https://saketcollege.edu.in/Docs/Time-Table/SY%20BSc%20%28SEM%20IV%29%20ONLINE%20ADDITIONAL%20INTERNAL%20%28MEDICAL%20GROUND%29EXAM-MARCH-2025-TIMETABLE%2810POINTS%29.pdf" target="_blank"><button class="view-button">View</button></a></td>
+      </tr>
+      <tr>
+        <td>FYBSC COMPUTER SCIENCE (SEM II ATKT) PRACTICAL EXAMINATION TIMETABLE FEB 2025</td>
+        <td><a href="https://saketcollege.edu.in/Docs/Time-Table/FYBSC%20COMPUTER%20SCIENCE%20%28SEM%20II%20ATKT%29%20PRACTICAL%20EXAMINATION%20TIMETABLE%20FEB%202025.pdf" target="_blank"><button class="view-button">View</button></a></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 {% endblock %}

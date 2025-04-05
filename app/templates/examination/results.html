@@ -18,11 +18,77 @@
   padding-bottom: 10px;
   border-bottom: 1px solid var(--m3-outline-variant);
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background-color: var(--m3-surface);
+}
+
+th, td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--m3-outline-variant);
+}
+
+th {
+  background-color: var(--m3-surface-variant);
+  color: var(--m3-on-surface-variant);
+  font-weight: 500;
+}
+
+.view-button {
+  background-color: var(--m3-primary);
+  color: var(--m3-on-primary);
+  padding: 8px 16px;
+  border: none;
+  border-radius: var(--m3-shape-small);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.view-button:hover {
+  background-color: var(--m3-primary-hover);
+}
 {% endblock %}
 
 {% block content %}
 <div class="content-container">
   <h1 class="page-title">Results</h1>
-  <p>Content for this page is coming soon.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>View</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>SY SEM III Additional Exam Nov 2024 Result Notice Board</td>
+        <td>
+          <a href="https://saketcollege.edu.in/Docs/Results/SY%20SEM%20III%20Additional%20Exam%20Nov%202024%20Result%20Notice%20Board%20copy.pdf?_t=1735923330" target="_blank">
+            <button class="view-button">View</button>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>FYBSC CS SEM II Rev 16 ATKT OCT 2023</td>
+        <td>
+          <a href="https://saketcollege.edu.in/Docs/Results/First%20Year%20Sem%20II%20ATKT%20Oct%202023/FYBSC%20CS%20SEM%20II%20Rev%2016%20ATKT%20OCT%202023.pdf?_t=1703341388" target="_blank">
+            <button class="view-button">View</button>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>FYBSC IT SEM II ATKT OCT 2023</td>
+        <td>
+          <a href="https://saketcollege.edu.in/Docs/Results/First%20Year%20Sem%20II%20ATKT%20Oct%202023/FYBSC%20IT%20SEM%20II%20ATKT%20OCT%202023.pdf?_t=1703341388" target="_blank">
+            <button class="view-button">View</button>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 {% endblock %}

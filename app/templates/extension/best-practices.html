@@ -23,6 +23,93 @@
 {% block content %}
 <div class="content-container">
   <h1 class="page-title">Best Practices</h1>
-  <p>Content for this page is coming soon.</p>
+  <style>
+    body{
+        font-family:Arial,sans-serif;
+        margin:0;
+        padding:0;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+        background-color:#f4f4f4;
+        color:#333;
+    }
+    h3{
+        text-align:center;
+        font-size:2rem;
+        color:#493303;
+        margin-bottom:20px;
+    }
+    .wpDataTableContainerSimpleTable{
+        width:90%;
+        max-width:1200px;
+        background-color:#fff;
+        padding:20px;
+        text-align:center;
+        border-radius:8px;
+        box-shadow:0 4px 10px rgba(0,0,0,.1);
+    }
+    table{
+        width:100%;
+        border-collapse:collapse;
+    }
+    th, td{
+        padding:15px;
+        border:1px solid #ddd;
+        background-color:#f9f9f9;
+    }
+    th{
+        background-color:#BD8E06;
+        color:#FBFBFB;
+    }
+    td a{
+        text-decoration:none;
+        color:#e6bc009c;
+    }
+    td a:hover{
+        color:#005bb5;
+    }
+    td button{
+        background-color:#BD8E06;
+        color:#fff;
+        border:none;
+        padding:8px 16px;
+        cursor:pointer;
+        border-radius:4px;
+        transition:.3s;
+        width:auto;
+    }
+    td button:hover{
+        background-color:#a97a05;
+    }
+    @media (max-width:768px){
+        .wpDataTableContainerSimpleTable{
+            width:100%;
+            padding:10px;
+        }
+        table{
+            font-size:14px;
+        }
+        th, td{
+            padding:10px;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="wpDataTableContainerSimpleTable">
+    <h3>Best Practices Documents</h3>
+    <table>
+        <tbody>
+            <tr><th>Name</th><th>Link</th></tr>
+            <tr><td>Best Practices-2019-20</td><td><a href="https://saketcollege.edu.in/Docs/Best%20Practices/BP%202019-20.pdf?_t=1698496051" target="_blank"><button>View</button></a></td></tr>
+            <tr><td>Best Practices-2020-21</td><td><a href="https://saketcollege.edu.in/Docs/Best%20Practices/BP%202020-21.pdf?_t=1698496050" target="_blank"><button>View</button></a></td></tr>
+            <tr><td>Best Practices-2021-22</td><td><a href="https://saketcollege.edu.in/Docs/Best%20Practices%202021-22.pdf?_t=1701502086" target="_blank"><button>View</button></a></td></tr>
+            <tr><td>Best Practices-2022-23</td><td><a href="https://saketcollege.edu.in/Docs/Best%20Practices/BP%202022-23.pdf?_t=1698496050" target="_blank"><button>View</button></a></td></tr>
+            <tr><td>Best Practices-2023-24</td><td><a href="https://saketcollege.edu.in/Docs/Best%20Practices/Best%20practices%202023%20-%2024.pdf?_t=1735574436" target="_blank"><button>View</button></a></td></tr>
+        </tbody>
+    </table>
+</div>
 </div>
 {% endblock %}

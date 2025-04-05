@@ -18,11 +18,51 @@
   padding-bottom: 10px;
   border-bottom: 1px solid var(--m3-outline-variant);
 }
+
+.code-button {
+  background-color: var(--m3-primary);
+  color: var(--m3-on-primary);
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--m3-shape-small);
+  margin: 24px 0;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.code-button:hover {
+  background-color: var(--m3-primary-hover);
+}
+
+.code-content {
+  line-height: 1.6;
+  color: var(--m3-on-surface);
+}
+
+.code-content p {
+  margin-bottom: 16px;
+}
 {% endblock %}
 
 {% block content %}
 <div class="content-container">
   <h1 class="page-title">Code Of Conduct</h1>
-  <p>Content for this page is coming soon.</p>
+  <a href="https://saketcollege.edu.in/Docs/Dept/Code%20of%20Conduct.pdf?_t=1701762408">
+    <button class="code-button">Download Code of Conduct</button>
+  </a>
+  <div class="code-content">
+    <p>
+      The Code of Conduct is a set of guidelines and principles that outline the expected behavior and responsibilities of individuals within the Saket College community. It serves as a framework for maintaining a respectful, inclusive, and safe environment for all students, faculty, and staff.
+    </p>
+    <p>
+      The Code of Conduct covers various aspects, including academic integrity, respect for diversity, harassment prevention, and responsible use of technology. It emphasizes the importance of ethical behavior, accountability, and mutual respect among all members of the college community.
+    </p>
+    <p>
+      By adhering to the Code of Conduct, individuals contribute to a positive learning environment that fosters personal growth, collaboration, and academic excellence.
+    </p>
+    <p>
+      The Code of Conduct is applicable to all students, faculty, and staff at Saket College. It is essential for everyone to familiarize themselves with the code and understand their responsibilities in upholding its principles.
+    </p>
+  </div>
 </div>
 {% endblock %}

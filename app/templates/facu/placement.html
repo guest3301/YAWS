@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Placement Cell - Saket College{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/placement.css') }}">
+{% endblock %}
+
+{% block content %}
+<main class="placement-container">
+  <div class="placement-content">
+    <h2>College Placement & Career Services</h2>
+    
+    <!-- About Section -->
+    <section class="about-section">
+      <h3>About Our College</h3>
+      <div class="about-content">
+        <img src="{{ url_for('static', filename='images/campus.jpg') }}" alt="College Campus">
+        <p>The placement process at Saket College is a cornerstone of its commitment to student success and career
+          advancement. The college's dedicated Placement Cell works tirelessly to bridge the gap between academic
+          learning and professional careers, ensuring that students are well-prepared for the challenges of the
+          corporate world...</p>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="placement-nav">
+      <a href="#recruiters" class="m3-button">Recruiters</a>
+      <a href="#objective" class="m3-button">Objective</a>
+      <a href="#activity-picture" class="m3-button">Activity Pictures</a>
+      <a href="#mega-job-fair" class="m3-button">Mega Job Fair</a>
+      <div class="m3-dropdown">
+        <button class="m3-button dropdown-trigger">Placement Cell/Records</button>
+        <div class="m3-dropdown-menu">
+          <a href="https://saketcollege.edu.in/Docs/Committee/Traning%20%26%20Placement%20Committee.pdf">Placement Cell</a>
+          <a href="{{ url_for('static', filename='docs/placement-record.pdf') }}">Placement Record</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Recruiters Section -->
+    <section id="recruiters" class="content-section">
+      <h3>Our Recruiters</h3>
+      <p>We partner with leading companies to provide top placement opportunities for our students.</p>
+      <div class="recruiters-grid">
+        {% for i in range(1, 11) %}
+        <div class="recruiter-logo">
+          <img src="{{ url_for('static', filename='images/recruiters/logo' + i|string + '.png') }}" alt="Recruiter {{i}}">
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Objectives Section -->
+    <section id="objective" class="content-section">
+      <h3>Objective</h3>
+      <p>Here are the short objectives of college placements:</p>
+      <ul class="m3-list">
+        <li><strong>Provide Career Opportunities:</strong> Connect students with potential employers</li>
+        <li><strong>Bridge Academia and Industry:</strong> Align academic knowledge with job demands</li>
+        <!-- ...existing objectives... -->
+      </ul>
+    </section>
+
+    <!-- Activities Section -->
+    <section id="activity-picture" class="content-section">
+      <h3>Job Training by Magic Bus Foundation</h3>
+      <p>Check out some of the activities organized by our placement cell.</p>
+      <div class="activity-grid">
+        <div class="activity-image">
+          <img src="{{ url_for('static', filename='images/placement/activity1.jpg') }}" alt="Activity 1">
+        </div>
+        <div class="activity-image">
+          <img src="{{ url_for('static', filename='images/placement/activity2.jpg') }}" alt="Activity 2">
+        </div>
+      </div>
+    </section>
+
+    <!-- Mega Job Fair Section -->
+    <section id="mega-job-fair" class="content-section">
+      <h3>Mega Job Fair</h3>
+      <p>Our annual Mega Job Fair attracts top recruiters.</p>
+      <div class="job-fair-grid">
+        {% for i in range(1, 5) %}
+        <div class="fair-image">
+          <img src="{{ url_for('static', filename='images/placement/fair' + i|string + '.jpg') }}" alt="Job Fair {{i}}">
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+</main>
+{% endblock %}

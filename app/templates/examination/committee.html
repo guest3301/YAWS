@@ -18,11 +18,20 @@
   padding-bottom: 10px;
   border-bottom: 1px solid var(--m3-outline-variant);
 }
+
+.pdf-viewer {
+  width: 100%;
+  height: 800px;
+  border: none;
+  border-radius: var(--m3-shape-medium);
+  margin-top: 24px;
+  box-shadow: var(--m3-shadow-1);
+}
 {% endblock %}
 
 {% block content %}
 <div class="content-container">
-  <h1 class="page-title">Committee</h1>
-  <p>Content for this page is coming soon.</p>
+  <h1 class="page-title">Examination Committee</h1>
+  <iframe class="pdf-viewer" src="https://saketcollege.edu.in/Docs/Committee/Examination%20Committee.pdf" type="application/pdf" allowfullscreen></iframe>
 </div>
 {% endblock %}
